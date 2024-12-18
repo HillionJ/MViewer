@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -23,12 +24,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import fr.red.mviewer.tmdb.Movie;
+import fr.red.mviewer.utils.MovieDB;
+
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout flowLayout;
+    public LinearLayout flowLayout;
     private HorizontalScrollView scrollView;
     private GestureDetector gestureDetector;
     private int paddingX;
@@ -54,45 +60,58 @@ public class MainActivity extends AppCompatActivity {
 
         currentIndex = 0;
 
-        addPlaquette(flowLayout, "1");
-        addPlaquette(flowLayout, "2");
-        addPlaquette(flowLayout, "3");
-        addPlaquette(flowLayout, "4");
-        addPlaquette(flowLayout, "5");
-        addPlaquette(flowLayout, "6");
-
         gestureDetector = new GestureDetector(this, new GestureListener());
         scrollView.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+
+        addPlaquette(null);
 
         scrollView.post(() -> {
             int screenWidth = scrollView.getWidth();
             int plaquetteWidth = flowLayout.getChildAt(0).getWidth();
             paddingX = (screenWidth - plaquetteWidth) / 2;
         });
+
+        try {
+            MovieDB.foo(this);
+        } catch (Exception e) {
+            Log.e("_RED", "Erreur : " + e.getMessage());
+        }
     }
 
-    private void addPlaquette(LinearLayout parentLayout, String text) {
+    public void addPlaquette(Movie movie) {
         LayoutInflater inflater = LayoutInflater.from(this);
-        View itemView = inflater.inflate(R.layout.item_flow, parentLayout, false);
+        View itemView = inflater.inflate(R.layout.item_flow, flowLayout, false);
 
-        TextView itemText = itemView.findViewById(R.id.idTitrePlaquette);
-        itemText.setText(text);
+        if (movie != null) {
+            // Afficher le titre
+            TextView titre = itemView.findViewById(R.id.idTitrePlaquette);
+            titre.setText(movie.getTitle());
 
-        parentLayout.addView(itemView);
+            // Charger l'affiche du film
+            ImageView image = itemView.findViewById(R.id.idImagePlaquette);
+
+            String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
+            Log.d("_RED", posterUrl);
+            Glide.with(this)
+                    .load(posterUrl)
+                    .placeholder(R.drawable._1euctafoll)
+                    .error(R.drawable._1euctafoll)
+                    .into(image);
+        }
+
+        flowLayout.addView(itemView);
     }
+
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
             @Override
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                Log.d("_RED", "onScroll()");
                 return false;
             }
 
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                // Gère les mouvements rapides
-                Log.d("_RED", "onFling()");
                 if (Math.abs(velocityX) > Math.abs(velocityY)) {
                     if (velocityX > 0) {
                         scrollToPrevious();
@@ -109,13 +128,13 @@ public class MainActivity extends AppCompatActivity {
     // Méthode pour scroller automatiquement vers la prochaine plaquette
     private void scrollToNext() {
         scrollView.smoothScrollTo(getXToScroll(Math.min(flowLayout.getChildCount() - 1, currentIndex + 1)), 0);
-        currentIndex++;
+        currentIndex = Math.min(flowLayout.getChildCount() - 1, currentIndex + 1);
     }
 
     // Méthode pour scroller automatiquement vers la plaquette précédente
     private void scrollToPrevious() {
         scrollView.smoothScrollTo(getXToScroll(Math.max(0, currentIndex - 1)), 0);
-        currentIndex--;
+        currentIndex = Math.max(0, currentIndex - 1);
     }
 
     // Méthode pour ajuster automatiquement la position sur la plaquette la plus proche
