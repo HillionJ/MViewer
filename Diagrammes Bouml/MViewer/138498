@@ -1,0 +1,134 @@
+format 224
+"utils" // java::fr::red::mviewer::utils
+  revision 1
+  modified_by 2 "RedEstDeRetour"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\RedEstDeRetour\\AndroidStudioProjects\\MViewer\\Application mobile\\MViewer\\app\\src\\main\\java/fr/red/mviewer/utils/"
+  java_package "fr.red.mviewer.utils"
+  classview 136450 "utils"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 138498 "MovieDB"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 142978 "foo"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "activity" type class_ref 137474 // MainActivity
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 135810 // <association>
+	relation 135810 ----
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135810 // <association>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135938 // <association>
+      end
+
+      classrelation 136322 // <association>
+	relation 136066 ----
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 136322 // <association>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 136450 // <association>
+      end
+    end
+  end
+
+  deploymentview 135554 "utils"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 137218 "MovieDB"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import fr.red.mviewer.MainActivity;
+import fr.red.mviewer.tmdb.ApiClient;
+import fr.red.mviewer.tmdb.Movie;
+import fr.red.mviewer.tmdb.MovieResponse;
+import fr.red.mviewer.tmdb.TheMovieDB;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+${definition}"
+      associated_elems
+	class_ref 138498 // MovieDB
+      end
+    end
+  end
+end

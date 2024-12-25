@@ -1,0 +1,9 @@
+class Movie
+!!!141954.java!!!	getTitle() : String
+        return title;
+!!!142082.java!!!	getOverview() : String
+        return overview;
+!!!142210.java!!!	getPosterPath() : String
+        return poster_path;
+!!!142338.java!!!	getReleaseDate() : String
+        return release_date;
