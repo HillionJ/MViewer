@@ -42,15 +42,15 @@
 
 ## Tickets Jira
 
-![Tickets Jira](images/v0.1_Jira.png)
+![Tickets Jira](Images/v0.1_Jira.png)
 
 ## Diagramme de cas d'utilisation
 
-![Diagramme cas d'utilisation](images/Diagramme%20de%20cas%20d'utilisation.png)
+![Diagramme cas d'utilisation](Images/Diagramme%20de%20cas%20d'utilisation.png)
 
 ## Diagramme de classes
 
-![Diagramme de classes](images/Diagramme%20de%20classes.png)
+![Diagramme de classes](Images/Diagramme%20de%20classes.png)
 
 ## Screenshots
 
