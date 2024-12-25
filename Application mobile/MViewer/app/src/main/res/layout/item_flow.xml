@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/black"
     android:padding="8dp">
 
     <ImageView
         android:id="@+id/idImagePlaquette"
         android:layout_width="310dp"
         android:layout_height="452dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.424"
-        app:srcCompat="@android:color/darker_gray" />
+        app:srcCompat="@drawable/_1euctafoll" />
 
     <TextView
         android:id="@+id/idTitrePlaquette"
@@ -26,6 +28,7 @@
         android:gravity="center"
         android:text="Chargement du film..."
         android:textSize="24dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/idImagePlaquette"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/idImagePlaquette"
