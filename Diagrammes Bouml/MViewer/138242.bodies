@@ -1,0 +1,5 @@
+class MovieResponse
+!!!142466.java!!!	getPage() : int
+        return page;
+!!!142594.java!!!	getResults() : Movie
+        return results;
