@@ -8,6 +8,31 @@
     android:background="@color/black"
     android:padding="8dp">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="-32dp"
+        android:rotation="180"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/shimmerLayout"
+        app:layout_constraintEnd_toEndOf="@+id/shimmerLayout"
+        app:layout_constraintStart_toStartOf="@+id/shimmerLayout"
+        app:layout_constraintTop_toTopOf="@+id/shimmerLayout"
+        app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aucune connexion"
+        android:textColor="#B5B5B5"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerLayout"
         android:layout_width="wrap_content"

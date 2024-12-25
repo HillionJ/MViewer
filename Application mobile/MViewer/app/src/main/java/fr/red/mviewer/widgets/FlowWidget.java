@@ -16,10 +16,10 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 
 import fr.red.mviewer.FlowActivity;
 import fr.red.mviewer.R;
-import fr.red.mviewer.tmdb.Movie;
+import fr.red.mviewer.utils.Movie;
 import fr.red.mviewer.utils.GestureListener;
 import fr.red.mviewer.utils.IHM;
-import fr.red.mviewer.utils.MovieDB;
+import fr.red.mviewer.tmdb.TheMovieDB;
 
 public class FlowWidget {
 
@@ -163,7 +163,7 @@ public class FlowWidget {
     }
 
     public void updateFlow() {
-        if (MovieDB.getInstance().getPopular().isEmpty()) {
+        if (TheMovieDB.getInstance().getPopular().isEmpty()) {
             addPlaquette(null);
             addPlaquette(null);
             addPlaquette(null);
@@ -171,7 +171,7 @@ public class FlowWidget {
             addPlaquette(null);
             addPlaquette(null);
         } else {
-            for (Movie movie : MovieDB.getInstance().getPopular()) {
+            for (Movie movie : TheMovieDB.getInstance().getPopular()) {
                 addPlaquette(movie);
             }
             View lastPlaquette = flowLayout.getChildAt(flowLayout.getChildCount() - 1);

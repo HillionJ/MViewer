@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import fr.red.mviewer.tmdb.TheMovieDB;
 import fr.red.mviewer.utils.IHM;
 
 public class SearchActivity extends AppCompatActivity {
@@ -39,6 +40,8 @@ public class SearchActivity extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[0]);
         listView.setAdapter(adapter);
+
+        TheMovieDB.getInstance().search("ant man");
     }
 
     @Override

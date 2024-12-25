@@ -1,4 +1,4 @@
-package fr.red.mviewer.tmdb;
+package fr.red.mviewer.utils;
 
 public class Movie {
     private String title;
