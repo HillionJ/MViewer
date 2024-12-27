@@ -95,7 +95,9 @@ public class TheMovieDB {
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 List<Movie> movies = response.body().getResults();
                 boolean hasNext = page < response.body().getTotal_pages();
-                searchActivity.addResults(movies, page, response.body().getTotal_results(), hasNext);
+                searchActivity.runOnUiThread(() -> {
+                    searchActivity.addResults(movies, page, response.body().getTotal_results(), hasNext);
+                });
             }
 
             @Override

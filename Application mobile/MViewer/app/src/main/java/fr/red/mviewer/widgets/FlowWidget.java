@@ -179,16 +179,6 @@ public class FlowWidget {
         }
     }
 
-    public void hide() {
-        scrollView.setVisibility(View.INVISIBLE);
-        Log.d("_RED", "hide");
-    }
-
-    public void show() {
-        scrollView.setVisibility(View.VISIBLE);
-        Log.d("_RED", "show");
-    }
-
     public boolean isVisible() {
         return scrollView.getVisibility() == View.VISIBLE;
     }

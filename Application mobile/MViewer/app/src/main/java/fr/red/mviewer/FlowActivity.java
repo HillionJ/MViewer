@@ -59,7 +59,6 @@ public class FlowActivity extends AppCompatActivity {
     }
 
     public void updateFlow() {
-        Log.d("_RED", "updateFlow()");
         flowWidget.updateFlow();
     }
 

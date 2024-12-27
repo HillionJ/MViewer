@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -57,6 +59,7 @@ public class SearchActivity extends AppCompatActivity {
     private int currentQueueToken = 0;
     private boolean hasNextPage = false;
     private int currentPage = 1;
+    private ImageView loadingImage = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,19 +81,14 @@ public class SearchActivity extends AppCompatActivity {
         result_amount = findViewById(R.id.result_amount);
         result_amount.setVisibility(View.INVISIBLE);
         scroll_result = findViewById(R.id.scroll_result);
-
-        scroll_result.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                //Vérifier si on arrive en bas de la ScrollView
-                if (scroll_result.getScrollY() + scroll_result.getHeight() >= scroll_result.getChildAt(0).getHeight() && hasNextPage) {
-                    hasNextPage = false;
-                    currentPage++;
-                    theMovieDB.search(searchView.getQuery().toString(), currentPage);
-                }
-                return false;
+        Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(() -> {
+            //Vérifier si on arrive au bout du scroll
+            if (scroll_result.getScrollY() == scroll_result.getChildAt(0).getHeight() - scroll_result.getHeight() && hasNextPage) {
+                hasNextPage = false;
+                currentPage++;
+                theMovieDB.search(searchView.getQuery().toString(), currentPage);
             }
-        });
+        },0, 1, TimeUnit.SECONDS);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -134,32 +132,36 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void removeResultsUI() {
+        if (loadingImage != null) {
+            loadingImage.clearAnimation();
+        }
         while(search_result.getChildCount() > 0) {
             search_result.removeView(search_result.getChildAt(0));
         }
         queue.clear();
+        loadingImage = null;
     }
 
     public void updateResultsUI(int startIndex) {
         if (currentPage == 1) {
             removeResultsUI();
         }
-        for (int i = startIndex / nbPlaquettesParLigne; i < results.size(); i += nbPlaquettesParLigne) {
+        int unclosedIndexes = (startIndex % nbPlaquettesParLigne);
+        if (unclosedIndexes > 0) {
+            LinearLayout row = (LinearLayout) search_result.getChildAt(search_result.getChildCount() - 1);
+            for (int i = 0; i < nbPlaquettesParLigne - unclosedIndexes; i++) {
+                row.addView(craftResult(results.get(startIndex + i)));
+            }
+            startIndex += nbPlaquettesParLigne;
+        }
+        for (int i = startIndex - unclosedIndexes; i < results.size(); i += nbPlaquettesParLigne) {
             LinearLayout row = new LinearLayout(this);
             row.setOrientation(LinearLayout.HORIZONTAL);
             for (int j = i; j < nbPlaquettesParLigne + i && j < results.size(); j++) {
                 row.addView(craftResult(results.get(j)));
-                Log.d("_RED", "index: " + j);
             }
             search_result.addView(row);
         }
-    }
-
-    private LinearLayout newChild(LinearLayout search_result) {
-        LinearLayout row = new LinearLayout(this);
-        row.setOrientation(LinearLayout.HORIZONTAL);
-        search_result.addView(row);
-        return search_result;
     }
 
     public void displayLoadingResultsUI() {
@@ -213,9 +215,23 @@ public class SearchActivity extends AppCompatActivity {
         result_amount.setText(amount == 0 ? "Aucun résultat" : amount + " résultat" + (amount == 1 ? "" : "s"));
         int lastAmount = results.size();
         this.results.addAll(movies);
+        if (loadingImage != null) {
+            loadingImage.clearAnimation();
+            search_result.removeView(loadingImage);
+            loadingImage = null;
+        }
         updateResultsUI(lastAmount);
         currentQueueToken++;
         loadNextInQueue();
+        if (hasNextPage) {
+            ImageView imageView = new ImageView(this);
+            imageView.setImageResource(R.drawable.loading);
+            imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,200, 0));
+            imageView.setPadding(0, 50, 0, 50);
+            imageView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.loading));
+            loadingImage = imageView;
+            search_result.addView(imageView);
+        }
     }
 
     public void loadNextInQueue() {
