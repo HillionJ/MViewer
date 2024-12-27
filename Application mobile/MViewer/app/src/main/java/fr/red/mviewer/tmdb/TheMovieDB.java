@@ -11,6 +11,7 @@ import fr.red.mviewer.FlowActivity;
 import fr.red.mviewer.SearchActivity;
 import fr.red.mviewer.utils.IHM;
 import fr.red.mviewer.utils.Movie;
+import fr.red.mviewer.utils.MovieGenre;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,15 +32,38 @@ public class TheMovieDB {
     private List<Movie> popular = new ArrayList<>();
 
     public TheMovieDB() {
-        fetchPoupular();
+        fetchGenres();
+        fetchPoupular(1);
     }
 
-    public void fetchPoupular() {
+    public void fetchGenres() {
+        IRetrofitTheMovieDB api = getRetrofitInstance().create(IRetrofitTheMovieDB.class);
+        api.getGenres(API_KEY, LANG).enqueue(new Callback<GenreResponse>() {
+            @Override
+            public void onResponse(Call<GenreResponse> call, Response<GenreResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<MovieGenre> movieGenre = response.body().getGenres();
+                    for (MovieGenre genre : movieGenre) {
+                        genre.addToCache();
+                    }
+                    IHM ihm = IHM.getIHM();
+                    FlowActivity flowActivity = (FlowActivity) ihm.getActivite(FlowActivity.class);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GenreResponse> call, Throwable t) {
+                Log.e("_RED", "Erreur2 : " + t.getMessage());
+            }
+        });
+    }
+
+    public void fetchPoupular(int page) {
         IRetrofitTheMovieDB api = getRetrofitInstance().create(IRetrofitTheMovieDB.class);
         IHM ihm = IHM.getIHM();
         FlowActivity flowActivity = (FlowActivity) ihm.getActivite(FlowActivity.class);
 
-        api.getPopularMovies(API_KEY, LANG).enqueue(new Callback<MovieResponse>() {
+        api.getPopularMovies(API_KEY, LANG, page).enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -60,11 +84,15 @@ public class TheMovieDB {
     }
 
     public void search(String query) {
+        search(query, 1);
+    }
+
+    public void search(String query, int page) {
         IRetrofitTheMovieDB api = getRetrofitInstance().create(IRetrofitTheMovieDB.class);
         IHM ihm = IHM.getIHM();
         SearchActivity searchActivity = (SearchActivity) ihm.getActivite(SearchActivity.class);
 
-        api.searchMovies(API_KEY, query, LANG).enqueue(new Callback<MovieResponse>() {
+        api.searchMovies(API_KEY, query, LANG, page).enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 List<Movie> movies = response.body().getResults();
