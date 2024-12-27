@@ -36,7 +36,8 @@ public class TheMovieDB {
 
     public void fetchPoupular() {
         IRetrofitTheMovieDB api = getRetrofitInstance().create(IRetrofitTheMovieDB.class);
-        FlowActivity flowActivity = (FlowActivity) IHM.getIHM().getActivite(FlowActivity.class);
+        IHM ihm = IHM.getIHM();
+        FlowActivity flowActivity = (FlowActivity) ihm.getActivite(FlowActivity.class);
 
         api.getPopularMovies(API_KEY, LANG).enqueue(new Callback<MovieResponse>() {
             @Override
@@ -60,15 +61,14 @@ public class TheMovieDB {
 
     public void search(String query) {
         IRetrofitTheMovieDB api = getRetrofitInstance().create(IRetrofitTheMovieDB.class);
-        SearchActivity searchActivity = (SearchActivity) IHM.getIHM().getActivite(SearchActivity.class);
+        IHM ihm = IHM.getIHM();
+        SearchActivity searchActivity = (SearchActivity) ihm.getActivite(SearchActivity.class);
 
         api.searchMovies(API_KEY, query, LANG).enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 List<Movie> movies = response.body().getResults();
-                for (Movie m : movies) {
-                    Log.d("_RED", "search: " + m.getTitle());
-                }
+                searchActivity.setResults(movies);
             }
 
             @Override

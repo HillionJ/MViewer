@@ -66,8 +66,8 @@ public class FlowWidget {
             String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
             Glide.with(ihm.getActivite(FlowActivity.class))
                     .load(posterUrl)
-                    .placeholder(R.drawable._1euctafoll)
-                    .error(R.drawable._1euctafoll)
+                    .placeholder(R.drawable.gray_background)
+                    .error(R.drawable.gray_background)
                     .into(image);
         } else {
             itemView = inflater.inflate(R.layout.item_flow_loading, flowLayout, false);

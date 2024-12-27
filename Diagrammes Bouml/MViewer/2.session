@@ -1,7 +1,11 @@
-window_sizes 958 991 450 502 809 128
+window_sizes 1920 1001 450 1464 819 128
 
 show_stereotypes
-selected usecaseview_ref 134530 // Digramme de cas d'utilisation
+selected classdiagram_ref 134786 // Classes
 open
+  usecaseview_ref 134530 // Digramme de cas d'utilisation
+  classview_ref 135810 // Diagramme de classes
+  classview_ref 136066 // unknown
+  classview_ref 136322 // GestureDetector
 end
 end
