@@ -46,8 +46,6 @@ public class TheMovieDB {
                     for (MovieGenre genre : movieGenre) {
                         genre.addToCache();
                     }
-                    IHM ihm = IHM.getIHM();
-                    FlowActivity flowActivity = (FlowActivity) ihm.getActivite(FlowActivity.class);
                 }
             }
 
@@ -96,7 +94,8 @@ public class TheMovieDB {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 List<Movie> movies = response.body().getResults();
-                searchActivity.setResults(movies);
+                boolean hasNext = page < response.body().getTotal_pages();
+                searchActivity.addResults(movies, page, response.body().getTotal_results(), hasNext);
             }
 
             @Override

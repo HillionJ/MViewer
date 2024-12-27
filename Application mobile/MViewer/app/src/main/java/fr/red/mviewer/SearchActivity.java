@@ -1,15 +1,19 @@
 package fr.red.mviewer;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -24,12 +28,14 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import fr.red.mviewer.tmdb.TheMovieDB;
+import fr.red.mviewer.utils.GestureListener;
 import fr.red.mviewer.utils.IHM;
 import fr.red.mviewer.utils.LoadingQueue;
 import fr.red.mviewer.utils.Movie;
@@ -40,6 +46,8 @@ public class SearchActivity extends AppCompatActivity {
     private static final double defaultPlaquette = 500.0 / 333.0; // 'Height / Width'
 
     private LinearLayout search_result;
+    private TextView result_amount;
+    private ScrollView scroll_result;
     private ArrayAdapter<String> adapter;
     private TheMovieDB theMovieDB = TheMovieDB.getInstance();
     private int plaquetteHeight, plaquetteWidth;
@@ -47,6 +55,8 @@ public class SearchActivity extends AppCompatActivity {
     private IHM ihm = IHM.getIHM();
     private List<LoadingQueue> queue = new ArrayList<>();
     private int currentQueueToken = 0;
+    private boolean hasNextPage = false;
+    private int currentPage = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +75,22 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setIconified(false);
 
         search_result = findViewById(R.id.search_result);
+        result_amount = findViewById(R.id.result_amount);
+        result_amount.setVisibility(View.INVISIBLE);
+        scroll_result = findViewById(R.id.scroll_result);
+
+        scroll_result.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //Vérifier si on arrive en bas de la ScrollView
+                if (scroll_result.getScrollY() + scroll_result.getHeight() >= scroll_result.getChildAt(0).getHeight() && hasNextPage) {
+                    hasNextPage = false;
+                    currentPage++;
+                    theMovieDB.search(searchView.getQuery().toString(), currentPage);
+                }
+                return false;
+            }
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -84,6 +110,8 @@ public class SearchActivity extends AppCompatActivity {
                         if (this.scheduler == newScheduler && ihm.getActiviteActive().getClass() == SearchActivity.class) {
                             if (newText.isEmpty()) {
                                 removeResultsUI();
+                                result_amount.setVisibility(View.INVISIBLE);
+                                hasNextPage = false;
                             } else {
                                 if (search_result.getChildCount() == 0) {
                                     displayLoadingResultsUI();
@@ -101,7 +129,7 @@ public class SearchActivity extends AppCompatActivity {
         search_result.post(() -> {
             plaquetteWidth = search_result.getWidth() / nbPlaquettesParLigne;
             plaquetteHeight = (int) (defaultPlaquette * (double) plaquetteWidth);
-            updateResultsUI();
+            updateResultsUI(0);
         });
     }
 
@@ -112,16 +140,26 @@ public class SearchActivity extends AppCompatActivity {
         queue.clear();
     }
 
-    public void updateResultsUI() {
-        removeResultsUI();
-        for (int i = 0; i < results.size(); i += nbPlaquettesParLigne) {
+    public void updateResultsUI(int startIndex) {
+        if (currentPage == 1) {
+            removeResultsUI();
+        }
+        for (int i = startIndex / nbPlaquettesParLigne; i < results.size(); i += nbPlaquettesParLigne) {
             LinearLayout row = new LinearLayout(this);
             row.setOrientation(LinearLayout.HORIZONTAL);
             for (int j = i; j < nbPlaquettesParLigne + i && j < results.size(); j++) {
                 row.addView(craftResult(results.get(j)));
+                Log.d("_RED", "index: " + j);
             }
             search_result.addView(row);
         }
+    }
+
+    private LinearLayout newChild(LinearLayout search_result) {
+        LinearLayout row = new LinearLayout(this);
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        search_result.addView(row);
+        return search_result;
     }
 
     public void displayLoadingResultsUI() {
@@ -164,10 +202,18 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
-    public void setResults(List<Movie> movies) {
-        this.results.clear();
+    public void addResults(List<Movie> movies, int currentPage, int amount, boolean hasNextPage) {
+        if (currentPage == 1) {
+            this.results.clear();
+            scroll_result.scrollTo(0, 0);
+        }
+        this.currentPage = currentPage;
+        this.hasNextPage = hasNextPage;
+        result_amount.setVisibility(View.VISIBLE);
+        result_amount.setText(amount == 0 ? "Aucun résultat" : amount + " résultat" + (amount == 1 ? "" : "s"));
+        int lastAmount = results.size();
         this.results.addAll(movies);
-        updateResultsUI();
+        updateResultsUI(lastAmount);
         currentQueueToken++;
         loadNextInQueue();
     }
@@ -188,9 +234,11 @@ public class SearchActivity extends AppCompatActivity {
         imageView.post(() -> {
             if (token == currentQueueToken) {
                 loadNextInQueue();
-            } else {
-                Log.d("_RED", "expired");
             }
         });
+    }
+
+    public List<Movie> getResults() {
+        return results;
     }
 }
