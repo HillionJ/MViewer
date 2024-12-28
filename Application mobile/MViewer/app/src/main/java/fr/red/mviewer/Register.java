@@ -25,6 +25,7 @@ public class Register extends AppCompatActivity {
         password2 = findViewById(R.id.password2);
     }
 
+    // Méthode appelée lors du clic sur le bouton "Créer un compte"
     public void register(View v){
         if (password1.getText().toString().equals(password2.getText().toString())) {
             FirebaseAuth auth = FirebaseAuth.getInstance();

@@ -42,6 +42,7 @@ public class FlowWidget {
 
         updateFlow();
 
+        // Calculer la largeur de l'espacement entre les plaquettes dès que scrollView est disponible
         scrollView.post(() -> {
             int screenWidth = scrollView.getWidth();
             int plaquetteWidth = flowLayout.getChildAt(0).getWidth();
@@ -50,6 +51,7 @@ public class FlowWidget {
         });
     }
 
+    //Ajouter une plaquette réelle (movie != null) ou en chargement (movie == null)
     public void addPlaquette(Movie movie) {
         LayoutInflater inflater = LayoutInflater.from(ihm.getActivite(FlowActivity.class));
         View itemView;
@@ -79,12 +81,12 @@ public class FlowWidget {
         flowLayout.addView(itemView);
     }
 
+    // Calculer la position X de la plaquette à partir de son ID
     private int getXToScroll(int targetID) {
         int x = -paddingX;
         for (int i = 0; i < targetID; i++) {
             x += flowLayout.getChildAt(i).getWidth();
         }
-        Log.d("_RED", targetID + ": " + x);
         return x;
     }
 
@@ -96,31 +98,22 @@ public class FlowWidget {
         return flowLayout.getChildAt(index);
     }
 
+    //Récupérer la plaquette en cours de visualisation en récupérant celle la plus proche du centre de l'écran
     private int getCurrentPlaquetteID() {
         int scrollX = scrollView.getScrollX();
-
-        // Largeur de l'écran (zone visible du ScrollView)
         int screenWidth = scrollView.getWidth();
-
-        // Initialiser les valeurs pour la recherche
         int closestIndex = -1;
         int closestDistance = Integer.MAX_VALUE;
 
-        // Parcourir toutes les plaquettes du FlowLayout
         for (int i = 0; i < flowLayout.getChildCount(); i++) {
             View plaquette = flowLayout.getChildAt(i);
-
-            // Calculer la position X de la plaquette
             int plaquetteLeft = plaquette.getLeft();
             int plaquetteRight = plaquette.getRight();
-
-            // Calculer la distance entre le centre de la plaquette et le centre de l'écran
             int plaquetteCenter = (plaquetteLeft + plaquetteRight) / 2;
             int screenCenter = scrollX + (screenWidth / 2);
 
             int distance = Math.abs(plaquetteCenter - screenCenter);
 
-            // Trouver la plaquette la plus proche du centre
             if (distance < closestDistance) {
                 closestDistance = distance;
                 closestIndex = i;
@@ -133,6 +126,7 @@ public class FlowWidget {
         return 0;
     }
 
+    // Méthode pour scroller automatiquement vers la plaquette suivante
     public void scrollToNext() {
         scrollView.smoothScrollTo(getXToScroll(Math.min(flowLayout.getChildCount() - 1, currentIndex + 1)), 0);
         currentIndex = Math.min(flowLayout.getChildCount() - 1, currentIndex + 1);
@@ -144,6 +138,7 @@ public class FlowWidget {
         currentIndex = Math.max(0, currentIndex - 1);
     }
 
+    // Supprimer les plaquette ayant l'effet de chargement (shimmer)
     public void removeLoadingWidgets() {
         for (int i = 0; i < flowLayout.getChildCount(); i++) {
             View v = flowLayout.getChildAt(i);
@@ -162,8 +157,10 @@ public class FlowWidget {
         this.scrollView = scrollView;
     }
 
+    // Mettre à jour la liste des plaquettes
     public void updateFlow() {
         if (TheMovieDB.getInstance().getPopular().isEmpty()) {
+            // Afficher des plaquettes en cours de chargement
             addPlaquette(null);
             addPlaquette(null);
             addPlaquette(null);
@@ -171,6 +168,7 @@ public class FlowWidget {
             addPlaquette(null);
             addPlaquette(null);
         } else {
+            // Afficher les plaquettes populaires existantes
             for (Movie movie : TheMovieDB.getInstance().getPopular()) {
                 addPlaquette(movie);
             }

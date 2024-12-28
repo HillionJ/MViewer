@@ -70,6 +70,7 @@ public class MovieActivity extends AppCompatActivity {
         });
         title.setText(selection.getTitle());
         description.setText(selection.getOverview());
+        // Mettre en place ou non un déroulement du texte de la descrition si elle fait plus de 2 lignes
         description.post(() -> {
             if (description.getLineCount() > 2) {
                 description.setMaxLines(2);
@@ -95,11 +96,13 @@ public class MovieActivity extends AppCompatActivity {
                 });
             }
         });
+        // Afficher l'image réduite (backdrop_path)
         Glide.with(ihm.getActivite(SearchActivity.class))
-                .load("https://image.tmdb.org/t/p/w500" + selection.getPosterPath())
+                .load("https://image.tmdb.org/t/p/w500" + selection.getBackdrop_path())
                 .placeholder(R.drawable.gray_background)
                 .error(R.drawable.gray_background)
                 .into(image);
+        // Afficher les genres
         for (MovieGenre genre : selection.getGenre_ids()) {
             TextView textView = new TextView(this);
             textView.setText(genre.getName());
@@ -109,6 +112,7 @@ public class MovieActivity extends AppCompatActivity {
         }
     }
 
+    // Ouvrir l'application youtube avec la recherche 'query'
     public void openYouTubeSearch(String query) {
         Intent intent = new Intent(Intent.ACTION_SEARCH);
         intent.setPackage("com.google.android.youtube");

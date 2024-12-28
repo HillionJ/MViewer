@@ -92,6 +92,8 @@ public class SearchActivity extends AppCompatActivity {
         result_amount = findViewById(R.id.result_amount);
         result_amount.setVisibility(View.INVISIBLE);
         scroll_result = findViewById(R.id.scroll_result);
+
+        //Vérifier constament si on arrive au bout de la liste des résultats pour afficher les suivantes
         Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(() -> {
             //Vérifier si on arrive au bout du scroll
             if (scroll_result.getScrollY() == scroll_result.getChildAt(0).getHeight() - scroll_result.getHeight() && hasNextPage) {
@@ -116,6 +118,7 @@ public class SearchActivity extends AppCompatActivity {
                 scheduler = newScheduler;
                 scheduler.schedule(() -> {
                     ihm.getActiviteActive().runOnUiThread(() -> {
+                        //Vérifier si le query n'a pas changé depuis 0.5s pour effectuer la recherche.
                         if (this.scheduler == newScheduler && ihm.getActiviteActive().getClass() == SearchActivity.class) {
                             if (newText.isEmpty()) {
                                 removeResultsUI();
@@ -135,6 +138,7 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         removeResultsUI();
+        // Calculer la taille des plaquette en fonction de la taille du conteneur
         search_result.post(() -> {
             plaquetteWidth = search_result.getWidth() / nbPlaquettesParLigne;
             plaquetteHeight = (int) (defaultPlaquette * (double) plaquetteWidth);
@@ -142,6 +146,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
+    // Supprimer tout le contenu des résultats
     public void removeResultsUI() {
         if (loadingImage != null) {
             loadingImage.clearAnimation();
@@ -153,18 +158,24 @@ public class SearchActivity extends AppCompatActivity {
         loadingImage = null;
     }
 
+    // Mettre à jour le flux
     public void updateResultsUI(int startIndex) {
         if (currentPage == 1) {
+            // Supprimer le flux actuelle si c'est des nouveaux résultats
             removeResultsUI();
         }
+        // Vérifier en cas de nouveaux résulats, le nombre de plaquettes manquantes dans les LinearLayout
         int unclosedIndexes = (startIndex % nbPlaquettesParLigne);
         if (unclosedIndexes > 0) {
+            // En cas de lignes existantes non remplient au max,
+            // les remplir avec les nouveaux résultats
             LinearLayout row = (LinearLayout) search_result.getChildAt(search_result.getChildCount() - 1);
             for (int i = 0; i < nbPlaquettesParLigne - unclosedIndexes; i++) {
                 row.addView(craftResult(results.get(startIndex + i)));
             }
             startIndex += nbPlaquettesParLigne;
         }
+        // Ajouter les lignes manquantes pour ajouter nbPlaquettesParLigne dedans
         for (int i = startIndex - unclosedIndexes; i < results.size(); i += nbPlaquettesParLigne) {
             LinearLayout row = new LinearLayout(this);
             row.setOrientation(LinearLayout.HORIZONTAL);
@@ -175,6 +186,9 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    // Afficher 10 lignes de plaquettes qui chargement en cas de nouvelle recherche
+    // Et que les résultats sont vides pour montrer à l'utilisateur que sa recherche
+    // est en attente de réponse
     public void displayLoadingResultsUI() {
         removeResultsUI();
         for (int i = 0; i < 10; i++) {
@@ -187,7 +201,8 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
-    // Creer une image view et l'ajouter dans container
+    // Créer la vue qui doit être affichée (movie != null) l'image du film recherché
+    // ou (movie == null) la plaquette de chargement
     public View craftResult(Movie movie) {
         ImageView imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -224,6 +239,8 @@ public class SearchActivity extends AppCompatActivity {
 
     public void addResults(List<Movie> movies, int currentPage, int amount, boolean hasNextPage) {
         if (currentPage == 1) {
+            // Nettoyer la liste de résultats et revenir en haut des résultats si 'page' vaut 1
+            // car cela signifie que nous effectuons une recherche avec un query différent
             this.results.clear();
             scroll_result.scrollTo(0, 0);
         }
@@ -233,15 +250,19 @@ public class SearchActivity extends AppCompatActivity {
         result_amount.setText(amount == 0 ? "Aucun résultat" : amount + " résultat" + (amount == 1 ? "" : "s"));
         int lastAmount = results.size();
         this.results.addAll(movies);
+        //Supprimer le logo de chargement s'il est présent
         if (loadingImage != null) {
             loadingImage.clearAnimation();
             search_result.removeView(loadingImage);
             loadingImage = null;
         }
         updateResultsUI(lastAmount);
+        // Incrémenter le token pour signifier que la file d'attente précédente doit s'arrêter
         currentQueueToken++;
+        // Charger la nouvelle file
         loadNextInQueue();
         if (hasNextPage) {
+            // Ajouter le logo de chargement en bas s'il existe une page suivante
             ImageView imageView = new ImageView(this);
             imageView.setImageResource(R.drawable.loading);
             imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,200, 0));
@@ -252,6 +273,7 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    // Charger l'image de la plaquette suivante
     public void loadNextInQueue() {
         if (queue.isEmpty()) {
             return;
@@ -266,6 +288,7 @@ public class SearchActivity extends AppCompatActivity {
                 .into(imageView);
         int token = currentQueueToken;
         imageView.post(() -> {
+            // Vérifier que le token n'a pas changer
             if (token == currentQueueToken) {
                 loadNextInQueue();
             }
