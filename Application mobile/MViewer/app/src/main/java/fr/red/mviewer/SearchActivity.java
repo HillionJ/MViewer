@@ -1,6 +1,8 @@
 package fr.red.mviewer;
 
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -12,6 +14,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -44,7 +47,8 @@ import fr.red.mviewer.utils.Movie;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private static final int nbPlaquettesParLigne = 3;
+    private static final int nbPlaquettesParLigne_LANDSCAPE = 5;
+    private static final int nbPlaquettesParLigne_PORTRAIT = 3;
     private static final double defaultPlaquette = 500.0 / 333.0; // 'Height / Width'
 
     private LinearLayout search_result;
@@ -60,6 +64,7 @@ public class SearchActivity extends AppCompatActivity {
     private boolean hasNextPage = false;
     private int currentPage = 1;
     private ImageView loadingImage = null;
+    private int nbPlaquettesParLigne = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,12 @@ public class SearchActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            this.nbPlaquettesParLigne = nbPlaquettesParLigne_LANDSCAPE;
+        } else {
+            this.nbPlaquettesParLigne = nbPlaquettesParLigne_PORTRAIT;
+        }
         ihm.ajouterIHM(this);
         ihm.applyDarkTheme();
 

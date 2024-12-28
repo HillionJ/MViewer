@@ -1,6 +1,7 @@
 package fr.red.mviewer.tmdb;
 
-import fr.red.mviewer.utils.MovieGenre;
+import fr.red.mviewer.tmdb.response.GenreResponse;
+import fr.red.mviewer.tmdb.response.MovieResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

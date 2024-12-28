@@ -9,14 +9,17 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -50,6 +53,7 @@ public class FlowActivity extends AppCompatActivity {
         flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView));
 
         SearchView searchView = findViewById(R.id.searchView3);
+        searchView.setIconified(true);
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

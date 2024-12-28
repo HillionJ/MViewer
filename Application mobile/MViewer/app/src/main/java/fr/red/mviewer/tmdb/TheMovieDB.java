@@ -9,6 +9,8 @@ import java.util.List;
 
 import fr.red.mviewer.FlowActivity;
 import fr.red.mviewer.SearchActivity;
+import fr.red.mviewer.tmdb.response.GenreResponse;
+import fr.red.mviewer.tmdb.response.MovieResponse;
 import fr.red.mviewer.utils.IHM;
 import fr.red.mviewer.utils.Movie;
 import fr.red.mviewer.utils.MovieGenre;
