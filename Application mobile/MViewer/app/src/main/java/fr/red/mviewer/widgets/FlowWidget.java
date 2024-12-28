@@ -63,7 +63,7 @@ public class FlowWidget {
             // Charger l'affiche du film
             ImageView image = itemView.findViewById(R.id.idImagePlaquette);
 
-            String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
+            String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getBackdrop_path();
             Glide.with(ihm.getActivite(FlowActivity.class))
                     .load(posterUrl)
                     .placeholder(R.drawable.gray_background)
