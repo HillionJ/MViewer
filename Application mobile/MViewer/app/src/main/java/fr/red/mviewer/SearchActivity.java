@@ -211,8 +211,15 @@ public class SearchActivity extends AppCompatActivity {
             imageView.setLayoutParams(new LinearLayout.LayoutParams(plaquetteWidth, plaquetteHeight));
             String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
             queue.add(new LoadingQueue(posterUrl, imageView));
-            return imageView;
         }
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MovieActivity.setSelection(movie);
+                ihm.demarrerActivite(SearchActivity.this, SearchActivity.this, MovieActivity.class);
+            }
+        });
+        return imageView;
     }
 
     public void addResults(List<Movie> movies, int currentPage, int amount, boolean hasNextPage) {
