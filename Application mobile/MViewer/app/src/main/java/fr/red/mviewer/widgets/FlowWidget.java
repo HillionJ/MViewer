@@ -1,6 +1,7 @@
 package fr.red.mviewer.widgets;
 
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -10,6 +11,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -32,14 +35,15 @@ public class FlowWidget {
     private IHM ihm = IHM.getIHM();
 
     @SuppressLint("ClickableViewAccessibility")
-    public FlowWidget(LinearLayout flowLayout, HorizontalScrollView scrollView) {
+    public FlowWidget(LinearLayout flowLayout, HorizontalScrollView scrollView, AppCompatActivity activity) {
         this.flowLayout = flowLayout;
         this.scrollView = scrollView;
         scrollView.setHorizontalScrollBarEnabled(false);
-        scrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
-
-        this.gestureDetector = new GestureDetector(ihm.getActiviteActive(), new GestureListener());
-        scrollView.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+        if (activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            scrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+            this.gestureDetector = new GestureDetector(ihm.getActiviteActive(), new GestureListener());
+            scrollView.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+        }
 
         updateFlow();
 

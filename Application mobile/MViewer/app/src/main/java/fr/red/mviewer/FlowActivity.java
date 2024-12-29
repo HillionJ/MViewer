@@ -50,7 +50,7 @@ public class FlowActivity extends AppCompatActivity {
         ihm.ajouterIHM(this);
         ihm.applyDarkTheme();
 
-        flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView));
+        flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView), this);
 
         SearchView searchView = findViewById(R.id.searchView3);
         searchView.setIconified(true);
