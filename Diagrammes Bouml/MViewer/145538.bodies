@@ -1,52 +1,8 @@
-package fr.red.mviewer;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.bumptech.glide.Glide;
-
-import java.util.List;
-
-import fr.red.mviewer.tmdb.TheMovieDB;
-import fr.red.mviewer.utils.IHM;
-import fr.red.mviewer.utils.Movie;
-import fr.red.mviewer.utils.MovieGenre;
-import fr.red.mviewer.widgets.ResultWidget;
-
-public class MovieActivity extends AppCompatActivity {
-
-    private static Movie selection = null;
-
-    public static void setSelection(Movie movie) {
+class MovieActivity
+!!!150402.java!!!	setSelection(inout movie : Movie) : void
         selection = movie;
         newSelection = true;
-    }
-    private static boolean newSelection = false;
-
-    private ImageView image;
-    private TextView title;
-    private TextView description;
-    private LinearLayout genres;
-    private LinearLayout announce_btn;
-    private TextView description_next;
-    private IHM ihm;
-    private ResultWidget resultWidget;
-    private LinearLayout simillar_results;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+!!!150530.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
 
         if (selection == null) {
@@ -98,10 +54,7 @@ public class MovieActivity extends AppCompatActivity {
         setGenres();
 
         resultWidget.init();
-    }
-
-    // Mettre en place ou non un déroulement du texte de la descrition si elle fait plus de 2 lignes
-    private void setDescription() {
+!!!150658.java!!!	setDescription() : void
         if (description.getLineCount() > 2) {
             description.setMaxLines(2);
             description.setEllipsize(TextUtils.TruncateAt.END);
@@ -125,19 +78,13 @@ public class MovieActivity extends AppCompatActivity {
                 }
             });
         }
-    }
-
-    // Afficher l'image réduite (backdrop_path)
-    private void displayBanner() {
+!!!150786.java!!!	displayBanner() : void
         Glide.with(ihm.getActiviteActive())
                 .load("https://image.tmdb.org/t/p/w500" + selection.getBackdrop_path())
                 .placeholder(R.drawable.gray_background)
                 .error(R.drawable.gray_background)
                 .into(image);
-    }
-
-    // Afficher les genres
-    private void setGenres() {
+!!!150914.java!!!	setGenres() : void
         for (MovieGenre genre : selection.getGenre_ids()) {
             TextView textView = new TextView(this);
             textView.setText(genre.getName());
@@ -146,18 +93,11 @@ public class MovieActivity extends AppCompatActivity {
             textView.setTextColor(getResources().getColor(R.color.white));
             genres.addView(textView);
         }
-    }
-
-    // Ouvrir l'application youtube avec la recherche 'query'
-    public void openYouTubeSearch(String query) {
+!!!151042.java!!!	openYouTubeSearch(in query : String) : void
         Intent intent = new Intent(Intent.ACTION_SEARCH);
         intent.setPackage("com.google.android.youtube");
         intent.putExtra("query", query);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
-
-    public void addResults(List<Movie> movies) {
+!!!151170.java!!!	addResults(inout movies : List<Movie>) : void
         resultWidget.addResults(movies, 1, false);
-    }
-}

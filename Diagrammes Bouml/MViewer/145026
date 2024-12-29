@@ -1,0 +1,866 @@
+format 224
+"mviewer" // mviewer
+  revision 1
+  modified_by 2 "RedEstDeRetour"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\RedEstDeRetour\\AndroidStudioProjects\\MViewer\\Application mobile\\MViewer\\app\\src\\main\\java\\fr\\red\\mviewer/"
+  java_package "fr.red.mviewer"
+  classview 142978 "mviewer"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 145026 "FlowActivity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 142978 // <generalisation>
+	relation 142594 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 142978 // <generalisation>
+	  b parent class_ref 145154 // AppCompatActivity
+      end
+
+      classrelation 143106 // flowWidget (<unidirectional association>)
+	relation 142722 --->
+	  a role_name "flowWidget" init_value " null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143106 // flowWidget (<unidirectional association>)
+	  b parent class_ref 145282 // FlowWidget
+      end
+
+      operation 149506 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressLint({\"SetTextI18n\", \"ClickableViewAccessibility\"})
+@Override
+"
+	
+	
+	
+      end
+
+      operation 149634 "updateFlow"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149762 "scrollToNext"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149890 "scrollToPrevious"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 145410 "Login"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 143234 // <generalisation>
+	relation 142850 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143234 // <generalisation>
+	  b parent class_ref 145154 // AppCompatActivity
+      end
+
+      attribute 145538 "login"
+	private explicit_type "EditText"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145666 "password"
+	private explicit_type "EditText"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 150018 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 150146 "submit"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "v" explicit_type "View"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Méthode appelée lors du clic sur le bouton \"Se connecter\""
+      end
+
+      operation 150274 "move_to_register"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "v" explicit_type "View"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Méthode appelée lors du clic sur le bouton \"Créer un compte\""
+      end
+    end
+
+    class 145538 "MovieActivity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 143362 // <generalisation>
+	relation 142978 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143362 // <generalisation>
+	  b parent class_ref 145154 // AppCompatActivity
+      end
+
+      classrelation 143490 // selection (<unidirectional association>)
+	relation 143106 --->
+	  a role_name "selection" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143490 // selection (<unidirectional association>)
+	  b parent class_ref 145666 // Movie
+      end
+
+      operation 150402 "setSelection"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "movie" type class_ref 145666 // Movie
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      attribute 145794 "newSelection"
+	class_attribute private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145922 "image"
+	private explicit_type "ImageView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146050 "title"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146178 "description"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146306 "genres"
+	private explicit_type "LinearLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146434 "announce_btn"
+	private explicit_type "LinearLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146562 "description_next"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 143618 // ihm (<unidirectional association>)
+	relation 143234 --->
+	  a role_name "ihm" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143618 // ihm (<unidirectional association>)
+	  b parent class_ref 145794 // IHM
+      end
+
+      classrelation 143746 // resultWidget (<unidirectional association>)
+	relation 143362 --->
+	  a role_name "resultWidget" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143746 // resultWidget (<unidirectional association>)
+	  b parent class_ref 145922 // ResultWidget
+      end
+
+      attribute 146690 "simillar_results"
+	private explicit_type "LinearLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 150530 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 150658 "setDescription"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Mettre en place ou non un déroulement du texte de la descrition si elle fait plus de 2 lignes"
+      end
+
+      operation 150786 "displayBanner"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Afficher l'image réduite (backdrop_path)"
+      end
+
+      operation 150914 "setGenres"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Afficher les genres"
+      end
+
+      operation 151042 "openYouTubeSearch"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "query" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Ouvrir l'application youtube avec la recherche 'query'"
+      end
+
+      operation 151170 "addResults"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "movies" explicit_type "List<Movie>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 146050 "Register"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 143874 // <generalisation>
+	relation 143490 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143874 // <generalisation>
+	  b parent class_ref 145154 // AppCompatActivity
+      end
+
+      attribute 146818 "login"
+	package explicit_type "EditText"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 146946 "password1"
+	package explicit_type "EditText"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147074 "password2"
+	package explicit_type "EditText"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 151298 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 151426 "register"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "v" explicit_type "View"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Méthode appelée lors du clic sur le bouton \"Créer un compte\""
+      end
+    end
+
+    class 146178 "SearchActivity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144002 // <generalisation>
+	relation 143618 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144002 // <generalisation>
+	  b parent class_ref 145154 // AppCompatActivity
+      end
+
+      classrelation 144130 // resultWidget (<unidirectional association>)
+	relation 143746 --->
+	  a role_name "resultWidget" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144130 // resultWidget (<unidirectional association>)
+	  b parent class_ref 145922 // ResultWidget
+      end
+
+      attribute 147202 "result_amount"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 144258 // ihm (<unidirectional association>)
+	relation 143874 --->
+	  a role_name "ihm" init_value " IHM.getIHM()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144258 // ihm (<unidirectional association>)
+	  b parent class_ref 145794 // IHM
+      end
+
+      classrelation 144386 // theMovieDB (<unidirectional association>)
+	relation 144002 --->
+	  a role_name "theMovieDB" init_value " TheMovieDB.getInstance()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144386 // theMovieDB (<unidirectional association>)
+	  b parent class_ref 146306 // TheMovieDB
+      end
+
+      attribute 147330 "search_result"
+	private explicit_type "LinearLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147458 "scroll_result"
+	private explicit_type "ScrollView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147586 "searchView"
+	private explicit_type "SearchView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 151554 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 151682 "manageQuery"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151810 "updateQuery"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "newText" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151938 "addResults"
+	public explicit_return_type "void"
+	nparams 4
+	  param inout name "movies" explicit_type "List<Movie>"
+	  param in name "currentPage" explicit_type "int"
+	  param in name "amount" explicit_type "int"
+	  param inout name "hasNextPage" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152066 "loopCheckScroll"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Vérifier constament si on arrive au bout de la liste des résultats pour afficher les suivantes"
+      end
+    end
+  end
+
+  package_ref 145282 // widgets
+
+  deploymentview 142082 "mviewer"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 143746 "FlowActivity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.inputmethodservice.Keyboard;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.SearchView;
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import java.util.concurrent.Executors;
+import fr.red.mviewer.utils.IHM;
+import fr.red.mviewer.widgets.FlowWidget;
+${definition}"
+      associated_elems
+	class_ref 145026 // FlowActivity
+      end
+    end
+
+    artifact 143874 "Login"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import fr.red.mviewer.utils.IHM;
+${definition}"
+      associated_elems
+	class_ref 145410 // Login
+      end
+    end
+
+    artifact 144002 "MovieActivity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import com.bumptech.glide.Glide;
+import java.util.List;
+import fr.red.mviewer.tmdb.TheMovieDB;
+import fr.red.mviewer.utils.IHM;
+import fr.red.mviewer.utils.Movie;
+import fr.red.mviewer.utils.MovieGenre;
+import fr.red.mviewer.widgets.ResultWidget;
+${definition}"
+      associated_elems
+	class_ref 145538 // MovieActivity
+      end
+    end
+
+    artifact 144130 "Register"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+${definition}"
+      associated_elems
+	class_ref 146050 // Register
+      end
+    end
+
+    artifact 144258 "SearchActivity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.SearchView;
+import android.widget.TextView;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import fr.red.mviewer.tmdb.TheMovieDB;
+import fr.red.mviewer.utils.IHM;
+import fr.red.mviewer.utils.Movie;
+import fr.red.mviewer.widgets.ResultWidget;
+${definition}"
+      associated_elems
+	class_ref 146178 // SearchActivity
+      end
+    end
+  end
+
+  package_ref 145410 // utils
+
+  package_ref 145538 // tmdb
+end

@@ -1,0 +1,9 @@
+class MovieResponse
+!!!153986.java!!!	getPage() : int
+        return page;
+!!!154114.java!!!	getResults() : Movie
+        return results;
+!!!154242.java!!!	getTotal_pages() : int
+        return total_pages;
+!!!154370.java!!!	getTotal_results() : int
+        return total_results;

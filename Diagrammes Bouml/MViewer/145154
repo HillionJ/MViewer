@@ -1,5 +1,5 @@
 format 224
-"GestureDetector" // unknown::GestureDetector
+"unknown" // unknown
   revision 1
   modified_by 2 "RedEstDeRetour"
   // class settings
@@ -30,9 +30,8 @@ format 224
   activitydiagramsettings
    end
   
-  java_dir "<unknown>GestureDetector/"
-  java_package "GestureDetector"
-  classview 136322 "GestureDetector"
+  java_dir "<unknown>"
+  classview 143106 "unknown"
     
     classdiagramsettings member_max_width 0 end
     
@@ -52,7 +51,7 @@ format 224
     
     activitydiagramsettings
      end
-    class 137986 "SimpleOnGestureListener"
+    class 145154 "AppCompatActivity"
       visibility package 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -64,9 +63,8 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 136194 // <association>
-	relation_ref 135938 // <association>
-      end
     end
   end
+
+  package_ref 145794 // GestureDetector
 end

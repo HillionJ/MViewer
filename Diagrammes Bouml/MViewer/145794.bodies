@@ -1,49 +1,17 @@
-package fr.red.mviewer.utils;
-
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.util.Log;
-import android.view.Window;
-import android.view.WindowInsetsController;
-import android.view.WindowManager;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class IHM {
-
-    private static IHM ihm;
-    private List<Object> ihmActives = new ArrayList<>();
-    private AppCompatActivity activiteActive = null;
-
-    // Récupérer une Activité, un Fragment ou autre élément actif ou en sommeil
-    @Nullable
-    public Object getIHMActive(Class<?> typeObjet) {
+class IHM
+!!!154754.java!!!	getIHMActive(inout typeObjet : Class<?>) : Object
         for (Object ihmActive : ihmActives) {
             if (typeObjet.isInstance(ihmActive)) {
                 return ihmActive;
             }
         }
         return null;
-    }
-
-    public static IHM getIHM() {
+!!!154882.java!!!	getIHM() : IHM
         return IHM.ihm;
-    }
-
-    public IHM(AppCompatActivity activiteActive) {
+!!!155010.java!!!	IHM(inout activiteActive : AppCompatActivity)
         IHM.ihm = this;
         this.activiteActive = activiteActive;
-    }
-
-    // Ajouter une activité lors de son lancement
-    public void ajouterIHM(Object pageIHM) {
+!!!155138.java!!!	ajouterIHM(inout pageIHM : Object) : void
         if (pageIHM instanceof AppCompatActivity) {
             activiteActive = (AppCompatActivity) pageIHM;
         }
@@ -54,28 +22,16 @@ public class IHM {
             }
         }
         ihmActives.add(pageIHM);
-    }
-
-    // Récupérer l'activitée actuelle
-    public AppCompatActivity getActiviteActive() {
+!!!155266.java!!!	getActiviteActive() : AppCompatActivity
         return activiteActive;
-    }
-
-    // Récupérer une activité active
-    public AppCompatActivity getActivite(Class<?> typeActivite) {
+!!!155394.java!!!	getActivite(inout typeActivite : Class<?>) : AppCompatActivity
         return (AppCompatActivity) getIHMActive(typeActivite);
-    }
-
-    // Quitter une activité
-    public void fermerActivite(Class<?> typeActivite) {
+!!!155522.java!!!	fermerActivite(inout typeActivite : Class<?>) : void
         Object activite = getIHMActive(typeActivite);
         if (activite instanceof AppCompatActivity) {
             ((AppCompatActivity)activite).finish();
         }
-    }
-
-    // Fermer les DialogFragment si existants
-    public void fermerPopups() {
+!!!155650.java!!!	fermerPopups() : void
         for (Object ihmActive : ihmActives) {
             if (ihmActive instanceof DialogFragment) {
                 try {
@@ -84,20 +40,14 @@ public class IHM {
                 }
             }
         }
-    }
-
-    // Lancer une nouvelle activité (sans extra)
-    public void demarrerActivite(Object lanceur, Context contexte, Class<?> typeActivite) {
+!!!155778.java!!!	demarrerActivite(inout lanceur : Object, inout contexte : Context, inout typeActivite : Class<?>) : void
         Intent intent = new Intent(contexte, typeActivite);
         if (lanceur instanceof Fragment) {
             ((Fragment) lanceur).startActivity(intent);
         } else {
             ((AppCompatActivity) lanceur).startActivity(intent);
         }
-    }
-
-    // Mettre le mode sombre sur le haut du téléphone et sur le bas (les boutons)
-    public void applyDarkTheme() {
+!!!155906.java!!!	applyDarkTheme() : void
         Window window = getActiviteActive().getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         //Mettre le fond en noir
@@ -112,5 +62,3 @@ public class IHM {
                 insetsController.setSystemBarsAppearance(0, WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
             }
         }
-    }
-}

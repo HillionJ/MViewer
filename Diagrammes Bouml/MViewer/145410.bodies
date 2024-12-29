@@ -1,24 +1,5 @@
-package fr.red.mviewer;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import fr.red.mviewer.utils.IHM;
-
-public class Login extends AppCompatActivity {
-    private EditText login, password;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+class Login
+!!!150018.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
@@ -30,10 +11,7 @@ public class Login extends AppCompatActivity {
 
         login = findViewById(R.id.login);
         password = findViewById(R.id.password);
-    }
-
-    // Méthode appelée lors du clic sur le bouton "Se connecter"
-    public void submit(View v){
+!!!150146.java!!!	submit(inout v : View) : void
         try {
             FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signInWithEmailAndPassword(login.getText().toString(), password.getText().toString());
@@ -44,11 +22,6 @@ public class Login extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Veuillez rentrer des identifiants valides.", Toast.LENGTH_LONG).show();
         }
-    }
-
-    // Méthode appelée lors du clic sur le bouton "Créer un compte"
-    public void move_to_register(View v){
+!!!150274.java!!!	move_to_register(inout v : View) : void
         Intent i = new Intent(Login.this, Register.class);
         startActivity(i);
-    }
-}

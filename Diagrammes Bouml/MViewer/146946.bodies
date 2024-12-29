@@ -1,0 +1,15 @@
+class GestureListener
+!!!154498.java!!!	onScroll(inout e1 : MotionEvent, inout e2 : MotionEvent, in distanceX : float, in distanceY : float) : boolean
+        return false;
+!!!154626.java!!!	onFling(inout e1 : MotionEvent, inout e2 : MotionEvent, in velocityX : float, in velocityY : float) : boolean
+        if (Math.abs(velocityX) > Math.abs(velocityY)) {
+            if (velocityX > 0) {
+                // Gérer le swipe vers la gauche
+                ((FlowActivity)IHM.getIHM().getActivite(FlowActivity.class)).scrollToPrevious();
+            } else {
+                // Gérer le swipe vers la droite
+                ((FlowActivity)IHM.getIHM().getActivite(FlowActivity.class)).scrollToNext();
+            }
+            return true;
+        }
+        return false;

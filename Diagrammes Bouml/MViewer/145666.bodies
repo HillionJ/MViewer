@@ -1,0 +1,40 @@
+class Movie
+!!!156418.java!!!	getTitle() : String
+        return title;
+!!!156546.java!!!	getOverview() : String
+        return overview;
+!!!156674.java!!!	getPosterPath() : String
+        return poster_path;
+!!!156802.java!!!	getReleaseDate() : Date
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        try {
+            return formatter.parse(release_date);
+        } catch (Exception e) {
+            return null;
+        }
+!!!156930.java!!!	isAdult() : boolean
+        return adult;
+!!!157058.java!!!	isVideo() : boolean
+        return video;
+!!!157186.java!!!	getBackdrop_path() : String
+        return backdrop_path;
+!!!157314.java!!!	getPopularity() : double
+        return popularity;
+!!!157442.java!!!	getVote_average() : double
+        return vote_average;
+!!!157570.java!!!	getId() : int
+        return id;
+!!!157698.java!!!	getVote_count() : int
+        return vote_count;
+!!!157826.java!!!	getGenre_ids() : MovieGenre
+        List<MovieGenre> genres = new ArrayList<>();
+        for (int genre_id : genre_ids) {
+            genres.add(MovieGenre.getGenre(genre_id));
+        }
+        return genres;
+!!!157954.java!!!	getOriginal_language() : String
+        return original_language;
+!!!158082.java!!!	getOriginal_title() : String
+        return original_title;
+!!!158210.java!!!	getPoster_path() : String
+        return poster_path;

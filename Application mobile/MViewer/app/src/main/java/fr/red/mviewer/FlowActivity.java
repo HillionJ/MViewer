@@ -46,14 +46,15 @@ public class FlowActivity extends AppCompatActivity {
             return insets;
         });
 
-        IHM ihm = IHM.getIHM() == null ? new IHM(this) : IHM.getIHM();
+        IHM ihm = IHM.getIHM();
         ihm.ajouterIHM(this);
         ihm.applyDarkTheme();
 
-        flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView));
+        flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView), this);
 
         SearchView searchView = findViewById(R.id.searchView3);
         searchView.setIconified(true);
+        // Démarrer l'activité de recherche dès que l'utilisateur clique sur la barre de recherche
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +71,6 @@ public class FlowActivity extends AppCompatActivity {
         flowWidget.scrollToNext();
     }
 
-    // Méthode pour scroller automatiquement vers la plaquette précédente
     public void scrollToPrevious() {
         flowWidget.scrollToPrevious();
     }

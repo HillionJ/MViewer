@@ -1,41 +1,5 @@
-package fr.red.mviewer;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.SearchView;
-import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import fr.red.mviewer.tmdb.TheMovieDB;
-import fr.red.mviewer.utils.IHM;
-import fr.red.mviewer.utils.Movie;
-import fr.red.mviewer.widgets.ResultWidget;
-
-public class SearchActivity extends AppCompatActivity {
-
-    private ResultWidget resultWidget;
-
-    private TextView result_amount;
-    private IHM ihm = IHM.getIHM();
-    private TheMovieDB theMovieDB = TheMovieDB.getInstance();
-    private LinearLayout search_result;
-    private ScrollView scroll_result;
-    private SearchView searchView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+class SearchActivity
+!!!151554.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_search);
@@ -67,9 +31,7 @@ public class SearchActivity extends AppCompatActivity {
         manageQuery();
 
         resultWidget.init();
-    }
-
-    private void manageQuery() {
+!!!151682.java!!!	manageQuery() : void
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             private ScheduledExecutorService scheduler;
@@ -94,9 +56,7 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
-
-    private void updateQuery(String newText) {
+!!!151810.java!!!	updateQuery(in newText : String) : void
         if (newText.isEmpty()) {
             resultWidget.removeResultsUI();
             result_amount.setVisibility(View.INVISIBLE);
@@ -107,19 +67,14 @@ public class SearchActivity extends AppCompatActivity {
             }
             theMovieDB.search(newText);
         }
-    }
-
-    public void addResults(List<Movie> movies, int currentPage, int amount, boolean hasNextPage) {
+!!!151938.java!!!	addResults(inout movies : List<Movie>, in currentPage : int, in amount : int, inout hasNextPage : boolean) : void
         if (currentPage == 1) {
             scroll_result.scrollTo(0, 0);
         }
         result_amount.setVisibility(View.VISIBLE);
         result_amount.setText(amount == 0 ? "Aucun résultat" : amount + " résultat" + (amount == 1 ? "" : "s"));
         resultWidget.addResults(movies, currentPage, hasNextPage);
-    }
-
-    //Vérifier constament si on arrive au bout de la liste des résultats pour afficher les suivantes
-    public void loopCheckScroll() {
+!!!152066.java!!!	loopCheckScroll() : void
         Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(() -> {
             //Vérifier si on arrive au bout du scroll
             if (scroll_result.getScrollY() == scroll_result.getChildAt(0).getHeight() - scroll_result.getHeight() && resultWidget.hasNextPage()) {
@@ -128,5 +83,3 @@ public class SearchActivity extends AppCompatActivity {
                 theMovieDB.search(searchView.getQuery().toString(), resultWidget.getCurrentPage());
             }
         },0, 1, TimeUnit.SECONDS);
-    }
-}

@@ -1,0 +1,3 @@
+class GenreResponse
+!!!153858.java!!!	getGenres() : MovieGenre
+        return genres;

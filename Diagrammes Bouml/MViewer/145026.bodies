@@ -1,0 +1,32 @@
+class FlowActivity
+!!!149506.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_flow);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        IHM ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+        ihm.applyDarkTheme();
+
+        flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView));
+
+        SearchView searchView = findViewById(R.id.searchView3);
+        searchView.setIconified(true);
+        // Démarrer l'activité de recherche dès que l'utilisateur clique sur la barre de recherche
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IHM.getIHM().demarrerActivite(FlowActivity.this, FlowActivity.this, SearchActivity.class);
+            }
+        });
+!!!149634.java!!!	updateFlow() : void
+        flowWidget.updateFlow();
+!!!149762.java!!!	scrollToNext() : void
+        flowWidget.scrollToNext();
+!!!149890.java!!!	scrollToPrevious() : void
+        flowWidget.scrollToPrevious();
