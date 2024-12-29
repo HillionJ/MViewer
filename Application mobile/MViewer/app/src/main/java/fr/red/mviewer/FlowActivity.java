@@ -1,6 +1,7 @@
 package fr.red.mviewer;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.inputmethodservice.Keyboard;
@@ -19,16 +20,19 @@ import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.concurrent.Executors;
 
@@ -57,29 +61,42 @@ public class FlowActivity extends AppCompatActivity {
 
         flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView), this);
 
-        setSupportActionBar(toolbar);
-        SearchView searchView = findViewById(R.id.searchView3);
-        searchView.setIconified(true);
-        // Démarrer l'activité de recherche dès que l'utilisateur clique sur la barre de recherche
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IHM.getIHM().demarrerActivite(FlowActivity.this, FlowActivity.this, SearchActivity.class);
+        // Définir un titre personnalisé pour l'ActionBar
+        if (getSupportActionBar() != null) {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            if (auth.getCurrentUser().getDisplayName().equals("")) {
+                String name = auth.getCurrentUser().getEmail().toString();
+                getSupportActionBar().setTitle(name);
+            } else {
+                getSupportActionBar().setTitle(auth.getCurrentUser().getDisplayName());
             }
-        });
+
+        }
+
     }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.actionbar_menu, menu);
         return true;
     }
 
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if (item.getItemId()== R.id.logout){
             FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signOut();
+            Intent i = new Intent(FlowActivity.this, Login.class);
+            startActivity(i);
             finish();
+            return true;
+        } else if (item.getItemId()== R.id.search){
+            IHM.getIHM().demarrerActivite(FlowActivity.this, FlowActivity.this, SearchActivity.class);
+            return true;
+        } else if (item.getItemId()== R.id.rename){
+            Intent i = new Intent(FlowActivity.this, Rename.class);
+            startActivity(i);
             return true;
         }
         return true;

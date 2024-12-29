@@ -6,12 +6,13 @@
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Search bar"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView"
+        android:title="Rechercher un film"
+        app:showAsAction="always"
         tools:ignore="HardcodedText" />
     <item
         android:id="@+id/logout"
         android:title="logout" />
-    <item android:title="Changer nom d'utilisateur" />
+    <item
+        android:id="@+id/rename"
+        android:title="Changer nom d'utilisateur" />
 </menu>
