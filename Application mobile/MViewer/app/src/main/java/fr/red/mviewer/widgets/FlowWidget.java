@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import fr.red.mviewer.FlowActivity;
+import fr.red.mviewer.MovieActivity;
 import fr.red.mviewer.R;
 import fr.red.mviewer.utils.Movie;
 import fr.red.mviewer.utils.GestureListener;
@@ -65,12 +66,19 @@ public class FlowWidget {
             // Charger l'affiche du film
             ImageView image = itemView.findViewById(R.id.idImagePlaquette);
 
-            String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getBackdrop_path();
+            String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
             Glide.with(ihm.getActivite(FlowActivity.class))
                     .load(posterUrl)
                     .placeholder(R.drawable.gray_background)
                     .error(R.drawable.gray_background)
                     .into(image);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MovieActivity.setSelection(movie);
+                    ihm.demarrerActivite(ihm.getActiviteActive(), ihm.getActiviteActive(), MovieActivity.class);
+                }
+            });
         } else {
             itemView = inflater.inflate(R.layout.item_flow_loading, flowLayout, false);
             ShimmerFrameLayout shimmerFrameLayout = itemView.findViewById(R.id.shimmerLayout);
