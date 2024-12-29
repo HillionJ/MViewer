@@ -27,13 +27,17 @@ public class Register extends AppCompatActivity {
 
     // Méthode appelée lors du clic sur le bouton "Créer un compte"
     public void register(View v){
-        if (password1.getText().toString().equals(password2.getText().toString())) {
-            FirebaseAuth auth = FirebaseAuth.getInstance();
-            auth.createUserWithEmailAndPassword(login.getText().toString(), password1.getText().toString());
-            Intent i = new Intent(Register.this, FlowActivity.class);
-            startActivity(i);
+        if (!login.getText().toString().isEmpty() && !password1.getText().toString().isEmpty()) {
+            if (password1.getText().toString().equals(password2.getText().toString())) {
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                auth.createUserWithEmailAndPassword(login.getText().toString(), password1.getText().toString());
+                Intent i = new Intent(Register.this, FlowActivity.class);
+                startActivity(i);
+            } else {
+                Toast.makeText(getApplicationContext(), "Les 2 mots de passe doivent correspondre", Toast.LENGTH_LONG).show();
+            }
         } else {
-            Toast.makeText(getApplicationContext(), "Les 2 mots de passe doivent correspondre", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Veuillez remplir tous les champs", Toast.LENGTH_LONG).show();
         }
     }
 
