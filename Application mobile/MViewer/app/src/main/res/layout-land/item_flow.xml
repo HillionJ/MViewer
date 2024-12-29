@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/idImagePlaquette"
-        android:layout_width="310dp"
-        android:layout_height="452dp"
+        android:layout_width="160dp"
+        android:layout_height="226dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,13 +22,13 @@
 
     <TextView
         android:id="@+id/idTitrePlaquette"
-        android:layout_width="310dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Chargement du film..."
-        android:textSize="24dp"
         android:textColor="@color/white"
+        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="@+id/idImagePlaquette"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/idImagePlaquette"

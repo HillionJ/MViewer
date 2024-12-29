@@ -1,0 +1,27 @@
+class Login
+!!!150018.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_login);
+
+        // Initialiser l'IHM si elle n'est pas déjà créée
+        IHM ihm = IHM.getIHM() == null ? new IHM(this) : IHM.getIHM();
+        ihm.ajouterIHM(this);
+        ihm.applyDarkTheme();
+
+        login = findViewById(R.id.login);
+        password = findViewById(R.id.password);
+!!!150146.java!!!	submit(inout v : View) : void
+        try {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            auth.signInWithEmailAndPassword(login.getText().toString(), password.getText().toString());
+            FirebaseUser user = auth.getCurrentUser();
+            Intent i = new Intent(Login.this, FlowActivity.class);
+            i.putExtra("msg", user.getEmail());
+            startActivity(i);
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Veuillez rentrer des identifiants valides.", Toast.LENGTH_LONG).show();
+        }
+!!!150274.java!!!	move_to_register(inout v : View) : void
+        Intent i = new Intent(Login.this, Register.class);
+        startActivity(i);

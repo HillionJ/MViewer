@@ -1,7 +1,14 @@
-window_sizes 958 991 450 502 809 128
+window_sizes 1920 1001 450 1464 819 128
 
+diagrams
+  active  classdiagram_ref 141314 // Classes
+    1464 819 80 C 108 0
+end
 show_stereotypes
-selected usecaseview_ref 134530 // Digramme de cas d'utilisation
+selected class_ref 147074 // SimpleOnGestureListener
 open
+  classview_ref 135810 // Diagramme de classes
+  classview_ref 143106 // unknown
+  classview_ref 143746 // GestureDetector
 end
 end
