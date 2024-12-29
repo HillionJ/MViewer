@@ -2,9 +2,16 @@
 <menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="Search bar"
-        tools:ignore="HardcodedText"
-        android:id = "@+id/search"
+    <item
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Search bar"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        tools:ignore="HardcodedText" />
+    <item
+        android:id="@+id/logout"
+        android:title="logout" />
+    <item android:title="Changer nom d'utilisateur" />
 </menu>

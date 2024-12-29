@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +26,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.concurrent.Executors;
 
@@ -52,6 +57,7 @@ public class FlowActivity extends AppCompatActivity {
 
         flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView), this);
 
+        setSupportActionBar(toolbar);
         SearchView searchView = findViewById(R.id.searchView3);
         searchView.setIconified(true);
         // Démarrer l'activité de recherche dès que l'utilisateur clique sur la barre de recherche
@@ -61,6 +67,22 @@ public class FlowActivity extends AppCompatActivity {
                 IHM.getIHM().demarrerActivite(FlowActivity.this, FlowActivity.this, SearchActivity.class);
             }
         });
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId()== R.id.logout){
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            auth.signOut();
+            finish();
+            return true;
+        }
+        return true;
     }
 
     public void updateFlow() {
