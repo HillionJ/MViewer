@@ -1,0 +1,391 @@
+format 224
+"tmdb" // mviewer::tmdb
+  revision 1
+  modified_by 2 "RedEstDeRetour"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\RedEstDeRetour\\AndroidStudioProjects\\MViewer\\Application mobile\\MViewer\\app\\src\\main\\java\\fr\\red\\mviewer/tmdb/"
+  java_package "fr.red.mviewer.tmdb"
+  classview 143490 "tmdb"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 146306 "TheMovieDB"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 147714 "BASE_URL"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"https://api.themoviedb.org/3/\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Constantes
+"
+      end
+
+      attribute 147842 "API_KEY"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"9e7f180d2eb5afd903a8953b8d82dbea\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147970 "LANG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"fr-FR\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 144514 // instance (<unidirectional association>)
+	relation 144130 --->
+	  a role_name "instance" init_value " new TheMovieDB()" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144514 // instance (<unidirectional association>)
+	  b parent class_ref 146306 // TheMovieDB
+      end
+
+      attribute 148098 "retrofit"
+	class_attribute private explicit_type "retrofit2.Retrofit"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 152706 "getInstance"
+	class_operation public return_type class_ref 146306 // TheMovieDB
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 144642 // popular (<unidirectional association>)
+	relation 144258 --->
+	  stereotype "List"
+	  a role_name "popular" init_value " new ArrayList<>()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 144642 // popular (<unidirectional association>)
+	  b parent class_ref 145666 // Movie
+      end
+
+      operation 152834 "TheMovieDB"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Récupérer les genres et le flux à l'initialisation"
+      end
+
+      operation 152962 "fetchGenres"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Récupérer la liste des genre"
+      end
+
+      operation 153090 "fetchPoupular"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "page" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Récupérer la liste des films populaires"
+      end
+
+      operation 153218 "search"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "query" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Rechercher les films correspondant au 'query'"
+      end
+
+      operation 153346 "search"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "query" explicit_type "String"
+	  param in name "page" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Rechercher les films correspondant au 'query' et à la page 'page'"
+      end
+
+      operation 153474 "getPopular"
+	public return_type class_ref 145666 // Movie
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153602 "fetchSimillar"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "movie" type class_ref 145666 // Movie
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153730 "getRetrofitInstance"
+	private explicit_return_type "retrofit2.Retrofit"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 146434 "IRetrofitTheMovieDB"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 152194 "getPopularMovies"
+	public return_type class_ref 146562 // MovieResponse
+	nparams 3
+	  param in name "apiKey" explicit_type "String"
+	  param in name "language" explicit_type "String"
+	  param in name "page" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}Call<${type}> ${name}${(}@Query(\"api_key\") ${t0} ${p0}, @Query(\"language\") ${t1} ${p1}, @Query(\"page\") ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@GET(\"movie/popular\")
+"
+	
+	
+	
+      end
+
+      operation 152322 "searchMovies"
+	public return_type class_ref 146562 // MovieResponse
+	nparams 4
+	  param in name "apiKey" explicit_type "String"
+	  param in name "query" explicit_type "String"
+	  param in name "language" explicit_type "String"
+	  param in name "page" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}Call<${type}> ${name}${(}@Query(\"api_key\") ${t0} ${p0}, @Query(\"query\") ${t1} ${p1}, @Query(\"language\") ${t2} ${p2}, @Query(\"page\") ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@GET(\"search/movie\")
+"
+	
+	
+	
+      end
+
+      operation 152450 "getGenres"
+	public return_type class_ref 146690 // GenreResponse
+	nparams 2
+	  param in name "apiKey" explicit_type "String"
+	  param in name "language" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}Call<${type}> ${name}${(}@Query(\"api_key\") ${t0} ${p0}, @Query(\"language\") ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@GET(\"genre/movie/list\")
+"
+	
+	
+	
+      end
+
+      operation 152578 "getSimilarMovies"
+	public return_type class_ref 146562 // MovieResponse
+	nparams 3
+	  param in name "movieId" explicit_type "int"
+	  param in name "apiKey" explicit_type "String"
+	  param in name "language" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}Call<${type}> ${name}${(}@Path(\"movie_id\") ${t0} ${p0}, @Query(\"api_key\") ${t1} ${p1}, @Query(\"language\") ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@GET(\"movie/{movie_id}/similar\")
+"
+	
+	
+	
+      end
+    end
+  end
+
+  package_ref 145666 // response
+
+  deploymentview 142210 "tmdb"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 144386 "IRetrofitTheMovieDB"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import fr.red.mviewer.tmdb.response.GenreResponse;
+import fr.red.mviewer.tmdb.response.MovieResponse;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+${definition}"
+      associated_elems
+	class_ref 146434 // IRetrofitTheMovieDB
+      end
+    end
+
+    artifact 144514 "TheMovieDB"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.util.Log;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import fr.red.mviewer.FlowActivity;
+import fr.red.mviewer.MovieActivity;
+import fr.red.mviewer.SearchActivity;
+import fr.red.mviewer.tmdb.response.GenreResponse;
+import fr.red.mviewer.tmdb.response.MovieResponse;
+import fr.red.mviewer.utils.IHM;
+import fr.red.mviewer.utils.Movie;
+import fr.red.mviewer.utils.MovieGenre;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.converter.gson.GsonConverterFactory;
+${definition}"
+      associated_elems
+	class_ref 146306 // TheMovieDB
+      end
+    end
+  end
+end

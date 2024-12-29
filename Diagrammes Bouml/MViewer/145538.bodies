@@ -1,0 +1,103 @@
+class MovieActivity
+!!!150402.java!!!	setSelection(inout movie : Movie) : void
+        selection = movie;
+        newSelection = true;
+!!!150530.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+
+        if (selection == null) {
+            ihm.fermerActivite(MovieActivity.class);
+            return;
+        }
+
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_movie);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        this.ihm = IHM.getIHM();
+        MovieActivity lastActivity = (MovieActivity) ihm.getActivite(MovieActivity.class);
+        this.ihm.ajouterIHM(this);
+        this.ihm.applyDarkTheme();
+
+        image = findViewById(R.id.info_image);
+        title = findViewById(R.id.info_title);
+        description = findViewById(R.id.info_description);
+        description_next = findViewById(R.id.info_description_next);
+        genres = findViewById(R.id.info_genres);
+        announce_btn = findViewById(R.id.announce_btn);
+        simillar_results = findViewById(R.id.simillar_results);
+
+        if (lastActivity == null) {
+            this.resultWidget = new ResultWidget(simillar_results, this);
+        } else {
+            this.resultWidget = new ResultWidget(simillar_results, this, lastActivity.resultWidget);
+        }
+        if (newSelection) {
+            resultWidget.setOnInit(() -> {
+                resultWidget.displayLoadingResultsUI();
+                TheMovieDB.getInstance().fetchSimillar(selection);
+            });
+        }
+        newSelection = false;
+
+        announce_btn.setOnClickListener(v -> {
+            openYouTubeSearch(selection.getTitle() + " bande annonce");
+        });
+        title.setText(selection.getTitle());
+        description.setText(selection.getOverview());
+        description.post(this::setDescription);
+        displayBanner();
+        setGenres();
+
+        resultWidget.init();
+!!!150658.java!!!	setDescription() : void
+        if (description.getLineCount() > 2) {
+            description.setMaxLines(2);
+            description.setEllipsize(TextUtils.TruncateAt.END);
+            description_next.setVisibility(View.VISIBLE);
+
+            description.setOnClickListener(new View.OnClickListener() {
+                private boolean isExpanded = false;
+
+                @Override
+                public void onClick(View v) {
+                    if (isExpanded) {
+                        description.setMaxLines(2);
+                        description.setEllipsize(TextUtils.TruncateAt.END);
+                        description_next.setVisibility(View.VISIBLE);
+                    } else {
+                        description.setMaxLines(Integer.MAX_VALUE);
+                        description.setEllipsize(null);
+                        description_next.setVisibility(View.INVISIBLE);
+                    }
+                    isExpanded = !isExpanded;
+                }
+            });
+        }
+!!!150786.java!!!	displayBanner() : void
+        Glide.with(ihm.getActiviteActive())
+                .load("https://image.tmdb.org/t/p/w500" + selection.getBackdrop_path())
+                .placeholder(R.drawable.gray_background)
+                .error(R.drawable.gray_background)
+                .into(image);
+!!!150914.java!!!	setGenres() : void
+        for (MovieGenre genre : selection.getGenre_ids()) {
+            TextView textView = new TextView(this);
+            textView.setText(genre.getName());
+            textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+            textView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
+            textView.setTextColor(getResources().getColor(R.color.white));
+            genres.addView(textView);
+        }
+!!!151042.java!!!	openYouTubeSearch(in query : String) : void
+        Intent intent = new Intent(Intent.ACTION_SEARCH);
+        intent.setPackage("com.google.android.youtube");
+        intent.putExtra("query", query);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+!!!151170.java!!!	addResults(inout movies : List<Movie>) : void
+        resultWidget.addResults(movies, 1, false);

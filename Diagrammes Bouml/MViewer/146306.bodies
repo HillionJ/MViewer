@@ -1,0 +1,100 @@
+class TheMovieDB
+!!!152706.java!!!	getInstance() : TheMovieDB
+        return instance;
+!!!152834.java!!!	TheMovieDB()
+        fetchGenres();
+        fetchPoupular(1);
+!!!152962.java!!!	fetchGenres() : void
+        IRetrofitTheMovieDB api = getRetrofitInstance().create(IRetrofitTheMovieDB.class);
+        api.getGenres(API_KEY, LANG).enqueue(new Callback<GenreResponse>() {
+            @Override
+            public void onResponse(Call<GenreResponse> call, Response<GenreResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<MovieGenre> movieGenre = response.body().getGenres();
+                    //Enregistrer dans la liste des genres
+                    for (MovieGenre genre : movieGenre) {
+                        genre.addToCache();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GenreResponse> call, Throwable t) {
+                // TODO Prévoir un nouvel essai dès que la connexion revient
+            }
+        });
+!!!153090.java!!!	fetchPoupular(in page : int) : void
+        IRetrofitTheMovieDB api = getRetrofitInstance().create(IRetrofitTheMovieDB.class);
+        IHM ihm = IHM.getIHM();
+        FlowActivity flowActivity = (FlowActivity) ihm.getActivite(FlowActivity.class);
+
+        api.getPopularMovies(API_KEY, LANG, page).enqueue(new Callback<MovieResponse>() {
+            @Override
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Movie> movies = response.body().getResults();
+                    Collections.shuffle(movies);
+                    // Mettre à jour la liste des films populaires
+                    flowActivity.runOnUiThread(() -> {
+                        popular.addAll(movies);
+                        flowActivity.updateFlow();
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
+                // TODO Prévoir un nouvel essai dès que la connexion revient
+            }
+        });
+!!!153218.java!!!	search(in query : String) : void
+        search(query, 1);
+!!!153346.java!!!	search(in query : String, in page : int) : void
+        IRetrofitTheMovieDB api = getRetrofitInstance().create(IRetrofitTheMovieDB.class);
+        IHM ihm = IHM.getIHM();
+        SearchActivity searchActivity = (SearchActivity) ihm.getActivite(SearchActivity.class);
+
+        api.searchMovies(API_KEY, query, LANG, page).enqueue(new Callback<MovieResponse>() {
+            @Override
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                List<Movie> movies = response.body().getResults();
+                boolean hasNext = page < response.body().getTotal_pages();
+                // Mettre à jour la liste des films en remplaçant ou en ajoutant
+                searchActivity.runOnUiThread(() -> {
+                    searchActivity.addResults(movies, page, response.body().getTotal_results(), hasNext);
+                });
+            }
+
+            @Override
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
+                // TODO Afficher l'erreur
+                // TODO Prévoir un nouvel essai dès que l'utilisateur redemande la recherche
+            }
+        });
+!!!153474.java!!!	getPopular() : Movie
+        return popular;
+!!!153602.java!!!	fetchSimillar(inout movie : Movie) : void
+        IRetrofitTheMovieDB api = getRetrofitInstance().create(IRetrofitTheMovieDB.class);
+        IHM ihm = IHM.getIHM();
+        MovieActivity movieActivity = (MovieActivity) ihm.getActivite(MovieActivity.class);
+
+        api.getSimilarMovies(movie.getId(), API_KEY, LANG).enqueue(new Callback<MovieResponse>() {
+            @Override
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                List<Movie> movies = response.body().getResults();
+                movieActivity.runOnUiThread(() -> {
+                    movieActivity.addResults(movies);
+                });
+            }
+
+            @Override
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
+                // TODO Afficher l'erreur
+                // TODO Prévoir un nouvel essai dès que l'utilisateur redemande la recherche
+            }
+        });
+!!!153730.java!!!	getRetrofitInstance() : retrofit2.Retrofit
+        if (retrofit == null) {
+            retrofit = new retrofit2.Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        }
+        return retrofit;

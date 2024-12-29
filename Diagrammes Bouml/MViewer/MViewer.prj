@@ -1,6 +1,6 @@
 format 224
 "MViewer"
-  revision 3
+  revision 4
   modified_by 2 "RedEstDeRetour"
 
 
@@ -44,6 +44,7 @@ format 224
 
   mark_for_import
   
+  java_package "fr.red"
   usecaseview 134530 "Digramme de cas d'utilisation"
     
     usecasediagramsettings end
@@ -385,13 +386,13 @@ format 224
     
     activitydiagramsettings
      end
-    classdiagram 134786 "Classes"
-      classdiagramsettings draw_all_relations no member_max_width 0 end
-      size A4
+    classdiagram 141314 "Classes"
+      classdiagramsettings member_max_width 0 end
+      size C
     end
   end
 
-  package_ref 137602 // java
+  package_ref 145026 // mviewer
 
-  package_ref 138114 // unknown
+  package_ref 145154 // unknown
 end

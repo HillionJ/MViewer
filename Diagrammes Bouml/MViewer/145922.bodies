@@ -1,0 +1,169 @@
+class ResultWidget
+!!!160770.java!!!	ResultWidget(inout search_result : LinearLayout, inout activity : AppCompatActivity)
+        this.activity = activity;
+        this.search_result = search_result;
+        updateOrientation();
+!!!160898.java!!!	ResultWidget(inout search_result : LinearLayout, inout activity : AppCompatActivity, inout lastActivity : ResultWidget)
+        this(search_result, activity);
+        this.hasNextPage = lastActivity.hasNextPage;
+        this.plaquetteHeight = lastActivity.plaquetteHeight;
+        this.plaquetteWidth = lastActivity.plaquetteWidth;
+        this.currentPage = lastActivity.currentPage;
+        this.queue = lastActivity.queue;
+        this.currentQueueToken = lastActivity.currentQueueToken;
+        this.loadingImage = lastActivity.loadingImage;
+        this.results = lastActivity.results;
+        this.onInit = lastActivity.onInit;
+!!!161026.java!!!	updateOrientation() : void
+        if (activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            this.nbPlaquettesParLigne = nbPlaquettesParLigne_LANDSCAPE;
+        } else {
+            this.nbPlaquettesParLigne = nbPlaquettesParLigne_PORTRAIT;
+        }
+!!!161154.java!!!	init() : void
+        removeResultsUI();
+        // Calculer la taille des plaquette en fonction de la taille du conteneur
+        search_result.post(() -> {
+            plaquetteWidth = search_result.getWidth() / nbPlaquettesParLigne;
+            plaquetteHeight = (int) (defaultPlaquette * (double) plaquetteWidth);
+            updateResultsUI(0);
+            onInit.run();
+        });
+!!!161282.java!!!	removeResultsUI() : void
+        if (loadingImage != null) {
+            loadingImage.clearAnimation();
+        }
+        while(search_result.getChildCount() > 0) {
+            search_result.removeView(search_result.getChildAt(0));
+        }
+        queue.clear();
+        loadingImage = null;
+!!!161410.java!!!	updateResultsUI(in startIndex : int) : void
+        if (currentPage == 1) {
+            // Supprimer le flux actuelle si c'est des nouveaux résultats
+            removeResultsUI();
+        }
+        // Vérifier en cas de nouveaux résulats, le nombre de plaquettes manquantes dans les LinearLayout
+        int unclosedIndexes = (startIndex % nbPlaquettesParLigne);
+        if (unclosedIndexes > 0) {
+            // En cas de lignes existantes non remplient au max,
+            // les remplir avec les nouveaux résultats
+            LinearLayout row = (LinearLayout) search_result.getChildAt(search_result.getChildCount() - 1);
+            for (int i = 0; i < nbPlaquettesParLigne - unclosedIndexes && (startIndex + i) < results.size(); i++) {
+                row.addView(craftResult(results.get(startIndex + i)));
+                Log.d("_RED", results.get(startIndex + i).getTitle());
+            }
+            startIndex += nbPlaquettesParLigne;
+        }
+        // Ajouter les lignes manquantes pour ajouter nbPlaquettesParLigne dedans
+        for (int i = startIndex - unclosedIndexes; i < results.size(); i += nbPlaquettesParLigne) {
+            LinearLayout row = new LinearLayout(activity);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            for (int j = i; j < nbPlaquettesParLigne + i && j < results.size(); j++) {
+                row.addView(craftResult(results.get(j)));
+                Log.d("_RED", results.get(j).getTitle());
+            }
+            search_result.addView(row);
+        }
+!!!161538.java!!!	craftResult(inout movie : Movie) : View
+        ImageView imageView = new ImageView(activity);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        if (movie == null) {
+            imageView.setImageResource(R.drawable.gray_background);
+            imageView.setLayoutParams(new LinearLayout.LayoutParams(plaquetteWidth, plaquetteHeight));
+            ShimmerFrameLayout shimmerFrameLayout = new ShimmerFrameLayout(activity);
+            shimmerFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            shimmerFrameLayout.setShimmer(
+                    new com.facebook.shimmer.Shimmer.AlphaHighlightBuilder()
+                            .setDuration(1000)
+                            .setBaseAlpha(0.8f)
+                            .setHighlightAlpha(1.0f)
+                            .setDirection(com.facebook.shimmer.Shimmer.Direction.LEFT_TO_RIGHT)
+                            .build()
+            );
+            shimmerFrameLayout.startShimmer();
+            shimmerFrameLayout.addView(imageView);
+            return shimmerFrameLayout;
+        } else {
+            imageView.setLayoutParams(new LinearLayout.LayoutParams(plaquetteWidth, plaquetteHeight));
+            String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
+            queue.add(new LoadingQueue(posterUrl, imageView));
+        }
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MovieActivity.setSelection(movie);
+                ihm.demarrerActivite(activity, activity, MovieActivity.class);
+            }
+        });
+        return imageView;
+!!!161666.java!!!	displayLoadingResultsUI() : void
+        removeResultsUI();
+        for (int i = 0; i < 10; i++) {
+            LinearLayout row = new LinearLayout(activity);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            for (int j = 0; j < nbPlaquettesParLigne; j++) {
+                row.addView(craftResult(null));
+            }
+            search_result.addView(row);
+        }
+!!!161794.java!!!	addResults(inout movies : List<Movie>, in currentPage : int, inout hasNextPage : boolean) : void
+        if (currentPage == 1) {
+            // Nettoyer la liste de résultats et revenir en haut des résultats si 'page' vaut 1
+            // car cela signifie que nous effectuons une recherche avec un query différent
+            this.results.clear();
+        }
+        this.currentPage = currentPage;
+        this.hasNextPage = hasNextPage;
+        int lastAmount = results.size();
+        this.results.addAll(movies);
+        //Supprimer le logo de chargement s'il est présent
+        if (loadingImage != null) {
+            loadingImage.clearAnimation();
+            search_result.removeView(loadingImage);
+            loadingImage = null;
+        }
+        updateResultsUI(lastAmount);
+        // Incrémenter le token pour signifier que la file d'attente précédente doit s'arrêter
+        currentQueueToken++;
+        // Charger la nouvelle file
+        loadNextInQueue();
+        if (hasNextPage) {
+            // Ajouter le logo de chargement en bas s'il existe une page suivante
+            ImageView imageView = new ImageView(activity);
+            imageView.setImageResource(R.drawable.loading);
+            imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,200, 0));
+            imageView.setPadding(0, 50, 0, 50);
+            imageView.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.loading));
+            loadingImage = imageView;
+            search_result.addView(imageView);
+        }
+!!!161922.java!!!	loadNextInQueue() : void
+        if (queue.isEmpty()) {
+            return;
+        }
+        LoadingQueue loadingQueue = queue.remove(0);
+        String posterUrl = loadingQueue.getPosterUrl();
+        ImageView imageView = loadingQueue.getImageView();
+        Glide.with(ihm.getActiviteActive())
+                .load(posterUrl)
+                .placeholder(R.drawable.gray_background)
+                .error(R.drawable.gray_background)
+                .into(imageView);
+        int token = currentQueueToken;
+        imageView.post(() -> {
+            // Vérifier que le token n'a pas changer
+            if (token == currentQueueToken) {
+                loadNextInQueue();
+            }
+        });
+!!!162050.java!!!	hasNextPage() : boolean
+        return hasNextPage;
+!!!162178.java!!!	setHasNextPage(inout hasNextPage : boolean) : void
+        this.hasNextPage = hasNextPage;
+!!!162306.java!!!	getCurrentPage() : int
+        return currentPage;
+!!!162434.java!!!	setCurrentPage(in currentPage : int) : void
+        this.currentPage = currentPage;
+!!!162562.java!!!	setOnInit(inout onInit : Runnable) : void
+        this.onInit = onInit;

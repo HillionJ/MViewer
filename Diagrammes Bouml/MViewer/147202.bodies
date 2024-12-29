@@ -1,0 +1,8 @@
+class LoadingQueue
+!!!156034.java!!!	LoadingQueue(in posterUrl : String, inout imageView : ImageView)
+        this.posterUrl = posterUrl;
+        this.imageView = imageView;
+!!!156162.java!!!	getPosterUrl() : String
+        return posterUrl;
+!!!156290.java!!!	getImageView() : ImageView
+        return imageView;

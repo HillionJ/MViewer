@@ -12,8 +12,14 @@
   - [Diagramme de cas d'utilisation](#diagramme-de-cas-dutilisation)
   - [Diagramme de classes](#diagramme-de-classes)
   - [Screenshots](#screenshots)
-    - [Chargement du flux (En attendre de la réponse de TheMovieDB)](#chargement-du-flux-en-attendre-de-la-réponse-de-themoviedb)
+    - [Page de connexion](#page-de-connexion)
+    - [Page de création de compte](#page-de-création-de-compte)
     - [Flux de films populaires](#flux-de-films-populaires)
+    - [Recherche de films (Chargement à vide)](#recherche-de-films-chargement-à-vide)
+    - [Recherche de films](#recherche-de-films)
+    - [Recherche de films (Chargement de plus de résultats)](#recherche-de-films-chargement-de-plus-de-résultats)
+    - [Recherche de films (Paysage)](#recherche-de-films-paysage)
+    - [Informations sur le film](#informations-sur-le-film)
   - [Recette](#recette)
   - [Auteurs](#auteurs)
 
@@ -42,7 +48,7 @@
 
 ## Tickets Jira
 
-![Tickets Jira](Images/v0.1_Jira.png)
+![Tickets Jira](Images/v1.0_jira.png)
 
 ## Diagramme de cas d'utilisation
 
@@ -54,11 +60,29 @@
 
 ## Screenshots
 
-### Chargement du flux (En attendre de la réponse de TheMovieDB)
-<img src="Images/v0.1_chargement.jpg" width="200" height="auto" alt="Image description">
+### Page de connexion
+<img src="Images/v1.0_login.jpg" width="200" height="auto" alt="Image description">
+
+### Page de création de compte
+<img src="Images/v1.0_register.jpg" width="200" height="auto" alt="Image description">
 
 ### Flux de films populaires
-<img src="Images/v0.1_flux.jpg" width="200" height="auto" alt="Image description">
+<img src="Images/v1.0_flow.jpg" width="200" height="auto" alt="Image description">
+
+### Recherche de films (Chargement à vide)
+<img src="Images/v1.0_search_loading.jpg" width="200" height="auto" alt="Image description">
+
+### Recherche de films
+<img src="Images/v1.0_search.jpg" width="200" height="auto" alt="Image description">
+
+### Recherche de films (Chargement de plus de résultats)
+<img src="Images/v1.0_search_next_page.jpg" width="200" height="auto" alt="Image description">
+
+### Recherche de films (Paysage)
+<img src="Images/v1.0_search_landscape.jpg" width="450" height="auto" alt="Image description">
+
+### Informations sur le film
+<img src="Images/v1.0_information.jpg" width="200" height="auto" alt="Image description">
 
 ## Recette
 
@@ -68,9 +92,9 @@
 | Naviguer entre les plaquettes               |  X  |     |
 | Créer un design intuitif                    |  X  |     |
 | Utiliser l'API TheMovieDB                   |  X  |     |
-| Rechercher des films                        |     |  X  |
-| Afficher des information sur un film        |     |  X  |
-| Permettre à l'utilisateur de se connecter   |     |  X  |
+| Rechercher des films                        |  X  |     |
+| Afficher des information sur un film        |  X  |     |
+| Permettre à l'utilisateur de se connecter   |  X  |     |
 | Créer une base de données                   |     |  X  |
 | Paramétrer l'application                    |     |  X  |
 

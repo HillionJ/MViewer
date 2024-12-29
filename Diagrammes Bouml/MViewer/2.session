@@ -2,18 +2,13 @@ window_sizes 1920 1001 450 1464 819 128
 
 diagrams
   active  classdiagram_ref 141314 // Classes
-    1464 819 50 C 72 0
+    1464 819 80 C 108 0
 end
 show_stereotypes
-selected class_ref 146690 // SimpleOnGestureListener
+selected class_ref 147074 // SimpleOnGestureListener
 open
-  usecaseview_ref 134530 // Digramme de cas d'utilisation
   classview_ref 135810 // Diagramme de classes
-  classview_ref 142978 // mviewer
-  classview_ref 143234 // widgets
-  classview_ref 143362 // tmdb
-  classview_ref 143490 // utils
   classview_ref 143106 // unknown
-  classview_ref 143618 // GestureDetector
+  classview_ref 143746 // GestureDetector
 end
 end
