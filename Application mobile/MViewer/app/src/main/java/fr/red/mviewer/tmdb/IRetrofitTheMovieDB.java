@@ -4,6 +4,7 @@ import fr.red.mviewer.tmdb.response.GenreResponse;
 import fr.red.mviewer.tmdb.response.MovieResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface IRetrofitTheMovieDB {
@@ -15,4 +16,7 @@ public interface IRetrofitTheMovieDB {
 
     @GET("genre/movie/list")
     Call<GenreResponse> getGenres(@Query("api_key") String apiKey, @Query("language") String language);
+
+    @GET("movie/{movie_id}/similar")
+    Call<MovieResponse> getSimilarMovies(@Path("movie_id") int movieId, @Query("api_key") String apiKey, @Query("language") String language);
 }

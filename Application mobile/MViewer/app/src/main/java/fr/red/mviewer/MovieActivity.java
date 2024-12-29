@@ -17,9 +17,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
+import fr.red.mviewer.tmdb.TheMovieDB;
 import fr.red.mviewer.utils.IHM;
 import fr.red.mviewer.utils.Movie;
 import fr.red.mviewer.utils.MovieGenre;
+import fr.red.mviewer.widgets.ResultWidget;
 
 public class MovieActivity extends AppCompatActivity {
 
@@ -27,7 +31,9 @@ public class MovieActivity extends AppCompatActivity {
 
     public static void setSelection(Movie movie) {
         selection = movie;
+        newSelection = true;
     }
+    private static boolean newSelection = false;
 
     private ImageView image;
     private TextView title;
@@ -36,6 +42,8 @@ public class MovieActivity extends AppCompatActivity {
     private LinearLayout announce_btn;
     private TextView description_next;
     private IHM ihm;
+    private ResultWidget resultWidget;
+    private LinearLayout simillar_results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,7 @@ public class MovieActivity extends AppCompatActivity {
         });
 
         this.ihm = IHM.getIHM();
+        MovieActivity lastActivity = (MovieActivity) ihm.getActivite(MovieActivity.class);
         this.ihm.ajouterIHM(this);
         this.ihm.applyDarkTheme();
 
@@ -64,46 +73,71 @@ public class MovieActivity extends AppCompatActivity {
         description_next = findViewById(R.id.info_description_next);
         genres = findViewById(R.id.info_genres);
         announce_btn = findViewById(R.id.announce_btn);
+        simillar_results = findViewById(R.id.simillar_results);
 
+        if (lastActivity == null) {
+            this.resultWidget = new ResultWidget(simillar_results, this);
+        } else {
+            this.resultWidget = new ResultWidget(simillar_results, this, lastActivity.resultWidget);
+        }
+        if (newSelection) {
+            resultWidget.setOnInit(() -> {
+                resultWidget.displayLoadingResultsUI();
+                TheMovieDB.getInstance().fetchSimillar(selection);
+            });
+        }
+        newSelection = false;
 
         announce_btn.setOnClickListener(v -> {
             openYouTubeSearch(selection.getTitle() + " bande annonce");
         });
         title.setText(selection.getTitle());
         description.setText(selection.getOverview());
-        // Mettre en place ou non un déroulement du texte de la descrition si elle fait plus de 2 lignes
-        description.post(() -> {
-            if (description.getLineCount() > 2) {
-                description.setMaxLines(2);
-                description.setEllipsize(TextUtils.TruncateAt.END);
-                description_next.setVisibility(View.VISIBLE);
+        description.post(this::setDescription);
+        displayBanner();
+        setGenres();
 
-                description.setOnClickListener(new View.OnClickListener() {
-                    private boolean isExpanded = false;
+        resultWidget.init();
+    }
 
-                    @Override
-                    public void onClick(View v) {
-                        if (isExpanded) {
-                            description.setMaxLines(2);
-                            description.setEllipsize(TextUtils.TruncateAt.END);
-                            description_next.setVisibility(View.VISIBLE);
-                        } else {
-                            description.setMaxLines(Integer.MAX_VALUE);
-                            description.setEllipsize(null);
-                            description_next.setVisibility(View.INVISIBLE);
-                        }
-                        isExpanded = !isExpanded;
+    // Mettre en place ou non un déroulement du texte de la descrition si elle fait plus de 2 lignes
+    private void setDescription() {
+        if (description.getLineCount() > 2) {
+            description.setMaxLines(2);
+            description.setEllipsize(TextUtils.TruncateAt.END);
+            description_next.setVisibility(View.VISIBLE);
+
+            description.setOnClickListener(new View.OnClickListener() {
+                private boolean isExpanded = false;
+
+                @Override
+                public void onClick(View v) {
+                    if (isExpanded) {
+                        description.setMaxLines(2);
+                        description.setEllipsize(TextUtils.TruncateAt.END);
+                        description_next.setVisibility(View.VISIBLE);
+                    } else {
+                        description.setMaxLines(Integer.MAX_VALUE);
+                        description.setEllipsize(null);
+                        description_next.setVisibility(View.INVISIBLE);
                     }
-                });
-            }
-        });
-        // Afficher l'image réduite (backdrop_path)
+                    isExpanded = !isExpanded;
+                }
+            });
+        }
+    }
+
+    // Afficher l'image réduite (backdrop_path)
+    private void displayBanner() {
         Glide.with(ihm.getActiviteActive())
                 .load("https://image.tmdb.org/t/p/w500" + selection.getBackdrop_path())
                 .placeholder(R.drawable.gray_background)
                 .error(R.drawable.gray_background)
                 .into(image);
-        // Afficher les genres
+    }
+
+    // Afficher les genres
+    private void setGenres() {
         for (MovieGenre genre : selection.getGenre_ids()) {
             TextView textView = new TextView(this);
             textView.setText(genre.getName());
@@ -121,5 +155,9 @@ public class MovieActivity extends AppCompatActivity {
         intent.putExtra("query", query);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    public void addResults(List<Movie> movies) {
+        resultWidget.addResults(movies, 1, false);
     }
 }

@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,9 +31,7 @@ public class ResultWidget {
     private static final int nbPlaquettesParLigne_PORTRAIT = 3;
     private static final double defaultPlaquette = 500.0 / 333.0; // 'Height / Width'
 
-    private TheMovieDB theMovieDB = TheMovieDB.getInstance();
     private boolean hasNextPage = false;
-    private ScrollView scroll_result;
     private LinearLayout search_result;
     private int plaquetteHeight, plaquetteWidth;
     private List<LoadingQueue> queue = new ArrayList<>();
@@ -43,21 +39,19 @@ public class ResultWidget {
     private int currentPage = 1;
     private ImageView loadingImage = null;
     private int nbPlaquettesParLigne;
-    private SearchView searchView;
     private IHM ihm = IHM.getIHM();
     private List<Movie> results = new ArrayList<>();
     private AppCompatActivity activity;
+    private Runnable onInit = () -> {};
 
-    public ResultWidget(ScrollView scroll_result, LinearLayout search_result, SearchView searchView, AppCompatActivity activity) {
+    public ResultWidget(LinearLayout search_result, AppCompatActivity activity) {
         this.activity = activity;
-        this.scroll_result = scroll_result;
         this.search_result = search_result;
-        this.searchView = searchView;
         updateOrientation();
     }
 
-    public ResultWidget(ScrollView scroll_result, LinearLayout search_result, SearchView searchView, AppCompatActivity activity, ResultWidget lastActivity) {
-        this(scroll_result, search_result, searchView, activity);
+    public ResultWidget(LinearLayout search_result, AppCompatActivity activity, ResultWidget lastActivity) {
+        this(search_result, activity);
         this.hasNextPage = lastActivity.hasNextPage;
         this.plaquetteHeight = lastActivity.plaquetteHeight;
         this.plaquetteWidth = lastActivity.plaquetteWidth;
@@ -66,6 +60,7 @@ public class ResultWidget {
         this.currentQueueToken = lastActivity.currentQueueToken;
         this.loadingImage = lastActivity.loadingImage;
         this.results = lastActivity.results;
+        this.onInit = lastActivity.onInit;
     }
 
     public void updateOrientation() {
@@ -83,6 +78,7 @@ public class ResultWidget {
             plaquetteWidth = search_result.getWidth() / nbPlaquettesParLigne;
             plaquetteHeight = (int) (defaultPlaquette * (double) plaquetteWidth);
             updateResultsUI(0);
+            onInit.run();
         });
     }
 
@@ -112,6 +108,7 @@ public class ResultWidget {
             LinearLayout row = (LinearLayout) search_result.getChildAt(search_result.getChildCount() - 1);
             for (int i = 0; i < nbPlaquettesParLigne - unclosedIndexes && (startIndex + i) < results.size(); i++) {
                 row.addView(craftResult(results.get(startIndex + i)));
+                Log.d("_RED", results.get(startIndex + i).getTitle());
             }
             startIndex += nbPlaquettesParLigne;
         }
@@ -121,6 +118,7 @@ public class ResultWidget {
             row.setOrientation(LinearLayout.HORIZONTAL);
             for (int j = i; j < nbPlaquettesParLigne + i && j < results.size(); j++) {
                 row.addView(craftResult(results.get(j)));
+                Log.d("_RED", results.get(j).getTitle());
             }
             search_result.addView(row);
         }
@@ -182,7 +180,6 @@ public class ResultWidget {
             // Nettoyer la liste de résultats et revenir en haut des résultats si 'page' vaut 1
             // car cela signifie que nous effectuons une recherche avec un query différent
             this.results.clear();
-            scroll_result.scrollTo(0, 0);
         }
         this.currentPage = currentPage;
         this.hasNextPage = hasNextPage;
@@ -219,7 +216,7 @@ public class ResultWidget {
         LoadingQueue loadingQueue = queue.remove(0);
         String posterUrl = loadingQueue.getPosterUrl();
         ImageView imageView = loadingQueue.getImageView();
-        Glide.with(ihm.getActivite(SearchActivity.class))
+        Glide.with(ihm.getActiviteActive())
                 .load(posterUrl)
                 .placeholder(R.drawable.gray_background)
                 .error(R.drawable.gray_background)
@@ -247,6 +244,10 @@ public class ResultWidget {
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
+    }
+
+    public void setOnInit(Runnable onInit) {
+        this.onInit = onInit;
     }
 }
 

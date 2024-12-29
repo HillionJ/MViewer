@@ -1,23 +1,8 @@
 package fr.red.mviewer;
 
-import android.annotation.SuppressLint;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -28,21 +13,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bumptech.glide.Glide;
-import com.facebook.shimmer.ShimmerFrameLayout;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import fr.red.mviewer.tmdb.TheMovieDB;
-import fr.red.mviewer.utils.GestureListener;
 import fr.red.mviewer.utils.IHM;
-import fr.red.mviewer.utils.LoadingQueue;
 import fr.red.mviewer.utils.Movie;
 import fr.red.mviewer.widgets.ResultWidget;
 
@@ -81,9 +58,9 @@ public class SearchActivity extends AppCompatActivity {
         scroll_result = findViewById(R.id.scroll_result);
 
         if (lastActivity == null) {
-            this.resultWidget = new ResultWidget(scroll_result, search_result, searchView, this);
+            this.resultWidget = new ResultWidget(search_result, this);
         } else {
-            this.resultWidget = new ResultWidget(scroll_result, search_result, searchView, this, lastActivity.resultWidget);
+            this.resultWidget = new ResultWidget(search_result, this, lastActivity.resultWidget);
         }
         loopCheckScroll();
 
@@ -133,6 +110,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void addResults(List<Movie> movies, int currentPage, int amount, boolean hasNextPage) {
+        if (currentPage == 1) {
+            scroll_result.scrollTo(0, 0);
+        }
         result_amount.setVisibility(View.VISIBLE);
         result_amount.setText(amount == 0 ? "Aucun résultat" : amount + " résultat" + (amount == 1 ? "" : "s"));
         resultWidget.addResults(movies, currentPage, hasNextPage);
