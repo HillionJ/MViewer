@@ -114,12 +114,15 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                Log.d("_RED", newText);
                 ScheduledExecutorService newScheduler = Executors.newScheduledThreadPool(1);
                 scheduler = newScheduler;
                 scheduler.schedule(() -> {
                     ihm.getActiviteActive().runOnUiThread(() -> {
+                        Log.d("_RED", "test");
                         //Vérifier si le query n'a pas changé depuis 0.5s pour effectuer la recherche.
-                        if (this.scheduler == newScheduler && ihm.getActiviteActive().getClass() == SearchActivity.class) {
+                        if (this.scheduler == newScheduler) {
+                            Log.d("_RED", "ok");
                             if (newText.isEmpty()) {
                                 removeResultsUI();
                                 result_amount.setVisibility(View.INVISIBLE);

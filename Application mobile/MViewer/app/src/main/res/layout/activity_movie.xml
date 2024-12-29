@@ -64,6 +64,7 @@
                 android:id="@+id/info_genres"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingTop="20dp" />
 
@@ -76,6 +77,7 @@
                     android:id="@+id/announce_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
                     android:background="@drawable/red_rounded_background"
                     android:orientation="horizontal"
                     android:padding="5dp"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -106,6 +107,7 @@ public class MovieActivity extends AppCompatActivity {
         for (MovieGenre genre : selection.getGenre_ids()) {
             TextView textView = new TextView(this);
             textView.setText(genre.getName());
+            textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
             textView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
             textView.setTextColor(getResources().getColor(R.color.white));
             genres.addView(textView);
