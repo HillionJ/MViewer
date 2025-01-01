@@ -75,27 +75,28 @@ public class FlowActivity extends AppCompatActivity {
 
     }
 
+    // Création du menu lors du chargement de l'activité
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_menu, menu);
         return true;
     }
 
-
+    // Gestion des choix du menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if (item.getItemId()== R.id.logout){
             FirebaseAuth auth = FirebaseAuth.getInstance();
-            auth.signOut();
+            auth.signOut(); // Déconnecte l'utilisateur
             Intent i = new Intent(FlowActivity.this, Login.class);
             startActivity(i);
             finish();
             return true;
         } else if (item.getItemId()== R.id.search){
-            IHM.getIHM().demarrerActivite(FlowActivity.this, FlowActivity.this, SearchActivity.class);
+            IHM.getIHM().demarrerActivite(FlowActivity.this, FlowActivity.this, SearchActivity.class); // Lance l'activité de recherche d'un film
             return true;
         } else if (item.getItemId()== R.id.rename){
-            Intent i = new Intent(FlowActivity.this, Rename.class);
+            Intent i = new Intent(FlowActivity.this, Rename.class); // Lance l'activité pour renommer l'utilisateur
             startActivity(i);
             return true;
         }

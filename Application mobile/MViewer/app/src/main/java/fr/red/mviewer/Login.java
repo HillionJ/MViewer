@@ -36,10 +36,10 @@ public class Login extends AppCompatActivity {
     public void submit(View v){
         try {
             FirebaseAuth auth = FirebaseAuth.getInstance();
+            // Connecte l'utilisateur à son compte
             auth.signInWithEmailAndPassword(login.getText().toString(), password.getText().toString());
             FirebaseUser user = auth.getCurrentUser();
             Intent i = new Intent(Login.this, FlowActivity.class);
-            i.putExtra("msg", user.getEmail());
             startActivity(i);
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Veuillez rentrer des identifiants valides.", Toast.LENGTH_LONG).show();

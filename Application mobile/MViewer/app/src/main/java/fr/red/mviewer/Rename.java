@@ -24,12 +24,13 @@ public class Rename extends AppCompatActivity {
         new_name = findViewById(R.id.new_name);
     }
 
+    // Méthode appelée lors du clic sur le bouton de validation dans l'activité de changement de nom
     public void rename(View v){
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        UserProfileChangeRequest new_profile = new UserProfileChangeRequest.Builder().setDisplayName(new_name.getText().toString()).build();
+        UserProfileChangeRequest new_profile = new UserProfileChangeRequest.Builder().setDisplayName(new_name.getText().toString()).build(); // Instancie le changement de nom
 
+        // Applique les changements et démarre la page principale quand l'update est terminée
         auth.getCurrentUser().updateProfile(new_profile).addOnCompleteListener(task -> {
-            Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
             Intent i = new Intent(Rename.this, FlowActivity.class);
             startActivity(i);
             finish();
