@@ -28,8 +28,14 @@ public class Login extends AppCompatActivity {
         ihm.ajouterIHM(this);
         ihm.applyDarkTheme();
 
-        login = findViewById(R.id.login);
-        password = findViewById(R.id.password);
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent i = new Intent(Login.this, FlowActivity.class);
+            startActivity(i);
+        } else {
+            login = findViewById(R.id.login);
+            password = findViewById(R.id.password);
+        }
+
     }
 
     // Méthode appelée lors du clic sur le bouton "Se connecter"
