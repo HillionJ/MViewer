@@ -60,11 +60,10 @@ public class FlowActivity extends AppCompatActivity {
         ihm.applyDarkTheme();
 
         flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView), this);
-
         // Définir un titre personnalisé pour l'ActionBar
         if (getSupportActionBar() != null) {
             FirebaseAuth auth = FirebaseAuth.getInstance();
-            if (auth.getCurrentUser().getDisplayName().equals("")) {
+            if (auth.getCurrentUser().getDisplayName() == null) {
                 String name = auth.getCurrentUser().getEmail().toString();
                 getSupportActionBar().setTitle(name);
             } else {

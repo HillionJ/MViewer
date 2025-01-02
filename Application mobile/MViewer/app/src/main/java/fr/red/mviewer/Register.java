@@ -31,9 +31,10 @@ public class Register extends AppCompatActivity {
             if (password1.getText().toString().equals(password2.getText().toString())) { // check if the password field and the validation password field are the same
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 // Crée un nouvau compte et redirige l'utilisateur vers la page principale
-                auth.createUserWithEmailAndPassword(login.getText().toString(), password1.getText().toString());
-                Intent i = new Intent(Register.this, FlowActivity.class);
-                startActivity(i);
+                auth.createUserWithEmailAndPassword(login.getText().toString(), password1.getText().toString()).addOnCompleteListener(task -> {
+                    Intent i = new Intent(Register.this, FlowActivity.class);
+                    startActivity(i);
+                });
             } else {
                 Toast.makeText(getApplicationContext(), "Les 2 mots de passe doivent correspondre", Toast.LENGTH_LONG).show();
             }

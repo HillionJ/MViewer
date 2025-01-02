@@ -37,10 +37,14 @@ public class Login extends AppCompatActivity {
         try {
             FirebaseAuth auth = FirebaseAuth.getInstance();
             // Connecte l'utilisateur à son compte
-            auth.signInWithEmailAndPassword(login.getText().toString(), password.getText().toString());
-            FirebaseUser user = auth.getCurrentUser();
-            Intent i = new Intent(Login.this, FlowActivity.class);
-            startActivity(i);
+            auth.signInWithEmailAndPassword(login.getText().toString(), password.getText().toString()).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Intent i = new Intent(Login.this, FlowActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Veuillez rentrer des identifiants valides.", Toast.LENGTH_LONG).show();
+                }
+            });
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Veuillez rentrer des identifiants valides.", Toast.LENGTH_LONG).show();
         }
