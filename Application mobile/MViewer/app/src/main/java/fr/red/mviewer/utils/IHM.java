@@ -58,6 +58,15 @@ public class IHM {
 
     // Récupérer l'activitée actuelle
     public AppCompatActivity getActiviteActive() {
+        if (activiteActive.isDestroyed()) {
+            // En cas d'activité inactive, chercher une potentiellement active
+            for (Object ihmActive : ihmActives) {
+                if (ihmActive instanceof AppCompatActivity && !((AppCompatActivity) ihmActive).isDestroyed()) {
+                    activiteActive = (AppCompatActivity) ihmActive;
+                    break;
+                }
+            }
+        }
         return activiteActive;
     }
 
