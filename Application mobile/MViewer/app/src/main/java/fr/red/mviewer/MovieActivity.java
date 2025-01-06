@@ -141,7 +141,7 @@ public class MovieActivity extends AppCompatActivity {
         Glide.with(ihm.getActiviteActive())
                 .load("https://image.tmdb.org/t/p/w500" + selection.getBackdrop_path())
                 .placeholder(R.drawable.gray_background)
-                .error(R.drawable.gray_background)
+                .error(R.drawable._1euctafoll)
                 .into(image);
     }
 

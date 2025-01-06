@@ -217,7 +217,7 @@ public class ResultWidget {
         Glide.with(ihm.getActiviteActive())
                 .load(posterUrl)
                 .placeholder(R.drawable.gray_background)
-                .error(R.drawable.gray_background)
+                .error(R.drawable._1euctafoll)
                 .into(imageView);
         int token = currentQueueToken;
         imageView.post(() -> {

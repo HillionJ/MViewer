@@ -74,7 +74,7 @@ public class FlowWidget {
             Glide.with(ihm.getActivite(FlowActivity.class))
                     .load(posterUrl)
                     .placeholder(R.drawable.gray_background)
-                    .error(R.drawable.gray_background)
+                    .error(R.drawable._1euctafoll)
                     .into(image);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
