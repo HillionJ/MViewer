@@ -69,6 +69,12 @@ public class SearchActivity extends AppCompatActivity {
         resultWidget.init();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
+    }
+
     private void manageQuery() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 

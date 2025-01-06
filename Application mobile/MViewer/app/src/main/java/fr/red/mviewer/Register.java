@@ -12,17 +12,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
+import fr.red.mviewer.utils.IHM;
+
 public class Register extends AppCompatActivity {
-    EditText login, password1, password2;
+    private EditText login, password1, password2;
+    private IHM ihm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
+
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+        ihm.applyDarkTheme();
+
         login = findViewById(R.id.login);
         password1 = findViewById(R.id.password1);
         password2 = findViewById(R.id.password2);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
     }
 
     // Méthode appelée lors du clic sur le bouton de validation dans l'activité de création de compte

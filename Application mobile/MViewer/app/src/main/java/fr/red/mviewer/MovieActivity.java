@@ -103,6 +103,12 @@ public class MovieActivity extends AppCompatActivity {
         resultWidget.init();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
+    }
+
     // Mettre en place ou non un déroulement du texte de la descrition si elle fait plus de 2 lignes
     private void setDescription() {
         if (description.getLineCount() > 2) {

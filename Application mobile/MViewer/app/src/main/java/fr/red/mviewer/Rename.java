@@ -13,17 +13,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import fr.red.mviewer.utils.IHM;
+
 public class Rename extends AppCompatActivity {
     private EditText new_name;
+    private IHM ihm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_rename);
 
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+        ihm.applyDarkTheme();
+
         new_name = findViewById(R.id.new_name);
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
+    }
     // Méthode appelée lors du clic sur le bouton de validation dans l'activité de changement de nom
     public void rename(View v){
         FirebaseAuth auth = FirebaseAuth.getInstance();

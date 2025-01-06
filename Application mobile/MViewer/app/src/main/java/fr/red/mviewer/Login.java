@@ -17,6 +17,8 @@ import fr.red.mviewer.utils.IHM;
 
 public class Login extends AppCompatActivity {
     private EditText login, password;
+    private IHM ihm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Initialiser l'IHM si elle n'est pas déjà créée
-        IHM ihm = IHM.getIHM() == null ? new IHM(this) : IHM.getIHM();
+        ihm = IHM.getIHM() == null ? new IHM(this) : IHM.getIHM();
         ihm.ajouterIHM(this);
         ihm.applyDarkTheme();
 
@@ -36,6 +38,12 @@ public class Login extends AppCompatActivity {
             password = findViewById(R.id.password);
         }
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
     }
 
     // Méthode appelée lors du clic sur le bouton "Se connecter"

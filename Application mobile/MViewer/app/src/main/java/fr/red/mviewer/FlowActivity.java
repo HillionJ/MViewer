@@ -42,6 +42,7 @@ import fr.red.mviewer.widgets.FlowWidget;
 public class FlowActivity extends AppCompatActivity {
 
     private FlowWidget flowWidget = null;
+    private IHM ihm;
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
@@ -55,7 +56,7 @@ public class FlowActivity extends AppCompatActivity {
             return insets;
         });
 
-        IHM ihm = IHM.getIHM();
+        ihm = IHM.getIHM();
         ihm.ajouterIHM(this);
         ihm.applyDarkTheme();
 
@@ -71,7 +72,12 @@ public class FlowActivity extends AppCompatActivity {
             }
 
         }
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
     }
 
     // Création du menu lors du chargement de l'activité

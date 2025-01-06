@@ -1,6 +1,6 @@
 format 224
 "MViewer"
-  revision 4
+  revision 5
   modified_by 2 "RedEstDeRetour"
 
 
@@ -387,6 +387,11 @@ format 224
     activitydiagramsettings
      end
     classdiagram 141314 "Classes"
+      classdiagramsettings member_max_width 0 end
+      size C
+    end
+
+    classdiagram 147842 "Compressed"
       classdiagramsettings member_max_width 0 end
       size C
     end
