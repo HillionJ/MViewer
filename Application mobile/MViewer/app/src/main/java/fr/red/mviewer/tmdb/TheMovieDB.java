@@ -34,9 +34,14 @@ public class TheMovieDB {
     }
 
     private List<Movie> popular = new ArrayList<>();
+    private boolean errored = false;
 
     //Récupérer les genres et le flux à l'initialisation
     public TheMovieDB() {
+        init();
+    }
+
+    public void init() {
         fetchGenres();
         fetchPoupular(1);
     }
@@ -48,6 +53,7 @@ public class TheMovieDB {
             @Override
             public void onResponse(Call<GenreResponse> call, Response<GenreResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    errored = false;
                     List<MovieGenre> movieGenre = response.body().getGenres();
                     //Enregistrer dans la liste des genres
                     for (MovieGenre genre : movieGenre) {
@@ -58,7 +64,7 @@ public class TheMovieDB {
 
             @Override
             public void onFailure(Call<GenreResponse> call, Throwable t) {
-                // TODO Prévoir un nouvel essai dès que la connexion revient
+                errored = true;
             }
         });
     }
@@ -73,6 +79,7 @@ public class TheMovieDB {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    errored = false;
                     List<Movie> movies = response.body().getResults();
                     Collections.shuffle(movies);
                     // Mettre à jour la liste des films populaires
@@ -85,7 +92,8 @@ public class TheMovieDB {
 
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
-                // TODO Prévoir un nouvel essai dès que la connexion revient
+                errored = true;
+                flowActivity.runOnUiThread(flowActivity::updateFlow);
             }
         });
     }
@@ -114,8 +122,10 @@ public class TheMovieDB {
 
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
-                // TODO Afficher l'erreur
-                // TODO Prévoir un nouvel essai dès que l'utilisateur redemande la recherche
+                searchActivity.runOnUiThread(() -> {
+                    searchActivity.setResultText("Erreur de connexion, Réessayer");
+                    searchActivity.clearResults();
+                });
             }
         });
     }
@@ -140,8 +150,6 @@ public class TheMovieDB {
 
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
-                // TODO Afficher l'erreur
-                // TODO Prévoir un nouvel essai dès que l'utilisateur redemande la recherche
             }
         });
     }
@@ -151,5 +159,9 @@ public class TheMovieDB {
             retrofit = new retrofit2.Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         }
         return retrofit;
+    }
+
+    public boolean isErrored() {
+        return errored;
     }
 }

@@ -9,7 +9,7 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/error_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="-32dp"
@@ -22,7 +22,7 @@
         app:srcCompat="@android:drawable/ic_menu_info_details" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/error_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aucune connexion"
@@ -30,9 +30,9 @@
         android:visibility="invisible"
         android:textSize="10sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="@+id/error_icon"
+        app:layout_constraintStart_toStartOf="@+id/error_icon"
+        app:layout_constraintTop_toBottomOf="@+id/error_icon" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerLayout"
