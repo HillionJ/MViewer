@@ -32,7 +32,7 @@ format 224
   
   java_dir "C:\\Users\\RedEstDeRetour\\AndroidStudioProjects\\MViewer\\Application mobile\\MViewer\\app\\src\\main\\java\\fr\\red\\mviewer/"
   java_package "fr.red.mviewer"
-  classview 142978 "mviewer"
+  classview 150274 "mviewer"
     
     classdiagramsettings member_max_width 0 end
     
@@ -52,7 +52,7 @@ format 224
     
     activitydiagramsettings
      end
-    class 145026 "FlowActivity"
+    class 153730 "FlowActivity"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -64,24 +64,33 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 142978 // <generalisation>
-	relation 142594 ---|>
+      classrelation 152450 // <generalisation>
+	relation 152066 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 142978 // <generalisation>
-	  b parent class_ref 145154 // AppCompatActivity
+	    classrelation_ref 152450 // <generalisation>
+	  b parent class_ref 153858 // AppCompatActivity
       end
 
-      classrelation 143106 // flowWidget (<unidirectional association>)
-	relation 142722 --->
+      classrelation 152578 // flowWidget (<unidirectional association>)
+	relation 152194 --->
 	  a role_name "flowWidget" init_value " null" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 143106 // flowWidget (<unidirectional association>)
-	  b parent class_ref 145282 // FlowWidget
+	    classrelation_ref 152578 // flowWidget (<unidirectional association>)
+	  b parent class_ref 153986 // FlowWidget
       end
 
-      operation 149506 "onCreate"
+      classrelation 152706 // ihm (<unidirectional association>)
+	relation 152322 --->
+	  a role_name "ihm" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 152706 // ihm (<unidirectional association>)
+	  b parent class_ref 154114 // IHM
+      end
+
+      operation 169090 "onCreate"
 	protected explicit_return_type "void"
 	nparams 1
 	  param inout name "savedInstanceState" explicit_type "Bundle"
@@ -97,7 +106,53 @@ ${members}}
 	
       end
 
-      operation 149634 "updateFlow"
+      operation 169218 "onRestart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 169346 "onCreateOptionsMenu"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "menu" explicit_type "Menu"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Création du menu lors du chargement de l'activité"
+      end
+
+      operation 169474 "onOptionsItemSelected"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "item" explicit_type "MenuItem"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Gestion des choix du menu"
+      end
+
+      operation 169602 "updateFlow"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -109,7 +164,7 @@ ${members}}
 	
       end
 
-      operation 149762 "scrollToNext"
+      operation 169730 "scrollToNext"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -121,7 +176,7 @@ ${members}}
 	
       end
 
-      operation 149890 "scrollToPrevious"
+      operation 169858 "scrollToPrevious"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -134,7 +189,7 @@ ${members}}
       end
     end
 
-    class 145410 "Login"
+    class 154242 "Login"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -146,15 +201,15 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 143234 // <generalisation>
-	relation 142850 ---|>
+      classrelation 152834 // <generalisation>
+	relation 152450 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 143234 // <generalisation>
-	  b parent class_ref 145154 // AppCompatActivity
+	    classrelation_ref 152834 // <generalisation>
+	  b parent class_ref 153858 // AppCompatActivity
       end
 
-      attribute 145538 "login"
+      attribute 159874 "login"
 	private explicit_type "EditText"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -166,7 +221,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 145666 "password"
+      attribute 160002 "password"
 	private explicit_type "EditText"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -178,7 +233,16 @@ ${members}}
 	MysqlColumn
       end
 
-      operation 150018 "onCreate"
+      classrelation 152962 // ihm (<unidirectional association>)
+	relation 152578 --->
+	  a role_name "ihm" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 152962 // ihm (<unidirectional association>)
+	  b parent class_ref 154114 // IHM
+      end
+
+      operation 169986 "onCreate"
 	protected explicit_return_type "void"
 	nparams 1
 	  param inout name "savedInstanceState" explicit_type "Bundle"
@@ -193,7 +257,21 @@ ${members}}
 	
       end
 
-      operation 150146 "submit"
+      operation 170114 "onRestart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 170242 "submit"
 	public explicit_return_type "void"
 	nparams 1
 	  param inout name "v" explicit_type "View"
@@ -207,7 +285,7 @@ ${members}}
 	comment " Méthode appelée lors du clic sur le bouton \"Se connecter\""
       end
 
-      operation 150274 "move_to_register"
+      operation 170370 "move_to_register"
 	public explicit_return_type "void"
 	nparams 1
 	  param inout name "v" explicit_type "View"
@@ -222,7 +300,7 @@ ${members}}
       end
     end
 
-    class 145538 "MovieActivity"
+    class 154370 "MovieActivity"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -234,27 +312,27 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 143362 // <generalisation>
-	relation 142978 ---|>
+      classrelation 153090 // <generalisation>
+	relation 152706 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 143362 // <generalisation>
-	  b parent class_ref 145154 // AppCompatActivity
+	    classrelation_ref 153090 // <generalisation>
+	  b parent class_ref 153858 // AppCompatActivity
       end
 
-      classrelation 143490 // selection (<unidirectional association>)
-	relation 143106 --->
+      classrelation 153218 // selection (<unidirectional association>)
+	relation 152834 --->
 	  a role_name "selection" init_value " null" class_relation private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 143490 // selection (<unidirectional association>)
-	  b parent class_ref 145666 // Movie
+	    classrelation_ref 153218 // selection (<unidirectional association>)
+	  b parent class_ref 154498 // Movie
       end
 
-      operation 150402 "setSelection"
+      operation 170498 "setSelection"
 	class_operation public explicit_return_type "void"
 	nparams 1
-	  param inout name "movie" type class_ref 145666 // Movie
+	  param inout name "movie" type class_ref 154498 // Movie
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -264,7 +342,7 @@ ${members}}
 	
       end
 
-      attribute 145794 "newSelection"
+      attribute 160130 "newSelection"
 	class_attribute private explicit_type "boolean"
 	init_value " false"
 	cpp_decl ""
@@ -277,7 +355,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 145922 "image"
+      attribute 160258 "image"
 	private explicit_type "ImageView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -289,7 +367,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 146050 "title"
+      attribute 160386 "title"
 	private explicit_type "TextView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -301,7 +379,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 146178 "description"
+      attribute 160514 "description"
 	private explicit_type "TextView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -313,7 +391,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 146306 "genres"
+      attribute 160642 "genres"
 	private explicit_type "LinearLayout"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -325,7 +403,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 146434 "announce_btn"
+      attribute 160770 "announce_btn"
 	private explicit_type "LinearLayout"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -337,7 +415,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 146562 "description_next"
+      attribute 160898 "description_next"
 	private explicit_type "TextView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -349,25 +427,25 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 143618 // ihm (<unidirectional association>)
-	relation 143234 --->
+      classrelation 153346 // ihm (<unidirectional association>)
+	relation 152962 --->
 	  a role_name "ihm" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 143618 // ihm (<unidirectional association>)
-	  b parent class_ref 145794 // IHM
+	    classrelation_ref 153346 // ihm (<unidirectional association>)
+	  b parent class_ref 154114 // IHM
       end
 
-      classrelation 143746 // resultWidget (<unidirectional association>)
-	relation 143362 --->
+      classrelation 153474 // resultWidget (<unidirectional association>)
+	relation 153090 --->
 	  a role_name "resultWidget" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 143746 // resultWidget (<unidirectional association>)
-	  b parent class_ref 145922 // ResultWidget
+	    classrelation_ref 153474 // resultWidget (<unidirectional association>)
+	  b parent class_ref 154626 // ResultWidget
       end
 
-      attribute 146690 "simillar_results"
+      attribute 161026 "simillar_results"
 	private explicit_type "LinearLayout"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -379,7 +457,7 @@ ${members}}
 	MysqlColumn
       end
 
-      operation 150530 "onCreate"
+      operation 170626 "onCreate"
 	protected explicit_return_type "void"
 	nparams 1
 	  param inout name "savedInstanceState" explicit_type "Bundle"
@@ -394,7 +472,21 @@ ${members}}
 	
       end
 
-      operation 150658 "setDescription"
+      operation 170754 "onRestart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 170882 "setDescription"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -407,7 +499,7 @@ ${members}}
 	comment " Mettre en place ou non un déroulement du texte de la descrition si elle fait plus de 2 lignes"
       end
 
-      operation 150786 "displayBanner"
+      operation 171010 "displayBanner"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -420,7 +512,7 @@ ${members}}
 	comment " Afficher l'image réduite (backdrop_path)"
       end
 
-      operation 150914 "setGenres"
+      operation 171138 "setGenres"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -433,7 +525,7 @@ ${members}}
 	comment " Afficher les genres"
       end
 
-      operation 151042 "openYouTubeSearch"
+      operation 171266 "openYouTubeSearch"
 	public explicit_return_type "void"
 	nparams 1
 	  param in name "query" explicit_type "String"
@@ -447,7 +539,7 @@ ${members}}
 	comment " Ouvrir l'application youtube avec la recherche 'query'"
       end
 
-      operation 151170 "addResults"
+      operation 171394 "addResults"
 	public explicit_return_type "void"
 	nparams 1
 	  param inout name "movies" explicit_type "List<Movie>"
@@ -461,7 +553,7 @@ ${members}}
       end
     end
 
-    class 146050 "Register"
+    class 154754 "Register"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -473,16 +565,16 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 143874 // <generalisation>
-	relation 143490 ---|>
+      classrelation 153602 // <generalisation>
+	relation 153218 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 143874 // <generalisation>
-	  b parent class_ref 145154 // AppCompatActivity
+	    classrelation_ref 153602 // <generalisation>
+	  b parent class_ref 153858 // AppCompatActivity
       end
 
-      attribute 146818 "login"
-	package explicit_type "EditText"
+      attribute 161154 "login"
+	private explicit_type "EditText"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -493,8 +585,8 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 146946 "password1"
-	package explicit_type "EditText"
+      attribute 161282 "password1"
+	private explicit_type "EditText"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -505,8 +597,8 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 147074 "password2"
-	package explicit_type "EditText"
+      attribute 161410 "password2"
+	private explicit_type "EditText"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -517,7 +609,16 @@ ${members}}
 	MysqlColumn
       end
 
-      operation 151298 "onCreate"
+      classrelation 153730 // ihm (<unidirectional association>)
+	relation 153346 --->
+	  a role_name "ihm" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 153730 // ihm (<unidirectional association>)
+	  b parent class_ref 154114 // IHM
+      end
+
+      operation 171522 "onCreate"
 	protected explicit_return_type "void"
 	nparams 1
 	  param inout name "savedInstanceState" explicit_type "Bundle"
@@ -532,7 +633,21 @@ ${members}}
 	
       end
 
-      operation 151426 "register"
+      operation 171650 "onRestart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 171778 "register"
 	public explicit_return_type "void"
 	nparams 1
 	  param inout name "v" explicit_type "View"
@@ -543,11 +658,11 @@ ${members}}
 	
 	
 	
-	comment " Méthode appelée lors du clic sur le bouton \"Créer un compte\""
+	comment " Méthode appelée lors du clic sur le bouton de validation dans l'activité de création de compte"
       end
     end
 
-    class 146178 "SearchActivity"
+    class 154882 "Rename"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -559,24 +674,109 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 144002 // <generalisation>
-	relation 143618 ---|>
+      classrelation 153858 // <generalisation>
+	relation 153474 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 144002 // <generalisation>
-	  b parent class_ref 145154 // AppCompatActivity
+	    classrelation_ref 153858 // <generalisation>
+	  b parent class_ref 153858 // AppCompatActivity
       end
 
-      classrelation 144130 // resultWidget (<unidirectional association>)
-	relation 143746 --->
+      attribute 161538 "new_name"
+	private explicit_type "EditText"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 153986 // ihm (<unidirectional association>)
+	relation 153602 --->
+	  a role_name "ihm" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 153986 // ihm (<unidirectional association>)
+	  b parent class_ref 154114 // IHM
+      end
+
+      operation 171906 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 172034 "onRestart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 172162 "rename"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "v" explicit_type "View"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Méthode appelée lors du clic sur le bouton de validation dans l'activité de changement de nom"
+      end
+    end
+
+    class 155010 "SearchActivity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 154114 // <generalisation>
+	relation 153730 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154114 // <generalisation>
+	  b parent class_ref 153858 // AppCompatActivity
+      end
+
+      classrelation 154242 // resultWidget (<unidirectional association>)
+	relation 153858 --->
 	  a role_name "resultWidget" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 144130 // resultWidget (<unidirectional association>)
-	  b parent class_ref 145922 // ResultWidget
+	    classrelation_ref 154242 // resultWidget (<unidirectional association>)
+	  b parent class_ref 154626 // ResultWidget
       end
 
-      attribute 147202 "result_amount"
+      attribute 161666 "result_amount"
 	private explicit_type "TextView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -588,25 +788,25 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 144258 // ihm (<unidirectional association>)
-	relation 143874 --->
+      classrelation 154370 // ihm (<unidirectional association>)
+	relation 153986 --->
 	  a role_name "ihm" init_value " IHM.getIHM()" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 144258 // ihm (<unidirectional association>)
-	  b parent class_ref 145794 // IHM
+	    classrelation_ref 154370 // ihm (<unidirectional association>)
+	  b parent class_ref 154114 // IHM
       end
 
-      classrelation 144386 // theMovieDB (<unidirectional association>)
-	relation 144002 --->
+      classrelation 154498 // theMovieDB (<unidirectional association>)
+	relation 154114 --->
 	  a role_name "theMovieDB" init_value " TheMovieDB.getInstance()" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 144386 // theMovieDB (<unidirectional association>)
-	  b parent class_ref 146306 // TheMovieDB
+	    classrelation_ref 154498 // theMovieDB (<unidirectional association>)
+	  b parent class_ref 155138 // TheMovieDB
       end
 
-      attribute 147330 "search_result"
+      attribute 161794 "search_result"
 	private explicit_type "LinearLayout"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -618,7 +818,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 147458 "scroll_result"
+      attribute 161922 "scroll_result"
 	private explicit_type "ScrollView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -630,7 +830,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 147586 "searchView"
+      attribute 162050 "searchView"
 	private explicit_type "SearchView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -642,7 +842,7 @@ ${members}}
 	MysqlColumn
       end
 
-      operation 151554 "onCreate"
+      operation 172290 "onCreate"
 	protected explicit_return_type "void"
 	nparams 1
 	  param inout name "savedInstanceState" explicit_type "Bundle"
@@ -657,7 +857,21 @@ ${members}}
 	
       end
 
-      operation 151682 "manageQuery"
+      operation 172418 "onRestart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 172546 "manageQuery"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -669,7 +883,7 @@ ${members}}
 	
       end
 
-      operation 151810 "updateQuery"
+      operation 172674 "updateQuery"
 	private explicit_return_type "void"
 	nparams 1
 	  param in name "newText" explicit_type "String"
@@ -682,7 +896,7 @@ ${members}}
 	
       end
 
-      operation 151938 "addResults"
+      operation 172802 "addResults"
 	public explicit_return_type "void"
 	nparams 4
 	  param inout name "movies" explicit_type "List<Movie>"
@@ -698,7 +912,20 @@ ${members}}
 	
       end
 
-      operation 152066 "loopCheckScroll"
+      operation 172930 "setResultText"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "text" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 173058 "loopCheckScroll"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -710,21 +937,36 @@ ${members}}
 	
 	comment "Vérifier constament si on arrive au bout de la liste des résultats pour afficher les suivantes"
       end
+
+      operation 173186 "clearResults"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
   end
 
-  package_ref 145282 // widgets
+  package_ref 152578 // widgets
 
-  deploymentview 142082 "mviewer"
+  package_ref 152706 // utils
+
+  deploymentview 149122 "mviewer"
     //deployment diagram settings
     deploymentdiagramsettings
      end
-    artifact 143746 "FlowActivity"
+    artifact 152194 "FlowActivity"
       stereotype "source"
       java_src "${comment}
 ${package}
 ${imports}
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.inputmethodservice.Keyboard;
@@ -733,6 +975,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -741,22 +985,27 @@ import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import java.util.concurrent.Executors;
+import fr.red.mviewer.tmdb.TheMovieDB;
 import fr.red.mviewer.utils.IHM;
 import fr.red.mviewer.widgets.FlowWidget;
 ${definition}"
       associated_elems
-	class_ref 145026 // FlowActivity
+	class_ref 153730 // FlowActivity
       end
     end
 
-    artifact 143874 "Login"
+    artifact 152322 "Login"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -774,11 +1023,11 @@ import com.google.firebase.auth.FirebaseUser;
 import fr.red.mviewer.utils.IHM;
 ${definition}"
       associated_elems
-	class_ref 145410 // Login
+	class_ref 154242 // Login
       end
     end
 
-    artifact 144002 "MovieActivity"
+    artifact 152450 "MovieActivity"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -786,6 +1035,9 @@ ${imports}
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -805,11 +1057,11 @@ import fr.red.mviewer.utils.MovieGenre;
 import fr.red.mviewer.widgets.ResultWidget;
 ${definition}"
       associated_elems
-	class_ref 145538 // MovieActivity
+	class_ref 154370 // MovieActivity
       end
     end
 
-    artifact 144130 "Register"
+    artifact 152578 "Register"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -823,13 +1075,36 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import fr.red.mviewer.utils.IHM;
 ${definition}"
       associated_elems
-	class_ref 146050 // Register
+	class_ref 154754 // Register
       end
     end
 
-    artifact 144258 "SearchActivity"
+    artifact 152706 "Rename"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import fr.red.mviewer.utils.IHM;
+${definition}"
+      associated_elems
+	class_ref 154882 // Rename
+      end
+    end
+
+    artifact 152834 "SearchActivity"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -855,12 +1130,10 @@ import fr.red.mviewer.utils.Movie;
 import fr.red.mviewer.widgets.ResultWidget;
 ${definition}"
       associated_elems
-	class_ref 146178 // SearchActivity
+	class_ref 155010 // SearchActivity
       end
     end
   end
 
-  package_ref 145410 // utils
-
-  package_ref 145538 // tmdb
+  package_ref 152834 // tmdb
 end

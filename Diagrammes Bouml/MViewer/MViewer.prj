@@ -1,6 +1,6 @@
 format 224
 "MViewer"
-  revision 5
+  revision 6
   modified_by 2 "RedEstDeRetour"
 
 
@@ -67,11 +67,11 @@ format 224
     activitydiagramsettings
      end
     usecasediagram 134530 "Cas d'utilisation"
-      usecasediagramsettings end
+      usecasediagramsettings draw_all_relations no end
       size A4
     end
 
-    class 134530 "Utilisateur"
+    class 134530 "User"
       visibility package stereotype "actor"
       cpp_decl ""
       java_decl ""
@@ -83,7 +83,7 @@ format 224
       
     end
 
-    usecase 134530 "Visualiser le flux"
+    usecase 134530 "Check movie flow"
       
       usecasediagramsettings end
       
@@ -107,7 +107,7 @@ format 224
       simplerelation 135682
 	-_->
 	  stereotype "include"
-	  on usecase_ref 135170 // Connecter l'utilisateur
+	  on usecase_ref 135170 // Connect user
       end
     end
 
@@ -146,7 +146,7 @@ format 224
       simplerelation 135554
 	-_->
 	  stereotype "include"
-	  on usecase_ref 135170 // Connecter l'utilisateur
+	  on usecase_ref 135170 // Connect user
       end
     end
 
@@ -201,7 +201,7 @@ format 224
       end
     end
 
-    usecase 135042 "Paramétrer l'application"
+    usecase 135042 "Make custom settings"
       
       usecasediagramsettings end
       
@@ -225,11 +225,11 @@ format 224
       simplerelation 135426
 	-_->
 	  stereotype "include"
-	  on usecase_ref 135170 // Connecter l'utilisateur
+	  on usecase_ref 135170 // Connect user
       end
     end
 
-    usecase 135170 "Connecter l'utilisateur"
+    usecase 135170 "Connect user"
       
       usecasediagramsettings end
       
@@ -253,17 +253,17 @@ format 224
       simplerelation 135170
 	-_->
 	  stereotype "include"
-	  on usecase_ref 136066 // Entrer une adresse email
+	  on usecase_ref 136066 // Enter email adress
       end
 
       simplerelation 135298
 	-_->
 	  stereotype "include"
-	  on usecase_ref 135938 // Entrer un mot de passe
+	  on usecase_ref 135938 // Enter password
       end
     end
 
-    usecase 135554 "Déconnecter l'utilisateur"
+    usecase 135554 "Logout"
       
       usecasediagramsettings end
       
@@ -287,11 +287,11 @@ format 224
       simplerelation 135042
 	-_->
 	  stereotype "extend"
-	  on usecase_ref 135042 // Paramétrer l'application
+	  on usecase_ref 135042 // Make custom settings
       end
     end
 
-    usecase 135682 "Choisir le thème de l'application"
+    usecase 135682 "Choose app theme"
       
       usecasediagramsettings end
       
@@ -315,11 +315,11 @@ format 224
       simplerelation 134914
 	-_->
 	  stereotype "extend"
-	  on usecase_ref 135042 // Paramétrer l'application
+	  on usecase_ref 135042 // Make custom settings
       end
     end
 
-    usecase 135938 "Entrer un mot de passe"
+    usecase 135938 "Enter password"
       
       usecasediagramsettings end
       
@@ -342,7 +342,7 @@ format 224
        end
     end
 
-    usecase 136066 "Entrer une adresse email"
+    usecase 136066 "Enter email adress"
       
       usecasediagramsettings end
       
@@ -386,18 +386,18 @@ format 224
     
     activitydiagramsettings
      end
-    classdiagram 141314 "Classes"
+    classdiagram 154370 "Classes"
       classdiagramsettings member_max_width 0 end
-      size C
+      size D
     end
 
-    classdiagram 147842 "Compressed"
+    classdiagram 154626 "Compressed"
       classdiagramsettings member_max_width 0 end
-      size C
+      size D
     end
   end
 
-  package_ref 145026 // mviewer
+  package_ref 152322 // mviewer
 
-  package_ref 145154 // unknown
+  package_ref 152450 // unknown
 end

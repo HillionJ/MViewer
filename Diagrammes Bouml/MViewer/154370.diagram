@@ -1,0 +1,294 @@
+format 224
+
+classcanvas 128002 class_ref 153730 // FlowActivity
+  classdiagramsettings member_max_width 0 end
+  xyz 1041 1981.25 2000
+end
+classcanvas 128130 class_ref 154242 // Login
+  classdiagramsettings member_max_width 0 end
+  xyz 154.25 156.8 2005
+end
+classcanvas 128258 class_ref 154370 // MovieActivity
+  classdiagramsettings member_max_width 0 end
+  xyz 902.7 632.75 2010
+end
+classcanvas 128386 class_ref 154754 // Register
+  classdiagramsettings member_max_width 0 end
+  xyz 310 495.6 2000
+end
+classcanvas 128514 class_ref 154882 // Rename
+  classdiagramsettings member_max_width 0 end
+  xyz 40.5 679.15 2015
+end
+classcanvas 128642 class_ref 155010 // SearchActivity
+  classdiagramsettings member_max_width 0 end
+  xyz 425.75 441.6 2000
+end
+classcanvas 128770 class_ref 153986 // FlowWidget
+  classdiagramsettings member_max_width 0 end
+  xyz 209.4 1867.25 2006
+end
+classcanvas 129026 class_ref 154626 // ResultWidget
+  classdiagramsettings member_max_width 0 end
+  xyz 532.45 1102.25 3005
+end
+classcanvas 129410 class_ref 154114 // IHM
+  classdiagramsettings member_max_width 0 end
+  xyz 155.25 603.3 3011
+end
+classcanvas 130946 class_ref 154498 // Movie
+  classdiagramsettings member_max_width 0 end
+  xyz 724.6 511.9 3017
+end
+classcanvas 131330 class_ref 155650 // MovieGenre
+  classdiagramsettings member_max_width 0 end
+  xyz 1426 42 3005
+end
+classcanvas 132226 class_ref 155778 // GestureListener
+  classdiagramsettings member_max_width 0 end
+  xyz 1627 121 3017
+end
+classcanvas 132354 class_ref 156034 // LoadingQueue
+  classdiagramsettings member_max_width 0 end
+  xyz 595.3 1671.15 3011
+end
+classcanvas 132610 class_ref 155138 // TheMovieDB
+  classdiagramsettings member_max_width 0 end
+  xyz 734.45 155.35 3023
+end
+classcanvas 133378 class_ref 155266 // IRetrofitTheMovieDB
+  classdiagramsettings member_max_width 0 end
+  xyz 1851.5 40.5 2000
+end
+classcanvas 133506 class_ref 155394 // MovieResponse
+  classdiagramsettings member_max_width 0 end
+  xyz 577.9 709.9 3023
+end
+classcanvas 133762 class_ref 155522 // GenreResponse
+  classdiagramsettings member_max_width 0 end
+  xyz 1275 102 3011
+end
+classcanvas 134018 class_ref 153858 // AppCompatActivity
+  classdiagramsettings member_max_width 0 end
+  xyz 416.75 39.25 3017
+end
+classcanvas 134914 class_ref 155906 // SimpleOnGestureListener
+  classdiagramsettings member_max_width 0 end
+  xyz 1596 40 3023
+end
+relationcanvas 128898 relation_ref 152194 // <unidirectional association>
+  decenter_begin 472
+  decenter_end 488
+  from ref 128002 z 2007 to ref 128770
+  role_a_pos 373 2035 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129154 relation_ref 153090 // <unidirectional association>
+  geometry VH unfixed
+  decenter_end 505
+  from ref 128258 z 3006 to point 969 1369
+  line 137474 z 3006 to ref 129026
+  role_a_pos 766 1350 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129282 relation_ref 153858 // <unidirectional association>
+  geometry VHV unfixed
+  decenter_begin 869
+  decenter_end 71
+  from ref 128642 z 3006 to point 522 902
+  line 135682 z 3006 to point 545 902
+  line 135810 z 3006 to ref 129026
+  role_a_pos 557 1080 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129538 relation_ref 154882 // <unidirectional association>
+  from ref 129410 z 3012 to point 125.25 603.3
+  line 129666 z 3012 to point 125.25 633.3
+  line 129794 z 3012 to ref 129410
+  role_a_pos 157.25 642.3 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129922 relation_ref 152322 // <unidirectional association>
+  decenter_end 136
+  from ref 128002 z 3012 to point 1118 2296
+  line 137602 z 3012 to point 171 2296
+  line 137730 z 3012 to ref 129410
+  role_a_pos 180 855 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130050 relation_ref 155266 // <unidirectional association>
+  decenter_begin 303
+  decenter_end 862
+  from ref 128770 z 3012 to ref 129410
+  role_a_pos 265 855 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130178 relation_ref 155522 // <unidirectional association>
+  decenter_begin 29
+  decenter_end 782
+  from ref 129026 z 3012 to point 348 1118
+  line 135426 z 3012 to point 348 795
+  line 135554 z 3012 to ref 129410
+  role_a_pos 281 773 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130306 relation_ref 152962 // <unidirectional association>
+  decenter_begin 488
+  decenter_end 938
+  from ref 128258 z 3012 to point 1080 787
+  line 136450 z 3012 to point 1080 1826
+  line 136578 z 3012 to point 310 1826
+  line 136706 z 3012 to point 310 833
+  line 136834 z 3012 to ref 129410
+  role_a_pos 281 811 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130434 relation_ref 152578 // <unidirectional association>
+  decenter_begin 528
+  decenter_end 528
+  from ref 128130 z 3012 to ref 129410
+  role_a_pos 226 581 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130562 relation_ref 153346 // <unidirectional association>
+  decenter_begin 897
+  decenter_end 61
+  from ref 128386 z 3012 to ref 129410
+  role_a_pos 281 596 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130690 relation_ref 153986 // <unidirectional association>
+  decenter_begin 938
+  decenter_end 277
+  from ref 128642 z 3012 to ref 129410
+  role_a_pos 281 649 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130818 relation_ref 153602 // <unidirectional association>
+  decenter_begin 455
+  from ref 128514 z 3012 to ref 129410
+  role_a_pos 123 703 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131074 relation_ref 155650 // <unidirectional association>
+  decenter_begin 927
+  decenter_end 119
+  from ref 129026 z 3018 stereotype "<<List>>" xyz 714 1081 3018 to ref 130946
+  role_a_pos 750 1069 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131202 relation_ref 152834 // <unidirectional association>
+  decenter_begin 488
+  from ref 128258 z 3018 to ref 130946
+  role_a_pos 874 765 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131458 relation_ref 155010 // <unidirectional association>
+  from ref 131330 z 3006 stereotype "<<Map>>" xyz 1383 59 3006 to point 1396 42
+  line 131586 z 3006 to point 1396 72
+  line 131714 z 3006 to ref 131330
+  role_a_pos 1376 80 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131842 relation_ref 155138 // <unidirectional association>
+  from ref 131330 z 3006 to point 1396 42
+  line 131970 z 3006 to point 1396 72
+  line 132098 z 3006 to ref 131330
+  role_a_pos 1364 80 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132482 relation_ref 155394 // <unidirectional association>
+  decenter_begin 514
+  from ref 129026 z 3012 stereotype "<<List>>" xyz 620.5 1651.5 3012 to ref 132354
+  role_a_pos 657 1649 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132738 relation_ref 154242 // <unidirectional association>
+  from ref 132610 z 3024 to point 704.45 155.35
+  line 132866 z 3024 to point 704.45 185.35
+  line 132994 z 3024 to ref 132610
+  role_a_pos 738.45 204.35 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133122 relation_ref 154370 // <unidirectional association>
+  decenter_begin 472
+  from ref 132610 z 3024 stereotype "<<List>>" xyz 767.5 490.5 3024 to ref 130946
+  role_a_pos 804 489 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133250 relation_ref 154114 // <unidirectional association>
+  decenter_begin 61
+  decenter_end 949
+  from ref 128642 z 3024 to ref 132610
+  role_a_pos 654 434 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133634 relation_ref 154626 // <unidirectional association>
+  from ref 133506 z 3024 stereotype "<<List>>" xyz 678.5 786 3024 to ref 130946
+  role_a_pos 674 765 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133890 relation_ref 154498 // <unidirectional association>
+  from ref 133762 z 3012 stereotype "<<List>>" xyz 1380 127.5 3012 to ref 131330
+  role_a_pos 1376 107 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134146 relation_ref 152066 // <generalisation>
+  geometry VHV unfixed
+  decenter_end 532
+  from ref 128002 z 3018 to point 1116 117
+  line 136194 z 3018 to point 484 117
+  line 136322 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134274 relation_ref 152706 // <generalisation>
+  geometry VHV unfixed
+  decenter_end 532
+  from ref 128258 z 3018 to point 969 117
+  line 136962 z 3018 to point 484 117
+  line 137090 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134402 relation_ref 152450 // <generalisation>
+  geometry VHV unfixed
+  decenter_begin 528
+  decenter_end 532
+  from ref 128130 z 3018 to point 214 117
+  line 135170 z 3018 to point 484 117
+  line 135298 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134530 relation_ref 153218 // <generalisation>
+  geometry VHV unfixed
+  decenter_end 532
+  from ref 128386 z 3018 to point 346 117
+  line 135938 z 3018 to point 484 117
+  line 136066 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134658 relation_ref 153730 // <generalisation>
+  decenter_begin 538
+  decenter_end 532
+  from ref 128642 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134786 relation_ref 153474 // <generalisation>
+  geometry VHV unfixed
+  decenter_end 532
+  from ref 128514 z 3018 to point 76 117
+  line 137218 z 3018 to point 484 117
+  line 137346 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 135042 relation_ref 154754 // <generalisation>
+  from ref 132226 z 3024 to ref 134914
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

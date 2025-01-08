@@ -1,0 +1,20 @@
+class MovieGenre
+!!!179714.java!!!	MovieGenre(in id : int, in name : String)
+        this.id = id;
+        this.name = name;
+!!!179842.java!!!	addToCache() : void
+        if (!genres.containsKey(id)) {
+            genres.put(id, this);
+        }
+!!!179970.java!!!	clearCache() : void
+        genres.clear();
+!!!180098.java!!!	getGenre(in genreId : int) : MovieGenre
+        if (genres.containsKey(genreId)) {
+            return genres.get(genreId);
+        } else {
+            return unknown;
+        }
+!!!180226.java!!!	getName() : String
+        return name;
+!!!180354.java!!!	getId() : int
+        return id;

@@ -1,49 +1,5 @@
-package fr.red.mviewer.widgets;
-
-import android.annotation.SuppressLint;
-import android.content.res.Configuration;
-import android.os.Build;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.bumptech.glide.Glide;
-import com.facebook.shimmer.ShimmerFrameLayout;
-
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import fr.red.mviewer.FlowActivity;
-import fr.red.mviewer.MovieActivity;
-import fr.red.mviewer.R;
-import fr.red.mviewer.utils.Movie;
-import fr.red.mviewer.utils.GestureListener;
-import fr.red.mviewer.utils.IHM;
-import fr.red.mviewer.tmdb.TheMovieDB;
-
-public class FlowWidget {
-
-    public LinearLayout flowLayout;
-    private HorizontalScrollView scrollView;
-    private GestureDetector gestureDetector;
-    private int paddingX;
-    private int currentIndex;
-    private IHM ihm = IHM.getIHM();
-    private boolean pendingReload = false;
-
-    @SuppressLint("ClickableViewAccessibility")
-    public FlowWidget(LinearLayout flowLayout, HorizontalScrollView scrollView, AppCompatActivity activity) {
+class FlowWidget
+!!!180482.java!!!	FlowWidget(inout flowLayout : LinearLayout, inout scrollView : HorizontalScrollView, inout activity : AppCompatActivity)
         this.flowLayout = flowLayout;
         this.scrollView = scrollView;
         scrollView.setHorizontalScrollBarEnabled(false);
@@ -62,10 +18,7 @@ public class FlowWidget {
             paddingX = (screenWidth - plaquetteWidth) / 2;
             currentIndex = getCurrentPlaquetteID();
         });
-    }
-
-    //Ajouter une plaquette réelle (movie != null) ou en chargement (movie == null)
-    public void addPlaquette(Movie movie) {
+!!!180610.java!!!	addPlaquette(inout movie : Movie) : void
         LayoutInflater inflater = LayoutInflater.from(ihm.getActivite(FlowActivity.class));
         View itemView;
 
@@ -106,27 +59,17 @@ public class FlowWidget {
         }
 
         flowLayout.addView(itemView);
-    }
-
-    // Calculer la position X de la plaquette à partir de son ID
-    private int getXToScroll(int targetID) {
+!!!180738.java!!!	getXToScroll(in targetID : int) : int
         int x = -paddingX;
         for (int i = 0; i < targetID; i++) {
             x += flowLayout.getChildAt(i).getWidth();
         }
         return x;
-    }
-
-    private View getCurrentPlaquette() {
+!!!180866.java!!!	getCurrentPlaquette() : View
         return getPlaquette(getCurrentPlaquetteID());
-    }
-
-    private View getPlaquette(int index) {
+!!!180994.java!!!	getPlaquette(in index : int) : View
         return flowLayout.getChildAt(index);
-    }
-
-    //Récupérer la plaquette en cours de visualisation en récupérant celle la plus proche du centre de l'écran
-    private int getCurrentPlaquetteID() {
+!!!181122.java!!!	getCurrentPlaquetteID() : int
         int scrollX = scrollView.getScrollX();
         int screenWidth = scrollView.getWidth();
         int closestIndex = -1;
@@ -151,22 +94,13 @@ public class FlowWidget {
             return closestIndex;
         }
         return 0;
-    }
-
-    // Méthode pour scroller automatiquement vers la plaquette suivante
-    public void scrollToNext() {
+!!!181250.java!!!	scrollToNext() : void
         scrollView.smoothScrollTo(getXToScroll(Math.min(flowLayout.getChildCount() - 1, currentIndex + 1)), 0);
         currentIndex = Math.min(flowLayout.getChildCount() - 1, currentIndex + 1);
-    }
-
-    // Méthode pour scroller automatiquement vers la plaquette précédente
-    public void scrollToPrevious() {
+!!!181378.java!!!	scrollToPrevious() : void
         scrollView.smoothScrollTo(getXToScroll(Math.max(0, currentIndex - 1)), 0);
         currentIndex = Math.max(0, currentIndex - 1);
-    }
-
-    // Supprimer les plaquette ayant l'effet de chargement (shimmer)
-    public void removeLoadingWidgets() {
+!!!181506.java!!!	removeLoadingWidgets() : void
         for (int i = 0; i < flowLayout.getChildCount(); i++) {
             View v = flowLayout.getChildAt(i);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && R.layout.item_flow_loading == v.getSourceLayoutResId()) {
@@ -174,18 +108,11 @@ public class FlowWidget {
                 i--;
             }
         }
-    }
-
-    public void setFlowLayout(LinearLayout flowLayout) {
+!!!181634.java!!!	setFlowLayout(inout flowLayout : LinearLayout) : void
         this.flowLayout = flowLayout;
-    }
-
-    public void setScrollView(HorizontalScrollView scrollView) {
+!!!181762.java!!!	setScrollView(inout scrollView : HorizontalScrollView) : void
         this.scrollView = scrollView;
-    }
-
-    // Mettre à jour la liste des plaquettes
-    public void updateFlow() {
+!!!181890.java!!!	updateFlow() : void
         if (TheMovieDB.getInstance().isErrored()) {
             pendingReload = true;
             ScheduledExecutorService newScheduler = Executors.newScheduledThreadPool(1);
@@ -215,13 +142,7 @@ public class FlowWidget {
             }
             View lastPlaquette = flowLayout.getChildAt(flowLayout.getChildCount() - 1);
         }
-    }
-
-    public boolean isVisible() {
+!!!182018.java!!!	isVisible() : boolean
         return scrollView.getVisibility() == View.VISIBLE;
-    }
-
-    public boolean isPendingReload() {
+!!!182146.java!!!	isPendingReload() : boolean
         return pendingReload;
-    }
-}

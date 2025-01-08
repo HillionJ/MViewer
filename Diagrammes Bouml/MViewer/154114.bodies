@@ -1,0 +1,73 @@
+class IHM
+!!!176130.java!!!	getIHMActive(inout typeObjet : Class<?>) : Object
+        for (Object ihmActive : ihmActives) {
+            if (typeObjet.isInstance(ihmActive)) {
+                return ihmActive;
+            }
+        }
+        return null;
+!!!176258.java!!!	getIHM() : IHM
+        return IHM.ihm;
+!!!176386.java!!!	IHM(inout activiteActive : AppCompatActivity)
+        IHM.ihm = this;
+        this.activiteActive = activiteActive;
+!!!176514.java!!!	ajouterIHM(inout pageIHM : Object) : void
+        if (pageIHM instanceof AppCompatActivity) {
+            activiteActive = (AppCompatActivity) pageIHM;
+        }
+        for (Object ihmActive : ihmActives) {
+            if (pageIHM.getClass() == ihmActive.getClass()) {
+                ihmActives.remove(ihmActive);
+                break;
+            }
+        }
+        ihmActives.add(pageIHM);
+!!!176642.java!!!	getActiviteActive() : AppCompatActivity
+        if (activiteActive.isDestroyed()) {
+            // En cas d'activité inactive, chercher une potentiellement active
+            for (Object ihmActive : ihmActives) {
+                if (ihmActive instanceof AppCompatActivity && !((AppCompatActivity) ihmActive).isDestroyed()) {
+                    activiteActive = (AppCompatActivity) ihmActive;
+                    break;
+                }
+            }
+        }
+        return activiteActive;
+!!!176770.java!!!	getActivite(inout typeActivite : Class<?>) : AppCompatActivity
+        return (AppCompatActivity) getIHMActive(typeActivite);
+!!!176898.java!!!	fermerActivite(inout typeActivite : Class<?>) : void
+        Object activite = getIHMActive(typeActivite);
+        if (activite instanceof AppCompatActivity) {
+            ((AppCompatActivity)activite).finish();
+        }
+!!!177026.java!!!	fermerPopups() : void
+        for (Object ihmActive : ihmActives) {
+            if (ihmActive instanceof DialogFragment) {
+                try {
+                    ((DialogFragment)ihmActive).dismiss();
+                } catch (Exception ignored) {
+                }
+            }
+        }
+!!!177154.java!!!	demarrerActivite(inout lanceur : Object, inout contexte : Context, inout typeActivite : Class<?>) : void
+        Intent intent = new Intent(contexte, typeActivite);
+        if (lanceur instanceof Fragment) {
+            ((Fragment) lanceur).startActivity(intent);
+        } else {
+            ((AppCompatActivity) lanceur).startActivity(intent);
+        }
+!!!177282.java!!!	applyDarkTheme() : void
+        Window window = getActiviteActive().getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        //Mettre le fond en noir
+        int colorCodeDark = Color.parseColor("#000000");
+        window.setStatusBarColor(colorCodeDark);
+        window.setNavigationBarColor(colorCodeDark);
+        WindowInsetsController insetsController = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            insetsController = window.getInsetsController();
+            if (insetsController != null) {
+                insetsController.setSystemBarsAppearance(0, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
+                insetsController.setSystemBarsAppearance(0, WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
+            }
+        }

@@ -1,16 +1,15 @@
-window_sizes 1920 1001 450 1464 819 128
+window_sizes 1920 1001 450 1464 811 136
 
 diagrams
-  active  classdiagram_ref 141314 // Classes
-    1464 819 80 C 0 0
+  active  classdiagram_ref 154626 // Compressed
+    1464 811 100 D 0 0
 end
 show_stereotypes
-selected classdiagram_ref 147842 // Compressed
+selected classdiagram_ref 154626 // Compressed
 open
+  usecaseview_ref 134530 // Digramme de cas d'utilisation
   classview_ref 135810 // Diagramme de classes
-  
-  package_ref 145026 // mviewer
-  classview_ref 143106 // unknown
-  classview_ref 143746 // GestureDetector
+  classview_ref 150402 // unknown
+  classview_ref 151042 // GestureDetector
 end
 end

@@ -1,5 +1,5 @@
 format 224
-"unknown" // unknown
+"GestureDetector" // unknown::GestureDetector
   revision 1
   modified_by 2 "RedEstDeRetour"
   // class settings
@@ -30,8 +30,9 @@ format 224
   activitydiagramsettings
    end
   
-  java_dir "<unknown>"
-  classview 143106 "unknown"
+  java_dir "<unknown>GestureDetector/"
+  java_package "GestureDetector"
+  classview 151042 "GestureDetector"
     
     classdiagramsettings member_max_width 0 end
     
@@ -51,7 +52,7 @@ format 224
     
     activitydiagramsettings
      end
-    class 145154 "AppCompatActivity"
+    class 155906 "SimpleOnGestureListener"
       visibility package 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -65,6 +66,4 @@ ${members}}
       
     end
   end
-
-  package_ref 145794 // GestureDetector
 end
