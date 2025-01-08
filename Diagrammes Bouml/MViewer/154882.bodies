@@ -1,0 +1,26 @@
+class Rename
+!!!171906.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_rename);
+
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+        ihm.applyDarkTheme();
+
+        new_name = findViewById(R.id.new_name);
+!!!172034.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+!!!172162.java!!!	rename(inout v : View) : void
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        UserProfileChangeRequest new_profile = new UserProfileChangeRequest.Builder().setDisplayName(new_name.getText().toString()).build(); // Instancie le changement de nom
+
+        // Applique les changements et démarre la page principale quand l'update est terminée
+        auth.getCurrentUser().updateProfile(new_profile).addOnCompleteListener(task -> {
+            Intent i = new Intent(Rename.this, FlowActivity.class);
+            startActivity(i);
+            finish();
+        });
+
+

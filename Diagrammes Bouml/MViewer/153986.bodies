@@ -1,0 +1,148 @@
+class FlowWidget
+!!!180482.java!!!	FlowWidget(inout flowLayout : LinearLayout, inout scrollView : HorizontalScrollView, inout activity : AppCompatActivity)
+        this.flowLayout = flowLayout;
+        this.scrollView = scrollView;
+        scrollView.setHorizontalScrollBarEnabled(false);
+        if (activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            scrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+            this.gestureDetector = new GestureDetector(ihm.getActiviteActive(), new GestureListener());
+            scrollView.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+        }
+
+        updateFlow();
+
+        // Calculer la largeur de l'espacement entre les plaquettes dès que scrollView est disponible
+        scrollView.post(() -> {
+            int screenWidth = scrollView.getWidth();
+            int plaquetteWidth = flowLayout.getChildAt(0).getWidth();
+            paddingX = (screenWidth - plaquetteWidth) / 2;
+            currentIndex = getCurrentPlaquetteID();
+        });
+!!!180610.java!!!	addPlaquette(inout movie : Movie) : void
+        LayoutInflater inflater = LayoutInflater.from(ihm.getActivite(FlowActivity.class));
+        View itemView;
+
+        if (movie != null) {
+            itemView = inflater.inflate(R.layout.item_flow, flowLayout, false);
+            // Afficher le titre
+            TextView titre = itemView.findViewById(R.id.idTitrePlaquette);
+            titre.setText(movie.getTitle());
+
+            // Charger l'affiche du film
+            ImageView image = itemView.findViewById(R.id.idImagePlaquette);
+
+            if (TheMovieDB.getInstance().isErrored()) {
+                ImageView error_icon = itemView.findViewById(R.id.error_icon);
+                error_icon.setVisibility(View.VISIBLE);
+                TextView error_text = itemView.findViewById(R.id.error_text);
+                error_text.setVisibility(View.VISIBLE);
+            }
+
+            String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
+            Glide.with(ihm.getActivite(FlowActivity.class))
+                    .load(posterUrl)
+                    .placeholder(R.drawable.gray_background)
+                    .error(R.drawable._1euctafoll)
+                    .into(image);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MovieActivity.setSelection(movie);
+                    ihm.demarrerActivite(ihm.getActiviteActive(), ihm.getActiviteActive(), MovieActivity.class);
+                }
+            });
+        } else {
+            itemView = inflater.inflate(R.layout.item_flow_loading, flowLayout, false);
+            ShimmerFrameLayout shimmerFrameLayout = itemView.findViewById(R.id.shimmerLayout);
+
+            shimmerFrameLayout.startShimmer();
+        }
+
+        flowLayout.addView(itemView);
+!!!180738.java!!!	getXToScroll(in targetID : int) : int
+        int x = -paddingX;
+        for (int i = 0; i < targetID; i++) {
+            x += flowLayout.getChildAt(i).getWidth();
+        }
+        return x;
+!!!180866.java!!!	getCurrentPlaquette() : View
+        return getPlaquette(getCurrentPlaquetteID());
+!!!180994.java!!!	getPlaquette(in index : int) : View
+        return flowLayout.getChildAt(index);
+!!!181122.java!!!	getCurrentPlaquetteID() : int
+        int scrollX = scrollView.getScrollX();
+        int screenWidth = scrollView.getWidth();
+        int closestIndex = -1;
+        int closestDistance = Integer.MAX_VALUE;
+
+        for (int i = 0; i < flowLayout.getChildCount(); i++) {
+            View plaquette = flowLayout.getChildAt(i);
+            int plaquetteLeft = plaquette.getLeft();
+            int plaquetteRight = plaquette.getRight();
+            int plaquetteCenter = (plaquetteLeft + plaquetteRight) / 2;
+            int screenCenter = scrollX + (screenWidth / 2);
+
+            int distance = Math.abs(plaquetteCenter - screenCenter);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = i;
+            }
+        }
+
+        if (closestIndex != -1) {
+            return closestIndex;
+        }
+        return 0;
+!!!181250.java!!!	scrollToNext() : void
+        scrollView.smoothScrollTo(getXToScroll(Math.min(flowLayout.getChildCount() - 1, currentIndex + 1)), 0);
+        currentIndex = Math.min(flowLayout.getChildCount() - 1, currentIndex + 1);
+!!!181378.java!!!	scrollToPrevious() : void
+        scrollView.smoothScrollTo(getXToScroll(Math.max(0, currentIndex - 1)), 0);
+        currentIndex = Math.max(0, currentIndex - 1);
+!!!181506.java!!!	removeLoadingWidgets() : void
+        for (int i = 0; i < flowLayout.getChildCount(); i++) {
+            View v = flowLayout.getChildAt(i);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && R.layout.item_flow_loading == v.getSourceLayoutResId()) {
+                flowLayout.removeView(v);
+                i--;
+            }
+        }
+!!!181634.java!!!	setFlowLayout(inout flowLayout : LinearLayout) : void
+        this.flowLayout = flowLayout;
+!!!181762.java!!!	setScrollView(inout scrollView : HorizontalScrollView) : void
+        this.scrollView = scrollView;
+!!!181890.java!!!	updateFlow() : void
+        if (TheMovieDB.getInstance().isErrored()) {
+            pendingReload = true;
+            ScheduledExecutorService newScheduler = Executors.newScheduledThreadPool(1);
+            newScheduler.schedule(() -> {
+                if (ihm.getActiviteActive() instanceof FlowActivity) {
+                    ihm.getActiviteActive().runOnUiThread(() -> {
+                        TheMovieDB.getInstance().init();
+                        Toast.makeText(IHM.getIHM().getActiviteActive(), "Erreur de connexion, Nouvelle tentative...", Toast.LENGTH_SHORT).show();
+                    });
+                }
+                pendingReload = false;
+            }, 5, TimeUnit.SECONDS);
+        }
+        removeLoadingWidgets();
+        if (TheMovieDB.getInstance().getPopular().isEmpty()) {
+            // Afficher des plaquettes en cours de chargement
+            addPlaquette(null);
+            addPlaquette(null);
+            addPlaquette(null);
+            addPlaquette(null);
+            addPlaquette(null);
+            addPlaquette(null);
+        } else {
+            // Afficher les plaquettes populaires existantes
+            for (Movie movie : TheMovieDB.getInstance().getPopular()) {
+                addPlaquette(movie);
+            }
+            View lastPlaquette = flowLayout.getChildAt(flowLayout.getChildCount() - 1);
+        }
+!!!182018.java!!!	isVisible() : boolean
+        return scrollView.getVisibility() == View.VISIBLE;
+!!!182146.java!!!	isPendingReload() : boolean
+        return pendingReload;

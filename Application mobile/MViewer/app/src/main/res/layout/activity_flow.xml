@@ -8,15 +8,6 @@
     android:background="@color/black"
     tools:context=".FlowActivity">
 
-    <SearchView
-        android:id="@+id/searchView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#262626"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <HorizontalScrollView
         android:id="@+id/scrollView"
@@ -25,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView3">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/idFlow"

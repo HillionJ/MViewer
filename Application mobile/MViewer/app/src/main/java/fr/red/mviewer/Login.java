@@ -17,6 +17,8 @@ import fr.red.mviewer.utils.IHM;
 
 public class Login extends AppCompatActivity {
     private EditText login, password;
+    private IHM ihm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,23 +26,39 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Initialiser l'IHM si elle n'est pas déjà créée
-        IHM ihm = IHM.getIHM() == null ? new IHM(this) : IHM.getIHM();
+        ihm = IHM.getIHM() == null ? new IHM(this) : IHM.getIHM();
         ihm.ajouterIHM(this);
         ihm.applyDarkTheme();
 
-        login = findViewById(R.id.login);
-        password = findViewById(R.id.password);
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent i = new Intent(Login.this, FlowActivity.class);
+            startActivity(i);
+        } else {
+            login = findViewById(R.id.login);
+            password = findViewById(R.id.password);
+        }
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
     }
 
     // Méthode appelée lors du clic sur le bouton "Se connecter"
     public void submit(View v){
         try {
             FirebaseAuth auth = FirebaseAuth.getInstance();
-            auth.signInWithEmailAndPassword(login.getText().toString(), password.getText().toString());
-            FirebaseUser user = auth.getCurrentUser();
-            Intent i = new Intent(Login.this, FlowActivity.class);
-            i.putExtra("msg", user.getEmail());
-            startActivity(i);
+            // Connecte l'utilisateur à son compte
+            auth.signInWithEmailAndPassword(login.getText().toString(), password.getText().toString()).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Intent i = new Intent(Login.this, FlowActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Veuillez rentrer des identifiants valides.", Toast.LENGTH_LONG).show();
+                }
+            });
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Veuillez rentrer des identifiants valides.", Toast.LENGTH_LONG).show();
         }

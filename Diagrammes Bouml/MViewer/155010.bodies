@@ -1,0 +1,92 @@
+class SearchActivity
+!!!172290.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_search);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        SearchActivity lastActivity = (SearchActivity) ihm.getActivite(SearchActivity.class);
+        ihm.ajouterIHM(this);
+        ihm.applyDarkTheme();
+
+        searchView = findViewById(R.id.searchView);
+        searchView.setIconified(false);
+
+        search_result = findViewById(R.id.search_result);
+        result_amount = findViewById(R.id.result_amount);
+        result_amount.setVisibility(View.INVISIBLE);
+        scroll_result = findViewById(R.id.scroll_result);
+
+        if (lastActivity == null) {
+            this.resultWidget = new ResultWidget(search_result, this);
+        } else {
+            this.resultWidget = new ResultWidget(search_result, this, lastActivity.resultWidget);
+        }
+        loopCheckScroll();
+
+        manageQuery();
+
+        resultWidget.init();
+!!!172418.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+!!!172546.java!!!	manageQuery() : void
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            private ScheduledExecutorService scheduler;
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ScheduledExecutorService newScheduler = Executors.newScheduledThreadPool(1);
+                scheduler = newScheduler;
+                scheduler.schedule(() -> {
+                    ihm.getActiviteActive().runOnUiThread(() -> {
+                        //Vérifier si le query n'a pas changé depuis 0.5s pour effectuer la recherche.
+                        if (this.scheduler == newScheduler) {
+                            updateQuery(newText);
+                        }
+                    });
+                }, 500, TimeUnit.MILLISECONDS);
+                return false;
+            }
+        });
+!!!172674.java!!!	updateQuery(in newText : String) : void
+        if (newText.isEmpty()) {
+            result_amount.setVisibility(View.INVISIBLE);
+            clearResults();
+        } else {
+            if (search_result.getChildCount() == 0) {
+                resultWidget.displayLoadingResultsUI();
+            }
+            theMovieDB.search(newText);
+        }
+!!!172802.java!!!	addResults(inout movies : List<Movie>, in currentPage : int, in amount : int, inout hasNextPage : boolean) : void
+        if (currentPage == 1) {
+            scroll_result.scrollTo(0, 0);
+        }
+        setResultText(amount == 0 ? "Aucun résultat" : amount + " résultat" + (amount == 1 ? "" : "s"));
+        resultWidget.addResults(movies, currentPage, hasNextPage);
+!!!172930.java!!!	setResultText(in text : String) : void
+        result_amount.setText(text);
+        result_amount.setVisibility(View.VISIBLE);
+!!!173058.java!!!	loopCheckScroll() : void
+        Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(() -> {
+            //Vérifier si on arrive au bout du scroll
+            if (scroll_result.getScrollY() == scroll_result.getChildAt(0).getHeight() - scroll_result.getHeight() && resultWidget.hasNextPage()) {
+                resultWidget.setHasNextPage(false);
+                resultWidget.setCurrentPage(resultWidget.getCurrentPage() + 1);
+                theMovieDB.search(searchView.getQuery().toString(), resultWidget.getCurrentPage());
+            }
+        },0, 1, TimeUnit.SECONDS);
+!!!173186.java!!!	clearResults() : void
+        resultWidget.removeResultsUI();
+        resultWidget.setHasNextPage(false);

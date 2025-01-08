@@ -1,0 +1,31 @@
+class Register
+!!!171522.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_register);
+
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+        ihm.applyDarkTheme();
+
+        login = findViewById(R.id.login);
+        password1 = findViewById(R.id.password1);
+        password2 = findViewById(R.id.password2);
+!!!171650.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+!!!171778.java!!!	register(inout v : View) : void
+        if (!login.getText().toString().isEmpty() && !password1.getText().toString().isEmpty()) { // check if both password fields are given
+            if (password1.getText().toString().equals(password2.getText().toString())) { // check if the password field and the validation password field are the same
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                // Crée un nouvau compte et redirige l'utilisateur vers la page principale
+                auth.createUserWithEmailAndPassword(login.getText().toString(), password1.getText().toString()).addOnCompleteListener(task -> {
+                    Intent i = new Intent(Register.this, FlowActivity.class);
+                    startActivity(i);
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "Les 2 mots de passe doivent correspondre", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Veuillez remplir tous les champs", Toast.LENGTH_LONG).show();
+        }

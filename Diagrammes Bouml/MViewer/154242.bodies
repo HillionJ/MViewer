@@ -1,0 +1,40 @@
+class Login
+!!!169986.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_login);
+
+        // Initialiser l'IHM si elle n'est pas déjà créée
+        ihm = IHM.getIHM() == null ? new IHM(this) : IHM.getIHM();
+        ihm.ajouterIHM(this);
+        ihm.applyDarkTheme();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent i = new Intent(Login.this, FlowActivity.class);
+            startActivity(i);
+        } else {
+            login = findViewById(R.id.login);
+            password = findViewById(R.id.password);
+        }
+
+!!!170114.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+!!!170242.java!!!	submit(inout v : View) : void
+        try {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            // Connecte l'utilisateur à son compte
+            auth.signInWithEmailAndPassword(login.getText().toString(), password.getText().toString()).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Intent i = new Intent(Login.this, FlowActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Veuillez rentrer des identifiants valides.", Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Veuillez rentrer des identifiants valides.", Toast.LENGTH_LONG).show();
+        }
+!!!170370.java!!!	move_to_register(inout v : View) : void
+        Intent i = new Intent(Login.this, Register.class);
+        startActivity(i);

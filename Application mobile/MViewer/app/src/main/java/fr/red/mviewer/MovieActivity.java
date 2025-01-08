@@ -3,6 +3,9 @@ package fr.red.mviewer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -100,6 +103,12 @@ public class MovieActivity extends AppCompatActivity {
         resultWidget.init();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
+    }
+
     // Mettre en place ou non un déroulement du texte de la descrition si elle fait plus de 2 lignes
     private void setDescription() {
         if (description.getLineCount() > 2) {
@@ -132,7 +141,7 @@ public class MovieActivity extends AppCompatActivity {
         Glide.with(ihm.getActiviteActive())
                 .load("https://image.tmdb.org/t/p/w500" + selection.getBackdrop_path())
                 .placeholder(R.drawable.gray_background)
-                .error(R.drawable.gray_background)
+                .error(R.drawable._1euctafoll)
                 .into(image);
     }
 
@@ -161,3 +170,5 @@ public class MovieActivity extends AppCompatActivity {
         resultWidget.addResults(movies, 1, false);
     }
 }
+
+

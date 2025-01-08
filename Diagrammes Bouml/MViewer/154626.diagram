@@ -1,0 +1,506 @@
+format 224
+
+classcanvas 128002 class_ref 153730 // FlowActivity
+  classdiagramsettings member_max_width 0 end
+  color blue
+  hidden_operations
+    operation_ref 169090 // onCreate
+    operation_ref 169218 // onRestart
+    operation_ref 169346 // onCreateOptionsMenu
+    operation_ref 169474 // onOptionsItemSelected
+    operation_ref 169602 // updateFlow
+    operation_ref 169730 // scrollToNext
+    operation_ref 169858 // scrollToPrevious
+  xyz 379.643 163.5 2000
+end
+classcanvas 128130 class_ref 154242 // Login
+  classdiagramsettings member_max_width 0 end
+  color blue
+  hidden_attributes
+    attribute_ref 159874 // login
+    attribute_ref 160002 // password
+  hidden_operations
+    operation_ref 169986 // onCreate
+    operation_ref 170114 // onRestart
+    operation_ref 170242 // submit
+    operation_ref 170370 // move_to_register
+  xyz 114.107 371.429 2005
+end
+classcanvas 128258 class_ref 154370 // MovieActivity
+  classdiagramsettings member_max_width 0 end
+  color blue
+  hidden_attributes
+    attribute_ref 160130 // newSelection
+    attribute_ref 160258 // image
+    attribute_ref 160386 // title
+    attribute_ref 160514 // description
+    attribute_ref 160642 // genres
+    attribute_ref 160770 // announce_btn
+    attribute_ref 160898 // description_next
+    attribute_ref 161026 // simillar_results
+  hidden_operations
+    operation_ref 170498 // setSelection
+    operation_ref 170626 // onCreate
+    operation_ref 170754 // onRestart
+    operation_ref 170882 // setDescription
+    operation_ref 171010 // displayBanner
+    operation_ref 171138 // setGenres
+    operation_ref 171266 // openYouTubeSearch
+    operation_ref 171394 // addResults
+  xyz 434.107 249.357 2010
+end
+classcanvas 128386 class_ref 154754 // Register
+  classdiagramsettings member_max_width 0 end
+  color blue
+  hidden_attributes
+    attribute_ref 161154 // login
+    attribute_ref 161282 // password1
+    attribute_ref 161410 // password2
+  hidden_operations
+    operation_ref 171522 // onCreate
+    operation_ref 171650 // onRestart
+    operation_ref 171778 // register
+  xyz 40.2143 453.429 2000
+end
+classcanvas 128514 class_ref 154882 // Rename
+  classdiagramsettings member_max_width 0 end
+  color blue
+  hidden_attributes
+    attribute_ref 161538 // new_name
+  hidden_operations
+    operation_ref 171906 // onCreate
+    operation_ref 172034 // onRestart
+    operation_ref 172162 // rename
+  xyz 177.857 289.429 2015
+end
+classcanvas 128642 class_ref 155010 // SearchActivity
+  classdiagramsettings member_max_width 0 end
+  color blue
+  hidden_attributes
+    attribute_ref 161666 // result_amount
+    attribute_ref 161794 // search_result
+    attribute_ref 161922 // scroll_result
+    attribute_ref 162050 // searchView
+  hidden_operations
+    operation_ref 172290 // onCreate
+    operation_ref 172418 // onRestart
+    operation_ref 172546 // manageQuery
+    operation_ref 172674 // updateQuery
+    operation_ref 172802 // addResults
+    operation_ref 172930 // setResultText
+    operation_ref 173058 // loopCheckScroll
+    operation_ref 173186 // clearResults
+  xyz 789.964 163.5 2000
+end
+classcanvas 128770 class_ref 153986 // FlowWidget
+  classdiagramsettings member_max_width 0 end
+  color lightorange
+  hidden_attributes
+    attribute_ref 165762 // flowLayout
+    attribute_ref 165890 // scrollView
+    attribute_ref 166018 // gestureDetector
+    attribute_ref 166146 // paddingX
+    attribute_ref 166274 // currentIndex
+    attribute_ref 166402 // pendingReload
+  hidden_operations
+    operation_ref 180482 // FlowWidget
+    operation_ref 180610 // addPlaquette
+    operation_ref 180738 // getXToScroll
+    operation_ref 180866 // getCurrentPlaquette
+    operation_ref 180994 // getPlaquette
+    operation_ref 181122 // getCurrentPlaquetteID
+    operation_ref 181250 // scrollToNext
+    operation_ref 181378 // scrollToPrevious
+    operation_ref 181506 // removeLoadingWidgets
+    operation_ref 181634 // setFlowLayout
+    operation_ref 181762 // setScrollView
+    operation_ref 181890 // updateFlow
+    operation_ref 182018 // isVisible
+    operation_ref 182146 // isPendingReload
+  xyz 250.786 163.5 2006
+end
+classcanvas 129026 class_ref 154626 // ResultWidget
+  classdiagramsettings member_max_width 0 end
+  color lightorange
+  hidden_attributes
+    attribute_ref 166530 // nbPlaquettesParLigne_LANDSCAPE
+    attribute_ref 166658 // nbPlaquettesParLigne_PORTRAIT
+    attribute_ref 166786 // defaultPlaquette
+    attribute_ref 166914 // hasNextPage
+    attribute_ref 167042 // search_result
+    attribute_ref 167170 // plaquetteHeight
+    attribute_ref 167298 // plaquetteWidth
+    attribute_ref 167426 // currentQueueToken
+    attribute_ref 167554 // currentPage
+    attribute_ref 167682 // loadingImage
+    attribute_ref 167810 // nbPlaquettesParLigne
+    attribute_ref 167938 // activity
+    attribute_ref 168066 // onInit
+  hidden_operations
+    operation_ref 182274 // ResultWidget
+    operation_ref 182402 // ResultWidget
+    operation_ref 182530 // updateOrientation
+    operation_ref 182658 // init
+    operation_ref 182786 // removeResultsUI
+    operation_ref 182914 // updateResultsUI
+    operation_ref 183042 // craftResult
+    operation_ref 183170 // displayLoadingResultsUI
+    operation_ref 183298 // addResults
+    operation_ref 183426 // loadNextInQueue
+    operation_ref 183554 // hasNextPage
+    operation_ref 183682 // setHasNextPage
+    operation_ref 183810 // getCurrentPage
+    operation_ref 183938 // setCurrentPage
+    operation_ref 184066 // setOnInit
+  xyz 514.75 374.357 3005
+end
+classcanvas 129410 class_ref 154114 // IHM
+  classdiagramsettings member_max_width 0 end
+  hidden_attributes
+    attribute_ref 163202 // ihmActives
+    attribute_ref 163330 // activiteActive
+  hidden_operations
+    operation_ref 176130 // getIHMActive
+    operation_ref 176258 // getIHM
+    operation_ref 176386 // IHM
+    operation_ref 176514 // ajouterIHM
+    operation_ref 176642 // getActiviteActive
+    operation_ref 176770 // getActivite
+    operation_ref 176898 // fermerActivite
+    operation_ref 177026 // fermerPopups
+    operation_ref 177154 // demarrerActivite
+    operation_ref 177282 // applyDarkTheme
+  xyz 324.036 345.071 3011
+end
+classcanvas 130946 class_ref 154498 // Movie
+  classdiagramsettings member_max_width 0 end
+  hidden_attributes
+    attribute_ref 163714 // adult
+    attribute_ref 163842 // backdrop_path
+    attribute_ref 163970 // genre_ids
+    attribute_ref 164098 // id
+    attribute_ref 164226 // original_language
+    attribute_ref 164354 // original_title
+    attribute_ref 164482 // overview
+    attribute_ref 164610 // popularity
+    attribute_ref 164738 // poster_path
+    attribute_ref 164866 // release_date
+    attribute_ref 164994 // title
+    attribute_ref 165122 // video
+    attribute_ref 165250 // vote_average
+    attribute_ref 165378 // vote_count
+  hidden_operations
+    operation_ref 177794 // getTitle
+    operation_ref 177922 // getOverview
+    operation_ref 178050 // getPosterPath
+    operation_ref 178178 // getReleaseDate
+    operation_ref 178306 // isAdult
+    operation_ref 178434 // isVideo
+    operation_ref 178562 // getBackdrop_path
+    operation_ref 178690 // getPopularity
+    operation_ref 178818 // getVote_average
+    operation_ref 178946 // getId
+    operation_ref 179074 // getVote_count
+    operation_ref 179202 // getGenre_ids
+    operation_ref 179330 // getOriginal_language
+    operation_ref 179458 // getOriginal_title
+    operation_ref 179586 // getPoster_path
+  xyz 596.321 251.357 3017
+end
+classcanvas 131330 class_ref 155650 // MovieGenre
+  classdiagramsettings member_max_width 0 end
+  color lightred
+  hidden_attributes
+    attribute_ref 165506 // id
+    attribute_ref 165634 // name
+  hidden_operations
+    operation_ref 179714 // MovieGenre
+    operation_ref 179842 // addToCache
+    operation_ref 179970 // clearCache
+    operation_ref 180098 // getGenre
+    operation_ref 180226 // getName
+    operation_ref 180354 // getId
+  xyz 778 570.857 3005
+end
+classcanvas 132226 class_ref 155778 // GestureListener
+  classdiagramsettings member_max_width 0 end
+  hidden_operations
+    operation_ref 175874 // onScroll
+    operation_ref 176002 // onFling
+  xyz 72 656.857 3017
+end
+classcanvas 132354 class_ref 156034 // LoadingQueue
+  classdiagramsettings member_max_width 0 end
+  hidden_attributes
+    attribute_ref 163458 // posterUrl
+    attribute_ref 163586 // imageView
+  hidden_operations
+    operation_ref 177410 // LoadingQueue
+    operation_ref 177538 // getPosterUrl
+    operation_ref 177666 // getImageView
+  xyz 683.25 369.357 3011
+end
+classcanvas 132610 class_ref 155138 // TheMovieDB
+  classdiagramsettings member_max_width 0 end
+  hidden_attributes
+    attribute_ref 162178 // BASE_URL
+    attribute_ref 162306 // API_KEY
+    attribute_ref 162434 // LANG
+    attribute_ref 162562 // retrofit
+    attribute_ref 162690 // errored
+  hidden_operations
+    operation_ref 173826 // getInstance
+    operation_ref 173954 // TheMovieDB
+    operation_ref 174082 // init
+    operation_ref 174210 // fetchGenres
+    operation_ref 174338 // fetchPoupular
+    operation_ref 174466 // search
+    operation_ref 174594 // search
+    operation_ref 174722 // getPopular
+    operation_ref 174850 // fetchSimillar
+    operation_ref 174978 // getRetrofitInstance
+    operation_ref 175106 // isErrored
+  xyz 576.786 163.5 3023
+end
+classcanvas 133378 class_ref 155266 // IRetrofitTheMovieDB
+  classdiagramsettings member_max_width 0 end
+  hidden_operations
+    operation_ref 173314 // getPopularMovies
+    operation_ref 173442 // searchMovies
+    operation_ref 173570 // getGenres
+    operation_ref 173698 // getSimilarMovies
+  xyz 296.5 577.357 2000
+end
+classcanvas 133506 class_ref 155394 // MovieResponse
+  classdiagramsettings member_max_width 0 end
+  color lightred
+  hidden_attributes
+    attribute_ref 162818 // page
+    attribute_ref 162946 // total_pages
+    attribute_ref 163074 // total_results
+  hidden_operations
+    operation_ref 175362 // getPage
+    operation_ref 175490 // getResults
+    operation_ref 175618 // getTotal_pages
+    operation_ref 175746 // getTotal_results
+  xyz 715.857 251.357 3023
+end
+classcanvas 133762 class_ref 155522 // GenreResponse
+  classdiagramsettings member_max_width 0 end
+  color lightred
+  hidden_operations
+    operation_ref 175234 // getGenres
+  xyz 515 572.857 3011
+end
+classcanvas 134018 class_ref 153858 // AppCompatActivity
+  classdiagramsettings member_max_width 0 end
+  xyz 145.321 40.5 3017
+end
+classcanvas 134914 class_ref 155906 // SimpleOnGestureListener
+  classdiagramsettings member_max_width 0 end
+  xyz 41 576.857 3023
+end
+relationcanvas 128898 relation_ref 152194 // <unidirectional association>
+  from ref 128002 z 2007 to ref 128770
+  role_a_pos 348 162 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129154 relation_ref 153090 // <unidirectional association>
+  decenter_begin 907
+  decenter_end 92
+  from ref 128258 z 3006 to ref 129026
+  role_a_pos 532 352 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129282 relation_ref 153858 // <unidirectional association>
+  from ref 128642 z 3006 to point 840 456
+  line 135682 z 3006 to point 564 456
+  line 135810 z 3006 to ref 129026
+  role_a_pos 573 422 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129538 relation_ref 154882 // <unidirectional association>
+  from ref 129410 z 3012 to point 293.786 344.771
+  line 129666 z 3012 to point 293.786 374.771
+  line 129794 z 3012 to ref 129410
+  role_a_pos 291.786 346.771 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129922 relation_ref 152322 // <unidirectional association>
+  geometry VHV unfixed
+  decenter_begin 101
+  decenter_end 800
+  from ref 128002 z 3012 to point 385 245
+  line 137602 z 3012 to point 358 245
+  line 137730 z 3012 to ref 129410
+  role_a_pos 370 323 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130050 relation_ref 155266 // <unidirectional association>
+  decenter_begin 898
+  decenter_end 200
+  from ref 128770 z 3012 to ref 129410
+  role_a_pos 343 323 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130178 relation_ref 155522 // <unidirectional association>
+  decenter_begin 218
+  decenter_end 800
+  from ref 129026 z 3012 to ref 129410
+  role_a_pos 378 356 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130306 relation_ref 152962 // <unidirectional association>
+  decenter_begin 779
+  decenter_end 218
+  from ref 128258 z 3012 to point 409 286
+  line 136450 z 3012 to point 409 350
+  line 136578 z 3012 to ref 129410
+  role_a_pos 378 332 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130434 relation_ref 152578 // <unidirectional association>
+  decenter_begin 218
+  decenter_end 779
+  from ref 128130 z 3012 to ref 129410
+  role_a_pos 292 355 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130562 relation_ref 153346 // <unidirectional association>
+  geometry HV unfixed
+  decenter_end 400
+  from ref 128386 z 3012 to point 340 471
+  line 138242 z 3012 to ref 129410
+  role_a_pos 352 393 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130690 relation_ref 153986 // <unidirectional association>
+  decenter_end 800
+  from ref 128642 z 3012 to point 933 184
+  line 137858 z 3012 to point 933 497
+  line 137986 z 3012 to point 362 497
+  line 138114 z 3012 to ref 129410
+  role_a_pos 370 393 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130818 relation_ref 153602 // <unidirectional association>
+  decenter_begin 779
+  decenter_end 218
+  from ref 128514 z 3012 to point 283 324
+  line 138370 z 3012 to point 283 353
+  line 138498 z 3012 to ref 129410
+  role_a_pos 292 332 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131074 relation_ref 155650 // <unidirectional association>
+  decenter_begin 907
+  decenter_end 175
+  from ref 129026 z 3018 stereotype "<<List>>" xyz 576.5 332 3018 to ref 130946
+  role_a_pos 614 299 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131202 relation_ref 152834 // <unidirectional association>
+  from ref 128258 z 3018 to ref 130946
+  role_a_pos 533 249 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131458 relation_ref 155010 // <unidirectional association>
+  decenter_end 167
+  from ref 131330 z 3006 stereotype "<<Map>>" xyz 809 526.857 3006 to point 843 526.857
+  line 131586 z 3006 to point 800 519.857
+  line 131714 z 3006 to ref 131330
+  role_a_pos 803 548 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131842 relation_ref 155138 // <unidirectional association>
+  decenter_begin 898
+  from ref 131330 z 3006 to point 895 594.857
+  line 131970 z 3006 to point 899 579.857
+  line 132098 z 3006 to ref 131330
+  role_a_pos 876 563 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132482 relation_ref 155394 // <unidirectional association>
+  from ref 129026 z 3012 stereotype "<<List>>" xyz 619 389 3012 to ref 132354
+  role_a_pos 637 368 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132738 relation_ref 154242 // <unidirectional association>
+  from ref 132610 z 3024 to point 546.336 163.15
+  line 132866 z 3024 to point 546.336 193.15
+  line 132994 z 3024 to ref 132610
+  role_a_pos 516.336 166.15 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133122 relation_ref 154370 // <unidirectional association>
+  from ref 132610 z 3024 stereotype "<<List>>" xyz 592.5 226 3024 to ref 130946
+  role_a_pos 630 229 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133250 relation_ref 154114 // <unidirectional association>
+  decenter_end 512
+  from ref 128642 z 3024 to ref 132610
+  role_a_pos 678 162 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133634 relation_ref 154626 // <unidirectional association>
+  from ref 133506 z 3024 stereotype "<<List>>" xyz 653 271 3024 to ref 130946
+  role_a_pos 656 250 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133890 relation_ref 154498 // <unidirectional association>
+  from ref 133762 z 3012 stereotype "<<List>>" xyz 676 589.5 3012 to ref 131330
+  role_a_pos 728 569 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134146 relation_ref 152066 // <generalisation>
+  geometry VHV unfixed
+  from ref 128002 z 3018 to point 421 122
+  line 136194 z 3018 to point 209 122
+  line 136322 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134274 relation_ref 152706 // <generalisation>
+  geometry VHV unfixed
+  from ref 128258 z 3018 to point 480 122
+  line 136962 z 3018 to point 209 122
+  line 137090 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134402 relation_ref 152450 // <generalisation>
+  geometry VHV unfixed
+  from ref 128130 z 3018 to point 136 122
+  line 135170 z 3018 to point 209 122
+  line 135298 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134530 relation_ref 153218 // <generalisation>
+  geometry VHV unfixed
+  from ref 128386 z 3018 to point 70 122
+  line 135938 z 3018 to point 209 122
+  line 136066 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134658 relation_ref 153730 // <generalisation>
+  geometry VHV unfixed
+  from ref 128642 z 3018 to point 838 122
+  line 138626 z 3018 to point 209 122
+  line 138754 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134786 relation_ref 153474 // <generalisation>
+  from ref 128514 z 3018 to ref 134018
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 135042 relation_ref 154754 // <generalisation>
+  from ref 132226 z 3024 to ref 134914
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

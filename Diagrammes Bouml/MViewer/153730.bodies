@@ -1,0 +1,60 @@
+class FlowActivity
+!!!169090.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_flow);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        ihm = IHM.getIHM();
+        ihm.ajouterIHM(this);
+        ihm.applyDarkTheme();
+
+        flowWidget = new FlowWidget(findViewById(R.id.idFlow), findViewById(R.id.scrollView), this);
+        // Définir un titre personnalisé pour l'ActionBar
+        if (getSupportActionBar() != null) {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            if (auth.getCurrentUser().getDisplayName() == null) {
+                String name = auth.getCurrentUser().getEmail().toString();
+                getSupportActionBar().setTitle(name);
+            } else {
+                getSupportActionBar().setTitle(auth.getCurrentUser().getDisplayName());
+            }
+
+        }
+!!!169218.java!!!	onRestart() : void
+        super.onRestart();
+        ihm.ajouterIHM(this);
+
+        if (TheMovieDB.getInstance().isErrored() && !flowWidget.isPendingReload()) {
+            flowWidget.updateFlow();
+        }
+!!!169346.java!!!	onCreateOptionsMenu(inout menu : Menu) : boolean
+        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+        return true;
+!!!169474.java!!!	onOptionsItemSelected(inout item : MenuItem) : boolean
+        if (item.getItemId()== R.id.logout){
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            auth.signOut(); // Déconnecte l'utilisateur
+            Intent i = new Intent(FlowActivity.this, Login.class);
+            startActivity(i);
+            finish();
+            return true;
+        } else if (item.getItemId()== R.id.search){
+            IHM.getIHM().demarrerActivite(FlowActivity.this, FlowActivity.this, SearchActivity.class); // Lance l'activité de recherche d'un film
+            return true;
+        } else if (item.getItemId()== R.id.rename){
+            Intent i = new Intent(FlowActivity.this, Rename.class); // Lance l'activité pour renommer l'utilisateur
+            startActivity(i);
+            return true;
+        }
+        return true;
+!!!169602.java!!!	updateFlow() : void
+        flowWidget.updateFlow();
+!!!169730.java!!!	scrollToNext() : void
+        flowWidget.scrollToNext();
+!!!169858.java!!!	scrollToPrevious() : void
+        flowWidget.scrollToPrevious();

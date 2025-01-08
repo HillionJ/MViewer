@@ -11,11 +11,18 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import fr.red.mviewer.FlowActivity;
 import fr.red.mviewer.MovieActivity;
@@ -33,6 +40,7 @@ public class FlowWidget {
     private int paddingX;
     private int currentIndex;
     private IHM ihm = IHM.getIHM();
+    private boolean pendingReload = false;
 
     @SuppressLint("ClickableViewAccessibility")
     public FlowWidget(LinearLayout flowLayout, HorizontalScrollView scrollView, AppCompatActivity activity) {
@@ -70,11 +78,18 @@ public class FlowWidget {
             // Charger l'affiche du film
             ImageView image = itemView.findViewById(R.id.idImagePlaquette);
 
+            if (TheMovieDB.getInstance().isErrored()) {
+                ImageView error_icon = itemView.findViewById(R.id.error_icon);
+                error_icon.setVisibility(View.VISIBLE);
+                TextView error_text = itemView.findViewById(R.id.error_text);
+                error_text.setVisibility(View.VISIBLE);
+            }
+
             String posterUrl = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath();
             Glide.with(ihm.getActivite(FlowActivity.class))
                     .load(posterUrl)
                     .placeholder(R.drawable.gray_background)
-                    .error(R.drawable.gray_background)
+                    .error(R.drawable._1euctafoll)
                     .into(image);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -171,6 +186,20 @@ public class FlowWidget {
 
     // Mettre à jour la liste des plaquettes
     public void updateFlow() {
+        if (TheMovieDB.getInstance().isErrored()) {
+            pendingReload = true;
+            ScheduledExecutorService newScheduler = Executors.newScheduledThreadPool(1);
+            newScheduler.schedule(() -> {
+                if (ihm.getActiviteActive() instanceof FlowActivity) {
+                    ihm.getActiviteActive().runOnUiThread(() -> {
+                        TheMovieDB.getInstance().init();
+                        Toast.makeText(IHM.getIHM().getActiviteActive(), "Erreur de connexion, Nouvelle tentative...", Toast.LENGTH_SHORT).show();
+                    });
+                }
+                pendingReload = false;
+            }, 5, TimeUnit.SECONDS);
+        }
+        removeLoadingWidgets();
         if (TheMovieDB.getInstance().getPopular().isEmpty()) {
             // Afficher des plaquettes en cours de chargement
             addPlaquette(null);
@@ -185,11 +214,14 @@ public class FlowWidget {
                 addPlaquette(movie);
             }
             View lastPlaquette = flowLayout.getChildAt(flowLayout.getChildCount() - 1);
-            lastPlaquette.post(this::removeLoadingWidgets);
         }
     }
 
     public boolean isVisible() {
         return scrollView.getVisibility() == View.VISIBLE;
+    }
+
+    public boolean isPendingReload() {
+        return pendingReload;
     }
 }

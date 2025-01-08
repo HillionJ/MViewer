@@ -108,7 +108,6 @@ public class ResultWidget {
             LinearLayout row = (LinearLayout) search_result.getChildAt(search_result.getChildCount() - 1);
             for (int i = 0; i < nbPlaquettesParLigne - unclosedIndexes && (startIndex + i) < results.size(); i++) {
                 row.addView(craftResult(results.get(startIndex + i)));
-                Log.d("_RED", results.get(startIndex + i).getTitle());
             }
             startIndex += nbPlaquettesParLigne;
         }
@@ -118,7 +117,6 @@ public class ResultWidget {
             row.setOrientation(LinearLayout.HORIZONTAL);
             for (int j = i; j < nbPlaquettesParLigne + i && j < results.size(); j++) {
                 row.addView(craftResult(results.get(j)));
-                Log.d("_RED", results.get(j).getTitle());
             }
             search_result.addView(row);
         }
@@ -210,7 +208,7 @@ public class ResultWidget {
 
     // Charger l'image de la plaquette suivante
     public void loadNextInQueue() {
-        if (queue.isEmpty()) {
+        if (queue.isEmpty() || ihm.getActiviteActive().isDestroyed()) {
             return;
         }
         LoadingQueue loadingQueue = queue.remove(0);
@@ -219,7 +217,7 @@ public class ResultWidget {
         Glide.with(ihm.getActiviteActive())
                 .load(posterUrl)
                 .placeholder(R.drawable.gray_background)
-                .error(R.drawable.gray_background)
+                .error(R.drawable._1euctafoll)
                 .into(imageView);
         int token = currentQueueToken;
         imageView.post(() -> {

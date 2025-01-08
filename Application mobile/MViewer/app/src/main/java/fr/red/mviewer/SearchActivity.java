@@ -69,6 +69,12 @@ public class SearchActivity extends AppCompatActivity {
         resultWidget.init();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ihm.ajouterIHM(this);
+    }
+
     private void manageQuery() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -98,9 +104,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private void updateQuery(String newText) {
         if (newText.isEmpty()) {
-            resultWidget.removeResultsUI();
             result_amount.setVisibility(View.INVISIBLE);
-            resultWidget.setHasNextPage(false);
+            clearResults();
         } else {
             if (search_result.getChildCount() == 0) {
                 resultWidget.displayLoadingResultsUI();
@@ -113,9 +118,13 @@ public class SearchActivity extends AppCompatActivity {
         if (currentPage == 1) {
             scroll_result.scrollTo(0, 0);
         }
-        result_amount.setVisibility(View.VISIBLE);
-        result_amount.setText(amount == 0 ? "Aucun résultat" : amount + " résultat" + (amount == 1 ? "" : "s"));
+        setResultText(amount == 0 ? "Aucun résultat" : amount + " résultat" + (amount == 1 ? "" : "s"));
         resultWidget.addResults(movies, currentPage, hasNextPage);
+    }
+
+    public void setResultText(String text) {
+        result_amount.setText(text);
+        result_amount.setVisibility(View.VISIBLE);
     }
 
     //Vérifier constament si on arrive au bout de la liste des résultats pour afficher les suivantes
@@ -128,5 +137,10 @@ public class SearchActivity extends AppCompatActivity {
                 theMovieDB.search(searchView.getQuery().toString(), resultWidget.getCurrentPage());
             }
         },0, 1, TimeUnit.SECONDS);
+    }
+
+    public void clearResults() {
+        resultWidget.removeResultsUI();
+        resultWidget.setHasNextPage(false);
     }
 }

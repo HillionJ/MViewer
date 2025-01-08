@@ -32,7 +32,7 @@ format 224
   
   java_dir "C:\\Users\\RedEstDeRetour\\AndroidStudioProjects\\MViewer\\Application mobile\\MViewer\\app\\src\\main\\java\\fr\\red\\mviewer/widgets/"
   java_package "fr.red.mviewer.widgets"
-  classview 143234 "widgets"
+  classview 150530 "widgets"
     
     classdiagramsettings member_max_width 0 end
     
@@ -52,7 +52,7 @@ format 224
     
     activitydiagramsettings
      end
-    class 145282 "FlowWidget"
+    class 153986 "FlowWidget"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -64,7 +64,7 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      attribute 151170 "flowLayout"
+      attribute 165762 "flowLayout"
 	public explicit_type "LinearLayout"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -76,7 +76,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 151298 "scrollView"
+      attribute 165890 "scrollView"
 	private explicit_type "HorizontalScrollView"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -88,7 +88,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 151426 "gestureDetector"
+      attribute 166018 "gestureDetector"
 	private explicit_type "GestureDetector"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -100,7 +100,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 151554 "paddingX"
+      attribute 166146 "paddingX"
 	private explicit_type "int"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -112,7 +112,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 151682 "currentIndex"
+      attribute 166274 "currentIndex"
 	private explicit_type "int"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -124,22 +124,36 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 145538 // ihm (<unidirectional association>)
-	relation 145154 --->
+      classrelation 155650 // ihm (<unidirectional association>)
+	relation 155266 --->
 	  a role_name "ihm" init_value " IHM.getIHM()" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 145538 // ihm (<unidirectional association>)
-	  b parent class_ref 145794 // IHM
+	    classrelation_ref 155650 // ihm (<unidirectional association>)
+	  b parent class_ref 154114 // IHM
       end
 
-      operation 159106 "FlowWidget"
+      attribute 166402 "pendingReload"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 180482 "FlowWidget"
 	public explicit_return_type ""
-	nparams 2
+	nparams 3
 	  param inout name "flowLayout" explicit_type "LinearLayout"
 	  param inout name "scrollView" explicit_type "HorizontalScrollView"
+	  param inout name "activity" explicit_type "AppCompatActivity"
 	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
   ${body}}
 "
 	java_annotation "@SuppressLint(\"ClickableViewAccessibility\")
@@ -149,10 +163,10 @@ ${members}}
 	
       end
 
-      operation 159234 "addPlaquette"
+      operation 180610 "addPlaquette"
 	public explicit_return_type "void"
 	nparams 1
-	  param inout name "movie" type class_ref 145666 // Movie
+	  param inout name "movie" type class_ref 154498 // Movie
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -163,7 +177,7 @@ ${members}}
 	comment "Ajouter une plaquette réelle (movie != null) ou en chargement (movie == null)"
       end
 
-      operation 159362 "getXToScroll"
+      operation 180738 "getXToScroll"
 	private explicit_return_type "int"
 	nparams 1
 	  param in name "targetID" explicit_type "int"
@@ -177,7 +191,7 @@ ${members}}
 	comment " Calculer la position X de la plaquette à partir de son ID"
       end
 
-      operation 159490 "getCurrentPlaquette"
+      operation 180866 "getCurrentPlaquette"
 	private explicit_return_type "View"
 	nparams 0
 	
@@ -189,7 +203,7 @@ ${members}}
 	
       end
 
-      operation 159618 "getPlaquette"
+      operation 180994 "getPlaquette"
 	private explicit_return_type "View"
 	nparams 1
 	  param in name "index" explicit_type "int"
@@ -202,7 +216,7 @@ ${members}}
 	
       end
 
-      operation 159746 "getCurrentPlaquetteID"
+      operation 181122 "getCurrentPlaquetteID"
 	private explicit_return_type "int"
 	nparams 0
 	
@@ -215,7 +229,7 @@ ${members}}
 	comment "Récupérer la plaquette en cours de visualisation en récupérant celle la plus proche du centre de l'écran"
       end
 
-      operation 159874 "scrollToNext"
+      operation 181250 "scrollToNext"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -228,7 +242,7 @@ ${members}}
 	comment " Méthode pour scroller automatiquement vers la plaquette suivante"
       end
 
-      operation 160002 "scrollToPrevious"
+      operation 181378 "scrollToPrevious"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -241,7 +255,7 @@ ${members}}
 	comment " Méthode pour scroller automatiquement vers la plaquette précédente"
       end
 
-      operation 160130 "removeLoadingWidgets"
+      operation 181506 "removeLoadingWidgets"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -254,7 +268,7 @@ ${members}}
 	comment " Supprimer les plaquette ayant l'effet de chargement (shimmer)"
       end
 
-      operation 160258 "setFlowLayout"
+      operation 181634 "setFlowLayout"
 	public explicit_return_type "void"
 	nparams 1
 	  param inout name "flowLayout" explicit_type "LinearLayout"
@@ -267,7 +281,7 @@ ${members}}
 	
       end
 
-      operation 160386 "setScrollView"
+      operation 181762 "setScrollView"
 	public explicit_return_type "void"
 	nparams 1
 	  param inout name "scrollView" explicit_type "HorizontalScrollView"
@@ -280,7 +294,7 @@ ${members}}
 	
       end
 
-      operation 160514 "updateFlow"
+      operation 181890 "updateFlow"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -293,7 +307,19 @@ ${members}}
 	comment " Mettre à jour la liste des plaquettes"
       end
 
-      operation 160642 "isVisible"
+      operation 182018 "isVisible"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 182146 "isPendingReload"
 	public explicit_return_type "boolean"
 	nparams 0
 	
@@ -306,7 +332,7 @@ ${members}}
       end
     end
 
-    class 145922 "ResultWidget"
+    class 154626 "ResultWidget"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -318,7 +344,7 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      attribute 151810 "nbPlaquettesParLigne_LANDSCAPE"
+      attribute 166530 "nbPlaquettesParLigne_LANDSCAPE"
 	class_attribute const_attribute private explicit_type "int"
 	init_value " 5"
 	cpp_decl ""
@@ -331,7 +357,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 151938 "nbPlaquettesParLigne_PORTRAIT"
+      attribute 166658 "nbPlaquettesParLigne_PORTRAIT"
 	class_attribute const_attribute private explicit_type "int"
 	init_value " 3"
 	cpp_decl ""
@@ -344,7 +370,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 152066 "defaultPlaquette"
+      attribute 166786 "defaultPlaquette"
 	class_attribute const_attribute private explicit_type "double"
 	init_value " 500.0 / 333.0"
 	cpp_decl ""
@@ -358,7 +384,7 @@ ${members}}
 	comment " 'Height / Width'"
       end
 
-      attribute 152194 "hasNextPage"
+      attribute 166914 "hasNextPage"
 	private explicit_type "boolean"
 	init_value " false"
 	cpp_decl ""
@@ -371,7 +397,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 152322 "search_result"
+      attribute 167042 "search_result"
 	private explicit_type "LinearLayout"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -383,7 +409,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 152450 "plaquetteHeight"
+      attribute 167170 "plaquetteHeight"
 	private explicit_type "int"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -395,7 +421,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 152578 "plaquetteWidth"
+      attribute 167298 "plaquetteWidth"
 	private explicit_type "int"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -407,17 +433,17 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 145666 // queue (<unidirectional association>)
-	relation 145282 --->
+      classrelation 155778 // queue (<unidirectional association>)
+	relation 155394 --->
 	  stereotype "List"
 	  a role_name "queue" init_value " new ArrayList<>()" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
-	    classrelation_ref 145666 // queue (<unidirectional association>)
-	  b parent class_ref 147202 // LoadingQueue
+	    classrelation_ref 155778 // queue (<unidirectional association>)
+	  b parent class_ref 156034 // LoadingQueue
       end
 
-      attribute 152706 "currentQueueToken"
+      attribute 167426 "currentQueueToken"
 	private explicit_type "int"
 	init_value " 0"
 	cpp_decl ""
@@ -430,7 +456,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 152834 "currentPage"
+      attribute 167554 "currentPage"
 	private explicit_type "int"
 	init_value " 1"
 	cpp_decl ""
@@ -443,7 +469,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 152962 "loadingImage"
+      attribute 167682 "loadingImage"
 	private explicit_type "ImageView"
 	init_value " null"
 	cpp_decl ""
@@ -456,7 +482,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 153090 "nbPlaquettesParLigne"
+      attribute 167810 "nbPlaquettesParLigne"
 	private explicit_type "int"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -468,26 +494,26 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 145794 // ihm (<unidirectional association>)
-	relation 145410 --->
+      classrelation 155906 // ihm (<unidirectional association>)
+	relation 155522 --->
 	  a role_name "ihm" init_value " IHM.getIHM()" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 145794 // ihm (<unidirectional association>)
-	  b parent class_ref 145794 // IHM
+	    classrelation_ref 155906 // ihm (<unidirectional association>)
+	  b parent class_ref 154114 // IHM
       end
 
-      classrelation 145922 // results (<unidirectional association>)
-	relation 145538 --->
+      classrelation 156034 // results (<unidirectional association>)
+	relation 155650 --->
 	  stereotype "List"
 	  a role_name "results" init_value " new ArrayList<>()" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
-	    classrelation_ref 145922 // results (<unidirectional association>)
-	  b parent class_ref 145666 // Movie
+	    classrelation_ref 156034 // results (<unidirectional association>)
+	  b parent class_ref 154498 // Movie
       end
 
-      attribute 153218 "activity"
+      attribute 167938 "activity"
 	private explicit_type "AppCompatActivity"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -499,7 +525,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 153346 "onInit"
+      attribute 168066 "onInit"
 	private explicit_type "Runnable"
 	init_value " () -> {}"
 	cpp_decl ""
@@ -512,7 +538,7 @@ ${members}}
 	MysqlColumn
       end
 
-      operation 160770 "ResultWidget"
+      operation 182274 "ResultWidget"
 	public explicit_return_type ""
 	nparams 2
 	  param inout name "search_result" explicit_type "LinearLayout"
@@ -526,12 +552,12 @@ ${members}}
 	
       end
 
-      operation 160898 "ResultWidget"
+      operation 182402 "ResultWidget"
 	public explicit_return_type ""
 	nparams 3
 	  param inout name "search_result" explicit_type "LinearLayout"
 	  param inout name "activity" explicit_type "AppCompatActivity"
-	  param inout name "lastActivity" type class_ref 145922 // ResultWidget
+	  param inout name "lastActivity" type class_ref 154626 // ResultWidget
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
   ${body}}
@@ -541,7 +567,7 @@ ${members}}
 	
       end
 
-      operation 161026 "updateOrientation"
+      operation 182530 "updateOrientation"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -553,7 +579,7 @@ ${members}}
 	
       end
 
-      operation 161154 "init"
+      operation 182658 "init"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -565,7 +591,7 @@ ${members}}
 	
       end
 
-      operation 161282 "removeResultsUI"
+      operation 182786 "removeResultsUI"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -578,7 +604,7 @@ ${members}}
 	comment " Supprimer tout le contenu des résultats"
       end
 
-      operation 161410 "updateResultsUI"
+      operation 182914 "updateResultsUI"
 	public explicit_return_type "void"
 	nparams 1
 	  param in name "startIndex" explicit_type "int"
@@ -592,10 +618,10 @@ ${members}}
 	comment " Mettre à jour le flux"
       end
 
-      operation 161538 "craftResult"
+      operation 183042 "craftResult"
 	public explicit_return_type "View"
 	nparams 1
-	  param inout name "movie" type class_ref 145666 // Movie
+	  param inout name "movie" type class_ref 154498 // Movie
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -607,7 +633,7 @@ ${members}}
  ou (movie == null) la plaquette de chargement"
       end
 
-      operation 161666 "displayLoadingResultsUI"
+      operation 183170 "displayLoadingResultsUI"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -622,7 +648,7 @@ ${members}}
  est en attente de réponse"
       end
 
-      operation 161794 "addResults"
+      operation 183298 "addResults"
 	public explicit_return_type "void"
 	nparams 3
 	  param inout name "movies" explicit_type "List<Movie>"
@@ -637,7 +663,7 @@ ${members}}
 	
       end
 
-      operation 161922 "loadNextInQueue"
+      operation 183426 "loadNextInQueue"
 	public explicit_return_type "void"
 	nparams 0
 	
@@ -650,7 +676,7 @@ ${members}}
 	comment " Charger l'image de la plaquette suivante"
       end
 
-      operation 162050 "hasNextPage"
+      operation 183554 "hasNextPage"
 	public explicit_return_type "boolean"
 	nparams 0
 	
@@ -662,7 +688,7 @@ ${members}}
 	
       end
 
-      operation 162178 "setHasNextPage"
+      operation 183682 "setHasNextPage"
 	public explicit_return_type "void"
 	nparams 1
 	  param inout name "hasNextPage" explicit_type "boolean"
@@ -675,7 +701,7 @@ ${members}}
 	
       end
 
-      operation 162306 "getCurrentPage"
+      operation 183810 "getCurrentPage"
 	public explicit_return_type "int"
 	nparams 0
 	
@@ -687,7 +713,7 @@ ${members}}
 	
       end
 
-      operation 162434 "setCurrentPage"
+      operation 183938 "setCurrentPage"
 	public explicit_return_type "void"
 	nparams 1
 	  param in name "currentPage" explicit_type "int"
@@ -700,7 +726,7 @@ ${members}}
 	
       end
 
-      operation 162562 "setOnInit"
+      operation 184066 "setOnInit"
 	public explicit_return_type "void"
 	nparams 1
 	  param inout name "onInit" explicit_type "Runnable"
@@ -715,16 +741,17 @@ ${members}}
     end
   end
 
-  deploymentview 142594 "widgets"
+  deploymentview 149634 "widgets"
     //deployment diagram settings
     deploymentdiagramsettings
      end
-    artifact 145538 "FlowWidget"
+    artifact 154114 "FlowWidget"
       stereotype "source"
       java_src "${comment}
 ${package}
 ${imports}
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -734,8 +761,15 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import fr.red.mviewer.FlowActivity;
 import fr.red.mviewer.MovieActivity;
 import fr.red.mviewer.R;
@@ -745,11 +779,11 @@ import fr.red.mviewer.utils.IHM;
 import fr.red.mviewer.tmdb.TheMovieDB;
 ${definition}"
       associated_elems
-	class_ref 145282 // FlowWidget
+	class_ref 153986 // FlowWidget
       end
     end
 
-    artifact 145666 "ResultWidget"
+    artifact 154242 "ResultWidget"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -776,7 +810,7 @@ import fr.red.mviewer.utils.LoadingQueue;
 import fr.red.mviewer.utils.Movie;
 ${definition}"
       associated_elems
-	class_ref 145922 // ResultWidget
+	class_ref 154626 // ResultWidget
       end
     end
   end

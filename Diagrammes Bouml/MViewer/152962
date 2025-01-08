@@ -32,7 +32,7 @@ format 224
   
   java_dir "C:\\Users\\RedEstDeRetour\\AndroidStudioProjects\\MViewer\\Application mobile\\MViewer\\app\\src\\main\\java\\fr\\red\\mviewer/tmdb/response/"
   java_package "fr.red.mviewer.tmdb.response"
-  classview 143618 "response"
+  classview 150914 "response"
     
     classdiagramsettings member_max_width 0 end
     
@@ -52,7 +52,7 @@ format 224
     
     activitydiagramsettings
      end
-    class 146562 "MovieResponse"
+    class 155394 "MovieResponse"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -64,7 +64,7 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      attribute 148226 "page"
+      attribute 162818 "page"
 	private explicit_type "int"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -76,7 +76,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 148354 "total_pages"
+      attribute 162946 "total_pages"
 	private explicit_type "int"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -88,7 +88,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 148482 "total_results"
+      attribute 163074 "total_results"
 	private explicit_type "int"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -100,17 +100,17 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 144898 // results (<unidirectional association>)
-	relation 144514 --->
+      classrelation 155010 // results (<unidirectional association>)
+	relation 154626 --->
 	  stereotype "List"
 	  a role_name "results" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
-	    classrelation_ref 144898 // results (<unidirectional association>)
-	  b parent class_ref 145666 // Movie
+	    classrelation_ref 155010 // results (<unidirectional association>)
+	  b parent class_ref 154498 // Movie
       end
 
-      operation 153986 "getPage"
+      operation 175362 "getPage"
 	public explicit_return_type "int"
 	nparams 0
 	
@@ -122,8 +122,8 @@ ${members}}
 	
       end
 
-      operation 154114 "getResults"
-	public return_type class_ref 145666 // Movie
+      operation 175490 "getResults"
+	public return_type class_ref 154498 // Movie
 	nparams 0
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
@@ -134,7 +134,7 @@ ${members}}
 	
       end
 
-      operation 154242 "getTotal_pages"
+      operation 175618 "getTotal_pages"
 	public explicit_return_type "int"
 	nparams 0
 	
@@ -146,7 +146,7 @@ ${members}}
 	
       end
 
-      operation 154370 "getTotal_results"
+      operation 175746 "getTotal_results"
 	public explicit_return_type "int"
 	nparams 0
 	
@@ -159,7 +159,7 @@ ${members}}
       end
     end
 
-    class 146690 "GenreResponse"
+    class 155522 "GenreResponse"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -171,18 +171,18 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 144770 // genres (<unidirectional association>)
-	relation 144386 --->
+      classrelation 154882 // genres (<unidirectional association>)
+	relation 154498 --->
 	  stereotype "List"
 	  a role_name "genres" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
-	    classrelation_ref 144770 // genres (<unidirectional association>)
-	  b parent class_ref 146818 // MovieGenre
+	    classrelation_ref 154882 // genres (<unidirectional association>)
+	  b parent class_ref 155650 // MovieGenre
       end
 
-      operation 153858 "getGenres"
-	public return_type class_ref 146818 // MovieGenre
+      operation 175234 "getGenres"
+	public return_type class_ref 155650 // MovieGenre
 	nparams 0
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
@@ -195,11 +195,11 @@ ${members}}
     end
   end
 
-  deploymentview 142338 "response"
+  deploymentview 149378 "response"
     //deployment diagram settings
     deploymentdiagramsettings
      end
-    artifact 144642 "GenreResponse"
+    artifact 153218 "GenreResponse"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -208,11 +208,11 @@ import java.util.List;
 import fr.red.mviewer.utils.MovieGenre;
 ${definition}"
       associated_elems
-	class_ref 146690 // GenreResponse
+	class_ref 155522 // GenreResponse
       end
     end
 
-    artifact 144770 "MovieResponse"
+    artifact 153346 "MovieResponse"
       stereotype "source"
       java_src "${comment}
 ${package}
@@ -221,7 +221,7 @@ import java.util.List;
 import fr.red.mviewer.utils.Movie;
 ${definition}"
       associated_elems
-	class_ref 146562 // MovieResponse
+	class_ref 155394 // MovieResponse
       end
     end
   end

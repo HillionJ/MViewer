@@ -2,239 +2,417 @@ format 224
 
 classcanvas 128002 class_ref 145026 // FlowActivity
   classdiagramsettings member_max_width 0 end
-  xyz 295.65 272 2000
+  hidden_operations
+    operation_ref 149506 // onCreate
+    operation_ref 149634 // updateFlow
+    operation_ref 149762 // scrollToNext
+    operation_ref 149890 // scrollToPrevious
+  xyz 397.4 157.4 2000
 end
 classcanvas 128130 class_ref 145410 // Login
   classdiagramsettings member_max_width 0 end
-  xyz 101 153.3 2000
+  hidden_attributes
+    attribute_ref 145538 // login
+    attribute_ref 145666 // password
+  hidden_operations
+    operation_ref 150018 // onCreate
+    operation_ref 150146 // submit
+    operation_ref 150274 // move_to_register
+  xyz 667.3 157.4 2000
 end
 classcanvas 128258 class_ref 145538 // MovieActivity
   classdiagramsettings member_max_width 0 end
-  xyz 642.65 513.3 2005
+  hidden_attributes
+    attribute_ref 145794 // newSelection
+    attribute_ref 145922 // image
+    attribute_ref 146050 // title
+    attribute_ref 146178 // description
+    attribute_ref 146306 // genres
+    attribute_ref 146434 // announce_btn
+    attribute_ref 146562 // description_next
+    attribute_ref 146690 // simillar_results
+  hidden_operations
+    operation_ref 150402 // setSelection
+    operation_ref 150530 // onCreate
+    operation_ref 150658 // setDescription
+    operation_ref 150786 // displayBanner
+    operation_ref 150914 // setGenres
+    operation_ref 151042 // openYouTubeSearch
+    operation_ref 151170 // addResults
+  xyz 81 235.6 2005
 end
 classcanvas 128386 class_ref 146050 // Register
   classdiagramsettings member_max_width 0 end
-  xyz 745.3 153.3 2010
+  hidden_attributes
+    attribute_ref 146818 // login
+    attribute_ref 146946 // password1
+    attribute_ref 147074 // password2
+  hidden_operations
+    operation_ref 151298 // onCreate
+    operation_ref 151426 // register
+  xyz 564.75 157.4 2010
 end
 classcanvas 128514 class_ref 146178 // SearchActivity
   classdiagramsettings member_max_width 0 end
-  xyz 195.95 571.65 2015
+  hidden_attributes
+    attribute_ref 147202 // result_amount
+    attribute_ref 147330 // search_result
+    attribute_ref 147458 // scroll_result
+    attribute_ref 147586 // searchView
+  hidden_operations
+    operation_ref 151554 // onCreate
+    operation_ref 151682 // manageQuery
+    operation_ref 151810 // updateQuery
+    operation_ref 151938 // addResults
+    operation_ref 152066 // loopCheckScroll
+  xyz 475.75 235.6 2015
 end
 classcanvas 128642 class_ref 145282 // FlowWidget
   classdiagramsettings member_max_width 0 end
-  xyz 445.95 151.95 3005
+  hidden_attributes
+    attribute_ref 151170 // flowLayout
+    attribute_ref 151298 // scrollView
+    attribute_ref 151426 // gestureDetector
+    attribute_ref 151554 // paddingX
+    attribute_ref 151682 // currentIndex
+  hidden_operations
+    operation_ref 159106 // FlowWidget
+    operation_ref 159234 // addPlaquette
+    operation_ref 159362 // getXToScroll
+    operation_ref 159490 // getCurrentPlaquette
+    operation_ref 159618 // getPlaquette
+    operation_ref 159746 // getCurrentPlaquetteID
+    operation_ref 159874 // scrollToNext
+    operation_ref 160002 // scrollToPrevious
+    operation_ref 160130 // removeLoadingWidgets
+    operation_ref 160258 // setFlowLayout
+    operation_ref 160386 // setScrollView
+    operation_ref 160514 // updateFlow
+    operation_ref 160642 // isVisible
+  xyz 270.8 157.4 3005
 end
 classcanvas 128898 class_ref 145922 // ResultWidget
   classdiagramsettings member_max_width 0 end
-  xyz 280.3 865.65 3011
+  hidden_attributes
+    attribute_ref 151810 // nbPlaquettesParLigne_LANDSCAPE
+    attribute_ref 151938 // nbPlaquettesParLigne_PORTRAIT
+    attribute_ref 152066 // defaultPlaquette
+    attribute_ref 152194 // hasNextPage
+    attribute_ref 152322 // search_result
+    attribute_ref 152450 // plaquetteHeight
+    attribute_ref 152578 // plaquetteWidth
+    attribute_ref 152706 // currentQueueToken
+    attribute_ref 152834 // currentPage
+    attribute_ref 152962 // loadingImage
+    attribute_ref 153090 // nbPlaquettesParLigne
+    attribute_ref 153218 // activity
+    attribute_ref 153346 // onInit
+  hidden_operations
+    operation_ref 160770 // ResultWidget
+    operation_ref 160898 // ResultWidget
+    operation_ref 161026 // updateOrientation
+    operation_ref 161154 // init
+    operation_ref 161282 // removeResultsUI
+    operation_ref 161410 // updateResultsUI
+    operation_ref 161538 // craftResult
+    operation_ref 161666 // displayLoadingResultsUI
+    operation_ref 161794 // addResults
+    operation_ref 161922 // loadNextInQueue
+    operation_ref 162050 // hasNextPage
+    operation_ref 162178 // setHasNextPage
+    operation_ref 162306 // getCurrentPage
+    operation_ref 162434 // setCurrentPage
+    operation_ref 162562 // setOnInit
+  xyz 232.1 431.2 3011
 end
 classcanvas 129282 class_ref 145666 // Movie
   classdiagramsettings member_max_width 0 end
-  xyz 326.65 1432.95 3017
+  hidden_attributes
+    attribute_ref 149122 // adult
+    attribute_ref 149250 // backdrop_path
+    attribute_ref 149378 // genre_ids
+    attribute_ref 149506 // id
+    attribute_ref 149634 // original_language
+    attribute_ref 149762 // original_title
+    attribute_ref 149890 // overview
+    attribute_ref 150018 // popularity
+    attribute_ref 150146 // poster_path
+    attribute_ref 150274 // release_date
+    attribute_ref 150402 // title
+    attribute_ref 150530 // video
+    attribute_ref 150658 // vote_average
+    attribute_ref 150786 // vote_count
+  hidden_operations
+    operation_ref 156418 // getTitle
+    operation_ref 156546 // getOverview
+    operation_ref 156674 // getPosterPath
+    operation_ref 156802 // getReleaseDate
+    operation_ref 156930 // isAdult
+    operation_ref 157058 // isVideo
+    operation_ref 157186 // getBackdrop_path
+    operation_ref 157314 // getPopularity
+    operation_ref 157442 // getVote_average
+    operation_ref 157570 // getId
+    operation_ref 157698 // getVote_count
+    operation_ref 157826 // getGenre_ids
+    operation_ref 157954 // getOriginal_language
+    operation_ref 158082 // getOriginal_title
+    operation_ref 158210 // getPoster_path
+  xyz 255.1 510 3017
 end
 classcanvas 129666 class_ref 145794 // IHM
   classdiagramsettings member_max_width 0 end
-  xyz 432 544.65 3017
+  hidden_attributes
+    attribute_ref 148610 // ihmActives
+    attribute_ref 148738 // activiteActive
+  hidden_operations
+    operation_ref 154754 // getIHMActive
+    operation_ref 154882 // getIHM
+    operation_ref 155010 // IHM
+    operation_ref 155138 // ajouterIHM
+    operation_ref 155266 // getActiviteActive
+    operation_ref 155394 // getActivite
+    operation_ref 155522 // fermerActivite
+    operation_ref 155650 // fermerPopups
+    operation_ref 155778 // demarrerActivite
+    operation_ref 155906 // applyDarkTheme
+  xyz 294.45 235.6 3017
 end
 classcanvas 130690 class_ref 146818 // MovieGenre
   classdiagramsettings member_max_width 0 end
-  xyz 1080.4 329.2 3023
+  hidden_attributes
+    attribute_ref 150914 // id
+    attribute_ref 151042 // name
+  hidden_operations
+    operation_ref 158338 // MovieGenre
+    operation_ref 158466 // addToCache
+    operation_ref 158594 // clearCache
+    operation_ref 158722 // getGenre
+    operation_ref 158850 // getName
+    operation_ref 158978 // getId
+  xyz 667.6 704.4 3023
 end
 classcanvas 131586 class_ref 146946 // GestureListener
   classdiagramsettings member_max_width 0 end
-  xyz 1026.2 692.4 3030
+  hidden_operations
+    operation_ref 154498 // onScroll
+    operation_ref 154626 // onFling
+  xyz 71.8 787.8 3030
 end
 classcanvas 131714 class_ref 147202 // LoadingQueue
   classdiagramsettings member_max_width 0 end
-  xyz 138 1068.3 3035
+  hidden_attributes
+    attribute_ref 148866 // posterUrl
+    attribute_ref 148994 // imageView
+  hidden_operations
+    operation_ref 156034 // LoadingQueue
+    operation_ref 156162 // getPosterUrl
+    operation_ref 156290 // getImageView
+  xyz 167.9 314.4 3035
 end
 classcanvas 131970 class_ref 146306 // TheMovieDB
   classdiagramsettings member_max_width 0 end
-  xyz 38.95 1576.95 3040
+  hidden_attributes
+    attribute_ref 147714 // BASE_URL
+    attribute_ref 147842 // API_KEY
+    attribute_ref 147970 // LANG
+    attribute_ref 148098 // retrofit
+  hidden_operations
+    operation_ref 152706 // getInstance
+    operation_ref 152834 // TheMovieDB
+    operation_ref 152962 // fetchGenres
+    operation_ref 153090 // fetchPoupular
+    operation_ref 153218 // search
+    operation_ref 153346 // search
+    operation_ref 153474 // getPopular
+    operation_ref 153602 // fetchSimillar
+    operation_ref 153730 // getRetrofitInstance
+  xyz 569.75 510 3040
 end
 classcanvas 132738 class_ref 146434 // IRetrofitTheMovieDB
   classdiagramsettings member_max_width 0 end
-  xyz 1017.5 838.9 3045
+  hidden_operations
+    operation_ref 152194 // getPopularMovies
+    operation_ref 152322 // searchMovies
+    operation_ref 152450 // getGenres
+    operation_ref 152578 // getSimilarMovies
+  xyz 296.5 708.1 3045
 end
 classcanvas 132866 class_ref 146562 // MovieResponse
   classdiagramsettings member_max_width 0 end
-  xyz 341.65 2020.95 3050
+  hidden_attributes
+    attribute_ref 148226 // page
+    attribute_ref 148354 // total_pages
+    attribute_ref 148482 // total_results
+  hidden_operations
+    operation_ref 153986 // getPage
+    operation_ref 154114 // getResults
+    operation_ref 154242 // getTotal_pages
+    operation_ref 154370 // getTotal_results
+  xyz 226.75 589.2 3050
 end
 classcanvas 133122 class_ref 146690 // GenreResponse
   classdiagramsettings member_max_width 0 end
-  xyz 851.4 389.2 3056
+  hidden_operations
+    operation_ref 153858 // getGenres
+  xyz 515.6 704.4 3056
 end
 classcanvas 133378 class_ref 145154 // AppCompatActivity
   classdiagramsettings member_max_width 0 end
-  xyz 281.3 37.95 3061
+  xyz 460.75 40 3061
 end
 classcanvas 134146 class_ref 147074 // SimpleOnGestureListener
   classdiagramsettings member_max_width 0 end
-  xyz 995.2 612 3066
+  xyz 40.8 707.8 3066
 end
 relationcanvas 128770 relation_ref 142722 // <unidirectional association>
-  decenter_end 490
   from ref 128002 z 3006 to ref 128642
-  role_a_pos 372 303 3000 no_role_b
+  role_a_pos 353 136 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129026 relation_ref 143362 // <unidirectional association>
   geometry VH unfixed
-  decenter_begin 474
-  decenter_end 493
-  from ref 128258 z 3012 to point 705 1125
+  from ref 128258 z 3012 to point 126.8 449.6
   line 135298 z 3012 to ref 128898
-  role_a_pos 514 1106 3000 no_role_b
+  role_a_pos 148 430 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129154 relation_ref 143746 // <unidirectional association>
-  decenter_begin 860
-  decenter_end 65
-  from ref 128514 z 3012 to ref 128898
-  role_a_pos 304 843 3000 no_role_b
+  geometry VH unfixed
+  from ref 128514 z 3012 to point 525.2 449.6
+  line 136194 z 3012 to ref 128898
+  role_a_pos 338 430 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129410 relation_ref 145538 // <unidirectional association>
-  decenter_end 474
-  from ref 128898 z 3018 stereotype "<<List>>" xyz 366.5 1414.5 3018 to ref 129282
-  role_a_pos 402 1411 3000 no_role_b
+  from ref 128898 z 3018 stereotype "<<List>>" xyz 253 490 3018 to ref 129282
+  role_a_pos 289 488 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129538 relation_ref 143106 // <unidirectional association>
-  decenter_end 493
-  from ref 128258 z 3018 to point 813.5 663.5
-  line 135426 z 3018 to point 813.5 1705.3
+  from ref 128258 z 3018 to point 40.2 256.8
+  line 135426 z 3018 to point 40.2 530
   line 135554 z 3018 to ref 129282
-  role_a_pos 476 1683 3000 no_role_b
+  role_a_pos 192 509 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129794 relation_ref 144770 // <unidirectional association>
-  from ref 129666 z 3018 to point 402.6 544.65
-  line 129922 z 3018 to point 402.6 574.65
+  from ref 129666 z 3018 to point 269.05 240.95
+  line 129922 z 3018 to point 269.05 270.95
   line 130050 z 3018 to ref 129666
-  role_a_pos 434 583.25 3000 no_role_b
+  role_a_pos 263.85 235.35 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 130178 relation_ref 145410 // <unidirectional association>
-  decenter_begin 933
+  decenter_begin 845
   from ref 128898 z 3018 to ref 129666
-  role_a_pos 499 796 3000 no_role_b
+  role_a_pos 325 283 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 130306 relation_ref 145154 // <unidirectional association>
-  decenter_begin 282
   from ref 128642 z 3018 to ref 129666
-  role_a_pos 499 522 3000 no_role_b
+  role_a_pos 315 213 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 130434 relation_ref 143234 // <unidirectional association>
-  decenter_end 485
   from ref 128258 z 3018 to ref 129666
-  role_a_pos 558 641 3000 no_role_b
+  role_a_pos 262 233 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 130562 relation_ref 143874 // <unidirectional association>
-  decenter_begin 481
-  decenter_end 485
   from ref 128514 z 3018 to ref 129666
-  role_a_pos 400 641 3000 no_role_b
+  role_a_pos 348 233 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 130818 relation_ref 144898 // <unidirectional association>
   decenter_end 250
-  from ref 130690 z 3024 stereotype "<<Map>>" xyz 1189.5 383 3024 to point 1250.1 409.2
-  line 130946 z 3024 to point 1250.1 368.2
+  from ref 130690 z 3024 stereotype "<<Map>>" xyz 769.6 737.1 3024 to point 835.6 788
+  line 130946 z 3024 to point 835.6 746.4
   line 131074 z 3024 to ref 130690
-  role_a_pos 1264 383 3000 no_role_b
+  role_a_pos 770.6 696.6 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 131202 relation_ref 145026 // <unidirectional association>
   decenter_begin 610
   decenter_end 272
-  from ref 130690 z 3024 to point 1132.1 268.2
-  line 131330 z 3024 to point 1098.1 267.2
+  from ref 130690 z 3024 to point 718.2 646.4
+  line 131330 z 3024 to point 683.6 646
   line 131458 z 3024 to ref 130690
-  role_a_pos 1094 241 3000 no_role_b
+  role_a_pos 699.6 681.6 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 131842 relation_ref 145282 // <unidirectional association>
-  decenter_begin 493
-  from ref 128898 z 3036 stereotype "<<List>>" xyz 235 1127 3036 to ref 131714
-  role_a_pos 253 1106 3000 no_role_b
+  decenter_begin 143
+  decenter_end 727
+  from ref 128898 z 3036 stereotype "<<List>>" xyz 217.5 390.5 3036 to ref 131714
+  role_a_pos 255 362 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 132098 relation_ref 144130 // <unidirectional association>
-  from ref 131970 z 3041 to point 11.75 1579.45
-  line 132226 z 3041 to point 11.75 1609.45
+  from ref 131970 z 3041 to point 546.4 518.85
+  line 132226 z 3041 to point 546.4 548.85
   line 132354 z 3041 to ref 131970
-  role_a_pos 43.25 1618.75 3000 no_role_b
+  role_a_pos 506.4 515.45 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 132482 relation_ref 144258 // <unidirectional association>
-  decenter_begin 486
-  decenter_end 493
-  from ref 131970 z 3041 stereotype "<<List>>" xyz 220 1704 3041 to ref 129282
-  role_a_pos 273 1683 3000 no_role_b
+  from ref 131970 z 3041 stereotype "<<List>>" xyz 411 531 3041 to ref 129282
+  role_a_pos 315 509 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 132610 relation_ref 144002 // <unidirectional association>
   geometry HV unfixed
-  decenter_begin 481
-  decenter_end 472
-  from ref 128514 z 3041 to point 96 660
+  decenter_end 526
+  from ref 128514 z 3041 to point 615 253
   line 134914 z 3041 to ref 131970
-  role_a_pos 109 1555 3000 no_role_b
+  role_a_pos 627 488 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 132994 relation_ref 144514 // <unidirectional association>
-  decenter_begin 467
-  decenter_end 474
-  from ref 132866 z 3051 stereotype "<<List>>" xyz 366 2001.5 3051 to ref 129282
-  role_a_pos 402 1991 3000 no_role_b
+  from ref 132866 z 3051 stereotype "<<List>>" xyz 252 566 3051 to ref 129282
+  role_a_pos 289 558 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 133250 relation_ref 144386 // <unidirectional association>
-  from ref 133122 z 3057 stereotype "<<List>>" xyz 995 414 3057 to ref 130690
-  role_a_pos 1000 393 3000 no_role_b
+  from ref 133122 z 3057 stereotype "<<List>>" xyz 619 721 3057 to ref 130690
+  role_a_pos 617 703 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 133506 relation_ref 143490 // <generalisation>
   geometry VHV unfixed
-  from ref 128386 z 3062 to point 780.8 115.3
-  line 134658 z 3062 to point 345.8 115.3
+  decenter_begin 537
+  from ref 128386 z 3062 to point 596 117.2
+  line 134658 z 3062 to point 524 117.2
   line 134786 z 3062 to ref 133378
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 133634 relation_ref 142850 // <generalisation>
   geometry VHV unfixed
-  from ref 128130 z 3062 to point 158 115.3
-  line 134402 z 3062 to point 345.8 115.3
+  from ref 128130 z 3062 to point 689.6 117.2
+  line 134402 z 3062 to point 525.2 117.2
   line 134530 z 3062 to ref 133378
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 133762 relation_ref 142594 // <generalisation>
-  decenter_begin 469
-  from ref 128002 z 3062 to ref 133378
+  geometry VHV unfixed
+  from ref 128002 z 3062 to point 439.6 118
+  line 135938 z 3062 to point 525.2 118
+  line 136066 z 3062 to ref 133378
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 133890 relation_ref 142978 // <generalisation>
   geometry VHV unfixed
-  decenter_begin 474
-  from ref 128258 z 3062 to point 705 115.3
-  line 135042 z 3062 to point 345 115.3
+  from ref 128258 z 3062 to point 126.8 117.2
+  line 135042 z 3062 to point 525.2 117.2
   line 135170 z 3062 to ref 133378
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 134018 relation_ref 143618 // <generalisation>
-  geometry VHV unfixed
-  decenter_begin 538
-  from ref 128514 z 3062 to point 254 115.3
-  line 135682 z 3062 to point 345 115.3
-  line 135810 z 3062 to ref 133378
+  from ref 128514 z 3062 to ref 133378
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
